@@ -20,19 +20,19 @@
 .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .lbl{display:block;font-size:.78rem;font-weight:800;color:var(--brown2);margin-bottom:6px}input,select,textarea{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--brown);padding:10px 12px;font-size:15px}textarea{min-height:82px;resize:vertical;line-height:1.6}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--olive2);box-shadow:0 0 0 3px rgba(93,107,32,.1)}.note{font-size:.72rem;color:#9a816d;margin-top:4px}.is-big input,.is-big select,.is-big textarea{background:var(--big-bg);border-color:#c8a040}.is-small input,.is-small select,.is-small textarea{background:var(--green-bg);border-color:#6a9660}
 .work-card{background:#f7f3df}.bimun-layout{display:grid;grid-template-columns:minmax(700px,1fr) 390px;gap:18px;align-items:start}.preview-panel{position:sticky;top:142px}.preview-stone{background:linear-gradient(135deg,#2d2d2d,#111);border-radius:18px;min-height:330px;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:inset 0 0 30px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.18)}.pv-mark{font-size:1.25rem;margin-bottom:12px}.pv-name{font-size:2.05rem;font-weight:900;letter-spacing:.08em;margin:4px 0}.pv-date{font-size:1rem;color:#ccc;margin-top:7px}.pv-extra{font-size:1.25rem;margin-bottom:8px}.pv-back{font-size:.92rem;color:#ddd;line-height:1.7;margin-top:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;width:100%}.preview-title{font-weight:900;margin:0 0 10px}.slot-box{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbf8ea;margin:10px 0}.slot-head{font-weight:900;margin-bottom:10px;display:flex;justify-content:space-between}.small-btn{padding:7px 10px;border-radius:8px;font-size:.75rem}.hidden{display:none!important}
-.summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item strong{white-space:nowrap}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:#fff2f2;border-color:#e06b6b}.stone-box select{border-color:#d85b5b;background:#fffafa}.actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}.grow{flex:1}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;align-items:center;gap:8px}.sum-item span{white-space:nowrap}.sum-item strong{white-space:nowrap}.sum-item-full{grid-column:1/-1}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:#fff2f2;border-color:#e06b6b}.stone-box select{border-color:#d85b5b;background:#fffafa}.actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}.grow{flex:1}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(980px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}table{width:100%;border-collapse:separate;border-spacing:0 8px}th{text-align:left;font-size:.78rem;color:var(--brown2);padding:0 10px}td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:middle}td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px}td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}.list-actions{display:flex;gap:5px}.money{font-size:.82rem;line-height:1.55;white-space:nowrap}.status-text{font-weight:900;color:var(--brown)}
 
 /* ===== PC 상담용 레이아웃 보정 ===== */
-.page1-layout{display:grid;grid-template-columns:7fr 3fr;gap:18px;align-items:start}
+.page1-layout{display:grid!important;grid-template-columns:minmax(0,7fr) minmax(260px,3fr)!important;gap:18px;align-items:start}
 .page1-layout .section-title{margin-top:0}
-.work-card{background:var(--paper)!important}
+.work-card{background:var(--paper)!important;border-color:var(--line)!important}
 .basic-card .row-gap{margin-top:12px}
 .size-wrap.hidden{display:none!important}
 .work-stack{display:flex;flex-direction:column;gap:12px}
 .work-stack textarea{min-height:150px}
 .bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}
-.input-stone-box{background:#fff2f2;border:1.5px solid #e06b6b;border-radius:14px;padding:12px 14px;margin-bottom:14px;max-width:360px}
+.input-stone-box{background:#fff2f2;border:1.5px solid #e06b6b;border-radius:14px;padding:12px 14px;margin:16px 0 0;max-width:420px}
 .input-stone-box select{border-color:#d85b5b;background:#fffafa}
 .calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}
 .calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
@@ -123,10 +123,6 @@
           <div class="bimun-head-row">
             <div class="section-title" style="margin:0">비문 입력</div>
           </div>
-          <div id="inputStoneBox" class="input-stone-box hidden">
-            <label class="lbl">스톤포토</label>
-            <select name="stone_photo" id="stonePhoto"><option value="no">없음</option><option value="yes">추가</option></select>
-          </div>
           <div class="section-title">전면</div>
           <div class="card">
             <div class="grid3" style="margin-bottom:12px">
@@ -161,6 +157,11 @@
               <div class="is-small"><label class="lbl">외손</label><input name="maternal_grandchild_text" /></div>
             </div>
             <div class="is-small" style="margin-top:12px"><label class="lbl">기타</label><textarea name="etc_text" id="etcText"></textarea></div>
+          </div>
+
+          <div id="inputStoneBox" class="input-stone-box hidden">
+            <label class="lbl">스톤포토</label>
+            <select name="stone_photo" id="stonePhoto"><option value="no">없음</option><option value="yes">추가</option></select>
           </div>
         </div>
 
@@ -328,7 +329,7 @@ async function calc(){
   $('summaryBox').innerHTML = `
     <div class="sum-item"><span>큰글자</span><strong>${currentSummary.big_cnt}자 · ${money(currentSummary.big_amt)}</strong></div>
     <div class="sum-item"><span>작은글자</span><strong>${currentSummary.small_cnt + currentSummary.side_cnt + currentSummary.back_cnt}자 · ${money(currentSummary.small_amt + currentSummary.side_amt + currentSummary.back_amt)}</strong></div>
-    <div class="sum-item"><span>스톤포토</span><strong>${currentSummary.stone_added ? '추가 · '+money(currentSummary.stone_amt) : '없음'}</strong></div>
+    <div class="sum-item sum-item-full"><span>스톤포토</span><strong>${currentSummary.stone_added ? '추가 · '+money(currentSummary.stone_amt) : '없음'}</strong></div>
     <div class="sum-item sum-total"><span>총액</span><strong>${money(currentSummary.total)}</strong></div>`;
 }
 async function saveForm(){
