@@ -63,12 +63,19 @@ for c, subs in CATALOG.items():
             slots = 4
         if c in ["8기", "다기형", "12기B", "24기"]:
             slots = 5
+        front_only_hanja = c in ["단납/평장1기", "쌍납/평장부부A", "송수재", "평장1기P"]
         RULES[f"{c}||{s}"] = {
             "price_group": group,
             "slots": slots,
             "has_side": (c == "매장묘") or (c == "평장부부B" and s == "2번"),
             "stone_photo": c in STONE_PHOTO_CATEGORIES,
             "front_style": "maejang" if (c == "매장묘" or (c == "평장부부B" and s == "2번")) else "standard",
+            # 한자 표현 가능 범위: 계산용이 아니라 시안 표현 방식 제어용
+            "front_hanja": True,
+            "side_hanja": (not front_only_hanja) and ((c == "매장묘") or (c == "평장부부B" and s == "2번")),
+            "back_hanja": not front_only_hanja,
+            "needs_orientation": (c == "4기" and s == "B"),
+            "family_phrase": c in ["8기", "12기B", "24기"],
         }
 
 
@@ -143,6 +150,9 @@ def calc_summary(form):
         if form.get("religion_mark"):
             big_cnt += 1
         big_cnt += count_chars(form.get("front_extra"))
+        if rule.get("family_phrase") and form.get("family_bongwan"):
+            # 예: 김해김 + 씨 가족지묘 => 본관 글자수 + 고정 5자
+            big_cnt += count_chars(form.get("family_bongwan")) + 5
 
         for i in range(1, slot_count + 1):
             big_cnt += count_chars(form.get(f"f{i}_name"))
