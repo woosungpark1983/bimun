@@ -1,243 +1,320 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>비문 신청서 · 우성공원</title>
-<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 <style>
 :root{
-  --ivory:#f4f1e4; --ivory2:#ede9d6; --paper:#fffef8; --paper2:#faf8f0;
-  --olive:#5d6b20; --olive2:#788934; --olive3:#eef2d2;
-  --brown:#3e2e1e; --brown2:#6d503a; --muted:#a28d78;
-  --gold:#c09840; --line:#d8d0b8; --green:#557b38; --red:#b64040;
-  --big-bg:#fff5d8; --big-bd:#c59b38; --sml-bg:#eaf3e9; --sml-bd:#6c9a5f;
+  --ivory:#f4f1e4; --paper:#fffef8; --paper2:#faf8f0; --line:#ded6bd;
+  --olive:#5d6b20; --olive2:#76862f; --brown:#3e2e1e; --brown2:#7a5c44;
+  --gold:#c09840; --red:#b33a3a; --green-bg:#ebf2ea; --big-bg:#fdf6e0;
   --shadow:0 4px 18px rgba(62,46,30,.08);
 }
 *{box-sizing:border-box} body{margin:0;font-family:'Pretendard','Malgun Gothic',sans-serif;background:var(--ivory);color:var(--brown);font-size:15px} button,input,select,textarea{font-family:inherit}
-.topbar{height:68px;background:rgba(255,254,248,.98);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 28px;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(62,46,30,.06)}
-.logo{height:44px;width:auto;object-fit:contain}.title{font-size:1.65rem;font-weight:900;letter-spacing:.03em;margin-right:auto}.top-actions{display:flex;gap:10px;align-items:center}.top-btn{border:1px solid var(--line);background:var(--paper);color:var(--brown);padding:11px 17px;border-radius:12px;font-weight:800;cursor:pointer}.top-btn.primary{background:var(--olive);border-color:var(--olive);color:#fff}.top-btn:hover{filter:brightness(.98)}
-.page-tabs{height:58px;background:var(--paper2);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:12px;align-items:center;position:sticky;top:68px;z-index:45}.step-tab{min-width:230px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:12px 20px;font-weight:900;color:var(--brown2);cursor:pointer}.step-tab.active{background:var(--brown);border-color:var(--brown);color:#f7e9bd}.step-tab .num{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--ivory2);margin-right:8px}.step-tab.active .num{background:var(--gold);color:#fff}
-.wrap{max-width:1380px;margin:0 auto;padding:24px 26px 110px}.load-banner{display:none;margin-bottom:16px;background:var(--olive3);border:1px solid #cbd887;color:var(--olive);font-weight:800;border-radius:14px;padding:12px 16px}.load-banner.show{display:flex;justify-content:space-between;align-items:center}.load-banner button{border:1px solid #bdca72;background:#fff;border-radius:8px;padding:6px 10px;color:var(--olive);font-weight:800}
-.section{display:none}.section.active{display:block}.sec-title{display:flex;align-items:center;gap:10px;margin:8px 0 14px;font-size:1.12rem;font-weight:900}.sec-title:before{content:"";width:5px;height:20px;background:var(--olive);border-radius:4px}.sub-title{font-weight:900;margin:18px 0 10px;color:var(--olive)}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px 24px;margin-bottom:18px;box-shadow:var(--shadow)}.card.compact{padding:18px 20px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.field label,.lbl{display:block;font-size:.78rem;font-weight:800;color:var(--muted);margin-bottom:7px}.field input,.field select,.field textarea,input[type=text],select,textarea{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--brown);padding:10px 12px;font-size:15px;outline:none}.field textarea,textarea{min-height:78px;resize:vertical;line-height:1.55}.field input:focus,.field select:focus,.field textarea:focus,input:focus,select:focus,textarea:focus{border-color:var(--olive2);box-shadow:0 0 0 3px rgba(93,107,32,.1)}.is-big input,.is-big select,.is-big textarea{background:var(--big-bg);border-color:var(--big-bd)}.is-sml input,.is-sml select,.is-sml textarea{background:var(--sml-bg);border-color:var(--sml-bd)}.hint{font-size:.72rem;color:var(--muted);margin-top:6px}.legend{display:inline-flex;gap:12px;font-size:.82rem;margin-left:8px}.dotbox{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;border:1.5px solid}.dotbig{background:var(--big-bg);border-color:var(--big-bd)}.dotsml{background:var(--sml-bg);border-color:var(--sml-bd)}
-.work-card{background:linear-gradient(180deg,#fffef8,#fbf8e9)}.status-row{display:grid;grid-template-columns:1fr 1fr 1fr 1.2fr;gap:14px}.work-memo{margin-top:14px}.main-split{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(380px,.82fr);gap:18px;align-items:start}.preview-panel{position:sticky;top:145px}.preview-box{border:1px solid #2f2f2f;background:#303030;border-radius:18px;box-shadow:inset 0 0 0 8px #3a3a3a,0 6px 18px rgba(0,0,0,.12);padding:28px;min-height:520px;color:#f3f0e8;display:flex;flex-direction:column;gap:18px}.preview-title{font-size:.86rem;font-weight:900;color:#d4c6a5;letter-spacing:.08em;text-align:center;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:12px}.stone-face{background:#262626;border:1px solid rgba(255,255,255,.18);border-radius:14px;min-height:240px;padding:28px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}.pv-big{font-size:2rem;font-weight:700;letter-spacing:.12em;line-height:1.45}.pv-extra{font-size:1.25rem;color:#e5dfd0}.pv-small{font-size:1rem;color:#d2ccb9;line-height:1.7}.stone-sub{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stone-mini{background:#262626;border:1px solid rgba(255,255,255,.14);border-radius:12px;min-height:125px;padding:14px;text-align:center}.stone-mini h4{margin:0 0 8px;color:#d4c6a5;font-size:.78rem}.stone-mini div{white-space:pre-wrap;line-height:1.65;color:#eee}.empty-pv{color:#8f8f8f;font-size:1rem;letter-spacing:0}.slot-box{border:1px solid var(--line);border-radius:15px;background:#fbf8e9;padding:15px;margin:12px 0}.slot-title{display:flex;justify-content:space-between;align-items:center;font-weight:900;margin-bottom:12px;padding-bottom:8px;border-bottom:1px dashed #cbbf9e}.btn-del-slot,.btn-add-birth{border:1px solid var(--line);background:#fff;border-radius:9px;padding:7px 10px;font-weight:800;color:var(--brown2);cursor:pointer}.btn-add-slot{width:100%;border:1.5px dashed #abb96c;background:var(--olive3);color:var(--olive);border-radius:14px;min-height:48px;font-weight:900;cursor:pointer}.birth-extra{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px}.birth-action-row{display:flex;justify-content:flex-end;margin-top:8px}
-.calc-area{margin-top:16px}.calc-btn{background:var(--brown);color:#f6e8bd;border:0;border-radius:13px;padding:13px 24px;font-weight:900;font-size:1rem;cursor:pointer}.sum-lines{border:1px solid var(--line);background:var(--ivory);border-radius:14px;padding:14px 18px}.sum-row{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}.sum-row:last-child{border-bottom:0}.sum-row.stone .sum-row-lbl,.chip-stone .chip-val{color:var(--red);font-weight:900}.sum-total{text-align:right;font-size:1.25rem;font-weight:900;margin-top:14px}.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.chip{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;display:flex;justify-content:space-between;gap:10px}.chip-big{background:var(--big-bg);border-color:var(--big-bd)}.chip-sml{background:var(--sml-bg);border-color:var(--sml-bd)}.chip-total{background:var(--brown);color:#f6e8bd}.chip-stone{background:#fff0f0;border-color:#e0a0a0;color:var(--red)}
-.action-bar{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(244,241,228,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:13px 28px;display:flex;gap:10px;align-items:center}.btn{border:1.5px solid var(--line);background:var(--paper);border-radius:13px;min-height:48px;padding:0 24px;font-weight:900;font-size:.95rem;cursor:pointer}.btn-save{background:var(--olive);border-color:var(--olive);color:#fff}.btn-nav{background:var(--brown);border-color:var(--brown);color:#f6e8bd}.btn-reset{color:var(--muted)}.save-preview{margin-left:auto;max-width:420px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#fff;border:1px solid var(--line);border-radius:10px;padding:8px 14px;color:var(--brown2);font-weight:800}.saved-ok{color:var(--olive);font-weight:900}
-.overlay{position:fixed;inset:0;background:rgba(62,46,30,.35);z-index:80;display:none}.overlay.open{display:block}.drawer{position:fixed;top:0;right:0;width:520px;max-width:100%;height:100vh;background:var(--paper);z-index:90;transform:translateX(100%);transition:.2s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(62,46,30,.18)}.drawer.open{transform:translateX(0)}.dr-head{height:68px;background:var(--brown);color:#f6e8bd;display:flex;align-items:center;gap:12px;padding:0 18px}.dr-head b{font-size:1.05rem;margin-right:auto}.dr-close{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:transparent;color:#f6e8bd;font-size:1.1rem}.dr-search{padding:12px;background:var(--ivory);border-bottom:1px solid var(--line)}.dr-list{overflow:auto;padding:10px}.dr-item{border:1px solid var(--line);border-radius:15px;background:#fff;margin-bottom:10px;overflow:hidden}.dr-stripe{height:4px;background:linear-gradient(90deg,var(--olive),var(--gold))}.dr-body{padding:12px 14px}.dr-name{font-weight:900;margin-bottom:5px}.dr-meta{font-size:.82rem;color:var(--brown2);line-height:1.6}.status-badge{display:inline-block;border-radius:999px;padding:2px 8px;background:var(--olive3);color:var(--olive);font-weight:900;margin-right:4px}.dr-stats{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.dr-stat{font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:3px 8px;background:var(--ivory)}.dr-stat.stone{background:#fff0f0;border-color:#e2aaaa;color:var(--red);font-weight:900}.dr-acts{display:flex;gap:8px;padding:10px 14px;background:var(--ivory);border-top:1px solid var(--line)}.dr-acts button,.dr-acts a{flex:1;text-align:center;text-decoration:none;border:0;border-radius:10px;padding:10px;background:var(--brown);color:#f6e8bd;font-weight:900}.dr-acts button{background:#fff;color:var(--red);border:1px solid #d9aaaa}.dr-empty{text-align:center;color:var(--muted);padding:40px 20px}
-@media(max-width:1050px){.main-split{grid-template-columns:1fr}.preview-panel{position:static}.grid4,.status-row,.chips{grid-template-columns:repeat(2,1fr)}}
-@media print{.topbar,.page-tabs,.action-bar,.drawer,.overlay,.load-banner,.no-print{display:none!important}.wrap{padding:0}.section{display:block}.preview-panel{position:static}.main-split{grid-template-columns:1fr}.card{box-shadow:none}}
+.topbar{height:72px;background:rgba(255,254,248,.98);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:18px;padding:0 28px;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(62,46,30,.07)}
+.logo{height:44px;object-fit:contain}.title{font-size:1.55rem;font-weight:900;letter-spacing:.03em;flex:1;text-align:center}.top-actions{display:flex;gap:8px}.btn{border:none;border-radius:11px;padding:11px 18px;font-weight:800;cursor:pointer;background:var(--paper);border:1px solid var(--line);color:var(--brown)}.btn-primary{background:var(--olive);color:#fff;border-color:var(--olive)}.btn-dark{background:var(--brown);color:#f5e9c0;border-color:var(--brown)}.btn-danger{color:var(--red)}
+.tabs{height:54px;background:var(--paper2);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:10px;position:sticky;top:72px;z-index:49;padding:8px 24px}.tab{min-width:220px;border:1px solid var(--line);background:var(--paper);border-radius:999px;font-weight:900;color:var(--brown2);cursor:pointer}.tab.active{background:var(--olive);color:white;border-color:var(--olive)}
+.wrap{max-width:1440px;margin:0 auto;padding:22px 28px 120px}.page{display:none}.page.active{display:block}.section-title{font-size:1.05rem;font-weight:900;margin:0 0 12px;display:flex;align-items:center;gap:8px}.section-title:before{content:"";width:4px;height:18px;border-radius:3px;background:var(--olive)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.lbl{display:block;font-size:.78rem;font-weight:800;color:var(--brown2);margin-bottom:6px}input,select,textarea{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--brown);padding:10px 12px;font-size:15px}textarea{min-height:82px;resize:vertical;line-height:1.6}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--olive2);box-shadow:0 0 0 3px rgba(93,107,32,.1)}.note{font-size:.72rem;color:#9a816d;margin-top:4px}.is-big input,.is-big select,.is-big textarea{background:var(--big-bg);border-color:#c8a040}.is-small input,.is-small select,.is-small textarea{background:var(--green-bg);border-color:#6a9660}
+.work-card{background:#f7f3df}.bimun-layout{display:grid;grid-template-columns:minmax(700px,1fr) 390px;gap:18px;align-items:start}.preview-panel{position:sticky;top:142px}.preview-stone{background:linear-gradient(135deg,#2d2d2d,#111);border-radius:18px;min-height:330px;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:inset 0 0 30px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.18)}.pv-mark{font-size:1.25rem;margin-bottom:12px}.pv-name{font-size:2.05rem;font-weight:900;letter-spacing:.08em;margin:4px 0}.pv-date{font-size:1rem;color:#ccc;margin-top:7px}.pv-extra{font-size:1.25rem;margin-bottom:8px}.pv-back{font-size:.92rem;color:#ddd;line-height:1.7;margin-top:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;width:100%}.preview-title{font-weight:900;margin:0 0 10px}.slot-box{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbf8ea;margin:10px 0}.slot-head{font-weight:900;margin-bottom:10px;display:flex;justify-content:space-between}.small-btn{padding:7px 10px;border-radius:8px;font-size:.75rem}.hidden{display:none!important}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item strong{white-space:nowrap}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:#fff2f2;border-color:#e06b6b}.stone-box select{border-color:#d85b5b;background:#fffafa}.actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}.grow{flex:1}
+.drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(980px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}table{width:100%;border-collapse:separate;border-spacing:0 8px}th{text-align:left;font-size:.78rem;color:var(--brown2);padding:0 10px}td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:middle}td:first-child{border-left:1px solid var(--line);border-radius:12px 0 0 12px}td:last-child{border-right:1px solid var(--line);border-radius:0 12px 12px 0}.list-actions{display:flex;gap:5px}.money{font-size:.82rem;line-height:1.55;white-space:nowrap}.status-text{font-weight:900;color:var(--brown)}
+@media(max-width:1100px){.bimun-layout{grid-template-columns:1fr}.preview-panel{position:static}.grid4,.grid5{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-<div class="topbar">
-  <img class="logo" src="{{ url_for('static', filename='logo.png') }}" onerror="this.style.display='none'" alt="우성공원"/>
+<header class="topbar">
+  <img class="logo" src="/static/logo.png" onerror="this.style.display='none'" alt="우성공원" />
   <div class="title">비문 신청서</div>
-  <div class="top-actions no-print">
-    <button type="button" class="top-btn primary" onclick="newForm()">새로작성</button>
-    <button type="button" class="top-btn" onclick="openDrawer()">저장목록 <span id="listCount">{{ saved_list|length }}</span></button>
+  <div class="top-actions">
+    <button class="btn" type="button" onclick="newForm()">새로작성</button>
+    <button class="btn" type="button" onclick="openList()">저장목록</button>
+    <button class="btn btn-primary" type="button" onclick="saveForm()">저장</button>
   </div>
+</header>
+<nav class="tabs">
+  <button class="tab active" type="button" data-page="page1" onclick="showPage('page1')">1. 접수 기본정보</button>
+  <button class="tab" type="button" data-page="page2" onclick="showPage('page2')">2. 비문</button>
+</nav>
+
+<main class="wrap">
+  <form id="mainForm" autocomplete="off">
+    <input type="hidden" name="id" id="dataId" />
+    <input type="hidden" name="created_at" id="createdAt" />
+    <input type="hidden" name="slot_count" id="slotCount" value="1" />
+
+    <section id="page1" class="page active">
+      <div class="section-title">기본정보</div>
+      <div class="card">
+        <div class="grid3">
+          <div><label class="lbl">계약번호</label><input name="contract_no" id="contractNo" /></div>
+          <div><label class="lbl">계약자</label><input name="contractor" id="contractor" /></div>
+          <div><label class="lbl">연락처 <span class="note">시안 받으실 분</span></label><input name="phone" id="phone" placeholder="010-0000-0000" /></div>
+        </div>
+        <div class="grid2" style="margin-top:12px">
+          <div><label class="lbl">대분류</label><select name="category" id="category"></select></div>
+          <div><label class="lbl">소분류(세부유형)</label><select name="subcategory" id="subcategory"></select></div>
+        </div>
+        <div class="grid3" style="margin-top:12px">
+          <div><label class="lbl">지구</label><input name="jigu" id="jigu" /></div>
+          <div><label class="lbl">열</label><input name="yeol" id="yeol" /></div>
+          <div><label class="lbl">호</label><input name="ho" id="ho" /></div>
+        </div>
+      </div>
+
+      <div class="section-title">작업관리</div>
+      <div class="card work-card">
+        <div class="grid4">
+          <div><label class="lbl">작성자</label><select name="writer" id="writer"></select></div>
+          <div><label class="lbl">시안 작업자</label><select name="designer" id="designer"></select></div>
+          <div><label class="lbl">검수자</label><select name="checker" id="checker"></select></div>
+          <div><label class="lbl">진행상태</label><select name="status" id="status"></select></div>
+        </div>
+        <div style="margin-top:12px"><label class="lbl">작업메모</label><textarea name="work_memo" id="workMemo" placeholder="시안 작업자가 확인해야 할 내용을 적어주세요."></textarea></div>
+      </div>
+    </section>
+
+    <section id="page2" class="page">
+      <div class="bimun-layout">
+        <div>
+          <div class="section-title">전면</div>
+          <div class="card">
+            <div class="grid3" style="margin-bottom:12px">
+              <div><label class="lbl">전면 문자</label><select name="front_type" id="frontType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+              <div class="is-big"><label class="lbl">종교 마크</label><select name="religion_mark" id="religionMark"><option value="">없음</option><option>불교</option><option>기독교</option><option>천주교</option></select></div>
+              <div class="is-big"><label class="lbl">세례명(기타 큰글자)</label><input name="front_extra" id="frontExtra" placeholder="공통 큰글자" /></div>
+            </div>
+            <div id="slots"></div>
+            <button class="btn small-btn" type="button" onclick="addSlot()">＋ 고인 추가</button>
+          </div>
+
+          <div id="sideSection">
+            <div class="section-title">측면</div>
+            <div class="card">
+              <div style="max-width:220px;margin-bottom:12px"><label class="lbl">측면 문자</label><select name="side_type" id="sideType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+              <div class="grid2">
+                <div class="slot-box"><div class="slot-head">남</div><div class="grid2"><div class="is-small"><label class="lbl">생년월일</label><input name="s1_birth" id="s1Birth" /></div><div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type"><option>생</option><option>없음</option></select></div><div class="is-small"><label class="lbl">사망일</label><input name="s1_death" id="s1Death" /></div><div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div></div></div>
+                <div class="slot-box"><div class="slot-head">여</div><div class="grid2"><div class="is-small"><label class="lbl">생년월일</label><input name="s2_birth" id="s2Birth" /></div><div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type"><option>생</option><option>없음</option></select></div><div class="is-small"><label class="lbl">사망일</label><input name="s2_death" id="s2Death" /></div><div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div></div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-title">후면</div>
+          <div class="card">
+            <div style="max-width:220px;margin-bottom:12px"><label class="lbl">후면 문자</label><select name="back_type" id="backType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+            <div class="grid3">
+              <div class="is-small"><label class="lbl">자</label><input name="son_text" id="sonText" /></div>
+              <div class="is-small"><label class="lbl">자부</label><input name="daughter_in_law_text" /></div>
+              <div class="is-small"><label class="lbl">손</label><input name="grandson_text" /></div>
+              <div class="is-small"><label class="lbl">녀</label><input name="daughter_text" /></div>
+              <div class="is-small"><label class="lbl">사위</label><input name="son_in_law_text" /></div>
+              <div class="is-small"><label class="lbl">외손</label><input name="maternal_grandchild_text" /></div>
+            </div>
+            <div class="is-small" style="margin-top:12px"><label class="lbl">기타</label><textarea name="etc_text" id="etcText"></textarea></div>
+          </div>
+        </div>
+
+        <aside class="preview-panel">
+          <div class="preview-title">예상 시안 미리보기</div>
+          <div class="preview-stone">
+            <div class="pv-mark" id="pvMark"></div>
+            <div class="pv-extra" id="pvExtra"></div>
+            <div id="pvNames"></div>
+            <div class="pv-date" id="pvDates"></div>
+            <div class="pv-back" id="pvBack"></div>
+          </div>
+          <div class="card" style="margin-top:16px">
+            <div class="summary" id="summaryBox"></div>
+            <div id="stoneBox" class="sum-item stone-box" style="margin-top:10px">
+              <span>스톤포토</span>
+              <select name="stone_photo" id="stonePhoto"><option value="no">없음</option><option value="yes">추가</option></select>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </form>
+</main>
+
+<div class="actionbar">
+  <button class="btn btn-primary" type="button" onclick="saveForm()">저장</button>
+  <button class="btn" type="button" onclick="openList()">저장목록</button>
+  <button class="btn" type="button" onclick="window.print()">프린트</button>
+  <button class="btn btn-danger" type="button" onclick="newForm()">초기화</button>
+  <span class="save-msg" id="saveMsg"></span><span class="grow"></span>
 </div>
-<div class="page-tabs no-print">
-  <button type="button" class="step-tab" data-step-tab="0" onclick="goStep(0)"><span class="num">1</span>접수·기본정보</button>
-  <button type="button" class="step-tab" data-step-tab="1" onclick="goStep(1)"><span class="num">2</span>비문·금액산출</button>
-</div>
 
-<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
-<aside class="drawer" id="drawer">
-  <div class="dr-head"><b>저장 목록</b><span>{{ saved_list|length }}건</span><button class="dr-close" onclick="closeDrawer()">×</button></div>
-  <div class="dr-search"><input type="text" id="drawerSearch" placeholder="계약번호, 계약자, 상태 검색" oninput="renderDrawer()"/></div>
-  <div class="dr-list" id="drawerList"></div>
-</aside>
-
-<div class="wrap">
-  <div class="load-banner {% if request.args.get('load') %}show{% endif %}" id="loadBanner">
-    <span>불러온 신청서를 수정 중입니다. 저장하면 새 파일로 저장됩니다.</span>
-    <button type="button" onclick="document.getElementById('loadBanner').classList.remove('show')">닫기</button>
+<div class="drawer-bg" id="drawerBg" onclick="closeList()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head"><h2>저장목록</h2><button class="btn" type="button" onclick="closeList()">닫기</button></div>
+  <div class="drawer-body">
+    <table>
+      <thead><tr><th>계약번호</th><th>계약자</th><th>유형</th><th>작업상태</th><th>금액(큰글자/작은글자/스톤포토)</th><th>저장시간</th><th></th></tr></thead>
+      <tbody id="listBody"></tbody>
+    </table>
   </div>
-
-<form id="mainForm" method="post">
-  <input type="hidden" name="_action" id="actionInput" value="calc"/>
-  <input type="hidden" name="_current_step" id="currentStep" value="{{ form._current_step|default('0') }}"/>
-  <input type="hidden" name="template_label" id="tmplLabel" value="{{ form.template_label }}"/>
-  <input type="hidden" name="slot_count" id="slotCount" value="{{ form.slot_count|default('1') }}"/>
-
-  <section class="section" data-step="0">
-    <div class="sec-title">기본정보</div>
-    <div class="card">
-      <div class="grid4">
-        <div class="field"><label>계약번호</label><input type="text" name="contract_no" id="contractNo" value="{{ form.contract_no }}" autocomplete="off"/></div>
-        <div class="field"><label>계약자</label><input type="text" name="contractor" id="contractorEl" value="{{ form.contractor }}" autocomplete="off"/></div>
-        <div class="field"><label>대분류</label><select name="category" id="catEl"></select></div>
-        <div class="field"><label>소분류 / 세부유형</label><select name="subcategory" id="subEl"></select></div>
-      </div>
-      <div class="grid4" style="margin-top:14px">
-        <div class="field" id="sizeRow"><label>크기</label><select name="size_type" id="sizeEl"><option value="2.5" {{ 'selected' if form.size_type=='2.5' }}>2.5</option><option value="3.0" {{ 'selected' if form.size_type=='3.0' }}>3.0</option><option value="3.5" {{ 'selected' if form.size_type=='3.5' }}>3.5</option></select></div>
-        <div class="field" id="oriRow"><label>방향</label><select name="orientation" id="oriEl"><option value="" {{ 'selected' if form.orientation=='' }}>선택</option><option value="좌" {{ 'selected' if form.orientation=='좌' }}>좌</option><option value="우" {{ 'selected' if form.orientation=='우' }}>우</option></select></div>
-        <div class="field"><label>지구</label><input type="text" name="jigu" value="{{ form.jigu }}" autocomplete="off"/></div>
-        <div class="field"><label>열 / 호</label><div class="grid2"><input type="text" name="yeol" value="{{ form.yeol }}" placeholder="열" autocomplete="off"/><input type="text" name="ho" value="{{ form.ho }}" placeholder="호" autocomplete="off"/></div></div>
-      </div>
-      <div class="hint">왼쪽 카테고리 메뉴는 제거하고, 대분류/소분류 드롭다운으로만 양식을 선택합니다.</div>
-    </div>
-
-    <div class="sec-title">작업관리</div>
-    <div class="card work-card">
-      <div class="status-row">
-        <div class="field"><label>작성자</label><input type="text" name="writer" value="{{ form.writer|default('') }}" autocomplete="off"/></div>
-        <div class="field"><label>시안작업자</label><input type="text" name="designer" value="{{ form.designer|default('') }}" autocomplete="off"/></div>
-        <div class="field"><label>검수자</label><input type="text" name="checker" value="{{ form.checker|default('') }}" autocomplete="off"/></div>
-        <div class="field"><label>진행상태</label><select name="status"><option value="접수됨" {{ 'selected' if form.status|default('접수됨')=='접수됨' }}>접수됨</option><option value="시안작업중" {{ 'selected' if form.status|default('')=='시안작업중' }}>시안작업중</option><option value="시안문자발송" {{ 'selected' if form.status|default('')=='시안문자발송' }}>시안문자발송</option><option value="고객확인완료" {{ 'selected' if form.status|default('')=='고객확인완료' }}>고객확인완료</option><option value="작업완료" {{ 'selected' if form.status|default('')=='작업완료' }}>작업완료</option></select></div>
-      </div>
-      <div class="field work-memo"><label>작업메모</label><textarea name="work_memo" placeholder="시안작업자에게 전달할 특이사항을 입력하세요.">{{ form.work_memo|default('') }}</textarea></div>
-    </div>
-  </section>
-
-  <section class="section" data-step="1">
-    <div class="main-split">
-      <div>
-        <div class="sec-title">비문 입력 <span class="legend"><span><i class="dotbox dotbig"></i>큰글씨</span><span><i class="dotbox dotsml"></i>작은글씨</span></span></div>
-        <div class="card">
-          <div class="grid4">
-            <div class="field" id="stoneRow"><label>스톤포토</label><select name="stone_photo" id="stoneEl"><option value="no" {{ 'selected' if form.stone_photo!='yes' }}>없음</option><option value="yes" {{ 'selected' if form.stone_photo=='yes' }}>있음</option></select></div>
-            <div class="field"><label>후면 문자</label><select name="back_type" id="backTypeEl"><option value="korean" {{ 'selected' if form.back_type=='korean' }}>한글</option><option value="chinese" {{ 'selected' if form.back_type=='chinese' }}>한자</option></select></div>
-            <div class="field" id="sideTypeWrap"><label>측면 문자</label><select name="side_type" id="sideTypeEl"><option value="korean" {{ 'selected' if form.side_type=='korean' }}>한글</option><option value="chinese" {{ 'selected' if form.side_type=='chinese' }}>한자</option></select></div>
-            <div class="field"><label>비고</label><input type="text" name="memo" value="{{ form.memo }}" autocomplete="off"/></div>
-          </div>
-        </div>
-
-        <div id="maejangDiv" class="card">
-          <div class="sub-title">전면 · 매장묘형</div>
-          <div class="grid4">
-            <div class="field"><label>전면 문자</label><select name="front_type" id="frontTypeMaejang"><option value="korean" {{ 'selected' if form.front_type=='korean' }}>한글</option><option value="chinese" {{ 'selected' if form.front_type=='chinese' }}>한자</option></select></div>
-            <div class="field is-big"><label>종교마크</label><select name="religion_mark" id="religionMaejang"><option value="" {{ 'selected' if form.religion_mark=='' }}>없음</option><option value="불교" {{ 'selected' if form.religion_mark=='불교' }}>불교</option><option value="기독교" {{ 'selected' if form.religion_mark=='기독교' }}>기독교</option><option value="천주교" {{ 'selected' if form.religion_mark=='천주교' }}>천주교</option></select></div>
-            <div class="field is-big"><label>지묘</label><select name="jidmyo" id="jidmyoEl"><option value="있음" {{ 'selected' if form.jidmyo in ['있음','유'] }}>있음</option><option value="없음" {{ 'selected' if form.jidmyo in ['없음','무'] }}>없음</option></select></div>
-            <div class="field is-big"><label>기타 큰글자</label><input type="text" name="front_extra" value="{{ form.front_extra }}" autocomplete="off"/></div>
-          </div>
-          <div class="grid3" style="margin-top:14px">
-            <div class="field is-big"><label>남자 호칭</label><select name="male_title"><option value="없음" {{ 'selected' if form.male_title=='없음' }}>없음</option><option value="학생" {{ 'selected' if form.male_title=='학생' }}>학생</option><option value="처사" {{ 'selected' if form.male_title=='처사' }}>처사</option><option value="성도" {{ 'selected' if form.male_title=='성도' }}>성도</option></select></div>
-            <div class="field is-big"><label>남자 본관</label><input type="text" name="male_bongwan" value="{{ form.male_bongwan }}" autocomplete="off"/></div>
-            <div class="field is-big"><label>남자 이름</label><input type="text" name="male_name" value="{{ form.male_name }}" autocomplete="off"/></div>
-          </div>
-          <div class="grid3" style="margin-top:14px">
-            <div class="field is-big"><label>여자 호칭</label><select name="female_title"><option value="없음" {{ 'selected' if form.female_title=='없음' }}>없음</option><option value="유인" {{ 'selected' if form.female_title=='유인' }}>유인</option><option value="보살" {{ 'selected' if form.female_title=='보살' }}>보살</option><option value="권사" {{ 'selected' if form.female_title=='권사' }}>권사</option></select></div>
-            <div class="field is-big"><label>여자 본관</label><input type="text" name="female_bongwan" value="{{ form.female_bongwan }}" autocomplete="off"/></div>
-            <div class="field is-big"><label>여자 이름</label><input type="text" name="female_name" value="{{ form.female_name }}" autocomplete="off"/></div>
-          </div>
-        </div>
-
-        <div id="stdDiv" class="card">
-          <div class="sub-title">전면 · 일반형</div>
-          <div class="grid4">
-            <div class="field"><label>전면 문자</label><select name="front_type" id="frontTypeStd"><option value="korean" {{ 'selected' if form.front_type=='korean' }}>한글</option><option value="chinese" {{ 'selected' if form.front_type=='chinese' }}>한자</option></select></div>
-            <div class="field is-big"><label>종교마크</label><select name="religion_mark" id="religionStd"><option value="" {{ 'selected' if form.religion_mark=='' }}>없음</option><option value="불교" {{ 'selected' if form.religion_mark=='불교' }}>불교</option><option value="기독교" {{ 'selected' if form.religion_mark=='기독교' }}>기독교</option><option value="천주교" {{ 'selected' if form.religion_mark=='천주교' }}>천주교</option></select></div>
-            <div class="field is-big"><label>기타 큰글자</label><input type="text" name="front_extra" value="{{ form.front_extra }}" autocomplete="off"/></div>
-            <div class="field is-big" id="familyRow"><label>가족 문구</label><input type="text" name="family_phrase" value="{{ form.family_phrase }}" placeholder="예: 가족 일동" autocomplete="off"/></div>
-          </div>
-          <div id="slotsContainer"></div>
-          <button type="button" id="btnAddSlot" class="btn-add-slot" onclick="addSlot()">+ 고인 추가</button>
-        </div>
-
-        <div id="sideDiv" class="card">
-          <div class="sub-title">측면</div>
-          <div class="grid4">
-            <div class="field is-sml"><label>1 생년월일</label><input type="text" name="s1_birth" value="{{ form.s1_birth }}" autocomplete="off"/></div>
-            <div class="field is-sml"><label>1 생 표현</label><select name="s1_birth_type"><option value="생" {{ 'selected' if form.s1_birth_type!='없음' }}>생</option><option value="없음" {{ 'selected' if form.s1_birth_type=='없음' }}>없음</option></select></div>
-            <div class="field is-sml"><label>1 사망일</label><input type="text" name="s1_death" value="{{ form.s1_death }}" autocomplete="off"/></div>
-            <div class="field is-sml"><label>1 사망 표현</label><select name="s1_death_type"><option value="졸" {{ 'selected' if form.s1_death_type in ['졸','없음',''] }}>졸</option><option value="선종" {{ 'selected' if form.s1_death_type=='선종' }}>선종</option><option value="소천" {{ 'selected' if form.s1_death_type=='소천' }}>소천</option></select></div>
-          </div>
-          <div class="grid4" style="margin-top:14px">
-            <div class="field is-sml"><label>2 생년월일</label><input type="text" name="s2_birth" value="{{ form.s2_birth }}" autocomplete="off"/></div>
-            <div class="field is-sml"><label>2 생 표현</label><select name="s2_birth_type"><option value="생" {{ 'selected' if form.s2_birth_type!='없음' }}>생</option><option value="없음" {{ 'selected' if form.s2_birth_type=='없음' }}>없음</option></select></div>
-            <div class="field is-sml"><label>2 사망일</label><input type="text" name="s2_death" value="{{ form.s2_death }}" autocomplete="off"/></div>
-            <div class="field is-sml"><label>2 사망 표현</label><select name="s2_death_type"><option value="졸" {{ 'selected' if form.s2_death_type in ['졸','없음',''] }}>졸</option><option value="선종" {{ 'selected' if form.s2_death_type=='선종' }}>선종</option><option value="소천" {{ 'selected' if form.s2_death_type=='소천' }}>소천</option></select></div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="sub-title">후면</div>
-          <div class="grid3">
-            <div class="field"><label>자</label><input type="text" name="son_text" value="{{ form.son_text }}" autocomplete="off"/></div>
-            <div class="field"><label>자부</label><input type="text" name="daughter_in_law_text" value="{{ form.daughter_in_law_text }}" autocomplete="off"/></div>
-            <div class="field"><label>손</label><input type="text" name="grandson_text" value="{{ form.grandson_text }}" autocomplete="off"/></div>
-            <div class="field"><label>녀</label><input type="text" name="daughter_text" value="{{ form.daughter_text }}" autocomplete="off"/></div>
-            <div class="field"><label>사위</label><input type="text" name="son_in_law_text" value="{{ form.son_in_law_text }}" autocomplete="off"/></div>
-            <div class="field"><label>외손</label><input type="text" name="maternal_grandchild_text" value="{{ form.maternal_grandchild_text }}" autocomplete="off"/></div>
-          </div>
-          <div class="field" style="margin-top:14px"><label>기타 후면</label><textarea name="etc_text">{{ form.etc_text }}</textarea></div>
-        </div>
-
-        <div class="calc-area no-print"><button type="submit" name="_action" value="calc" class="calc-btn">계산하기</button></div>
-        {% if summary %}
-        <div class="sec-title" style="margin-top:22px">금액산출</div>
-        <div class="card">
-          <div class="sum-lines">
-            {% for line in summary.lines %}
-            <div class="sum-row {% if line[0]=='스톤포토' %}stone{% endif %}"><span class="sum-row-lbl">{{ line[0] }}</span><span>{% if line[1] is not none %}{{ line[1] }}자 × {{ "{:,}".format(line[2]) }}원 = {{ "{:,}".format(line[3]) }}원{% else %}{{ "{:,}".format(line[3]) }}원{% endif %}</span></div>
-            {% endfor %}
-            <div class="sum-total">총 금액 : {{ "{:,}".format(summary.total) }}원</div>
-          </div>
-          <div class="chips"><div class="chip chip-big"><b>큰글자</b><span>{{ summary.big_cnt }}자</span></div><div class="chip chip-sml"><b>작은글자</b><span>{{ summary.sm_cnt }}자</span></div>{% if summary.stone_amt %}<div class="chip chip-stone"><b>스톤포토</b><span>{{ "{:,}".format(summary.stone_amt) }}원</span></div>{% endif %}<div class="chip chip-total"><b>합계</b><span>{{ "{:,}".format(summary.total) }}원</span></div></div>
-        </div>
-        {% endif %}
-      </div>
-
-      <aside class="preview-panel">
-        <div class="sec-title">예상 시안 미리보기</div>
-        <div class="preview-box">
-          <div class="preview-title" id="pvTemplate">{{ form.template_label or '양식 선택' }}</div>
-          <div class="stone-face"><div id="pvFront" class="pv-big empty-pv">비문을 입력하면 여기에 전면 예상 시안이 표시됩니다.</div></div>
-          <div class="stone-sub"><div class="stone-mini"><h4>측면</h4><div id="pvSide" class="empty-pv">-</div></div><div class="stone-mini"><h4>후면</h4><div id="pvBack" class="empty-pv">-</div></div></div>
-          <div class="hint" style="color:#bbb;text-align:center">정확한 최종 시안이 아닌 상담용 예상 미리보기입니다.</div>
-        </div>
-      </aside>
-    </div>
-  </section>
-
-  <div class="action-bar no-print">
-    <button type="button" class="btn btn-nav" onclick="prevStep()">◀ 이전</button>
-    <button type="button" class="btn btn-nav" onclick="nextStep()">다음 ▶</button>
-    <button type="submit" name="_action" value="save" class="btn btn-save">저장</button>
-    <button type="button" class="btn" onclick="window.print()">프린트</button>
-    <button type="button" class="btn btn-reset" onclick="resetForm()">초기화</button>
-    <span class="save-preview" id="saveNamePreview">저장명 미리보기</span>
-    {% if just_saved=='1' %}<span class="saved-ok">저장 완료</span>{% endif %}
-  </div>
-</form>
 </div>
 
 <script>
-const CATALOG={{ catalog_json|safe }};
-const RULES={{ rules_json|safe }};
-const savedCat={{ form.category|tojson }};
-const savedSub={{ form.subcategory|tojson }};
-const savedForm={{ form|tojson }};
-let allList={{ saved_list|tojson }};
-let currentStep=parseInt(savedForm._current_step||"0",10); if(currentStep>1) currentStep=1;
-const catEl=document.getElementById('catEl'), subEl=document.getElementById('subEl'), tmplLbl=document.getElementById('tmplLabel');
-const stoneEl=document.getElementById('stoneEl'), backTypeEl=document.getElementById('backTypeEl'), sideTypeEl=document.getElementById('sideTypeEl');
-const frontTypeMJ=document.getElementById('frontTypeMaejang'), frontTypeSD=document.getElementById('frontTypeStd');
-const sizeEl=document.getElementById('sizeEl'), oriEl=document.getElementById('oriEl'), slotCountEl=document.getElementById('slotCount'), slotsCont=document.getElementById('slotsContainer');
-function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function q(name){return document.querySelector(`[name="${name}"]`)}
-function qa(name){return Array.from(document.querySelectorAll(`[name="${name}"]`))}
-function val(name){const els=qa(name); for(const el of els){ if(el.offsetParent!==null || el.type==='hidden') return el.value||'' } return els[0]?.value||''}
-function rule(){return RULES[`${catEl.value}||${subEl.value}`]||RULES['매장묘||단장']}
-function fillCat(){catEl.innerHTML='';Object.keys(CATALOG).forEach(c=>{const o=new Option(c,c); if(c===savedCat)o.selected=true; catEl.add(o)})}
-function fillSub(){subEl.innerHTML='';(CATALOG[catEl.value]||[]).forEach(s=>{const o=new Option(s,s); if(s===savedSub)o.selected=true; subEl.add(o)})}
-function setHanja(sel,allow){if(!sel)return;const opt=sel.querySelector('option[value="chinese"]');if(!opt)return;opt.disabled=!allow;if(!allow&&sel.value==='chinese')sel.value='korean'}
-function updateLabel(){const p=[catEl.value,subEl.value]; if(catEl.value==='매장묘'&&sizeEl.value)p.push(sizeEl.value); if(catEl.value==='4기'&&subEl.value==='B'&&oriEl.value)p.push(oriEl.value); tmplLbl.value=p.filter(Boolean).join(' / '); document.getElementById('pvTemplate').textContent=tmplLbl.value||'양식 선택'; updateSaveName(); updatePreview()}
-function updateUI(){const r=rule(); document.getElementById('sizeRow').style.display=r.needs_size?'':'none'; document.getElementById('oriRow').style.display=r.needs_orientation?'':'none'; document.getElementById('stoneRow').style.display=r.stone_photo?'':'none'; document.getElementById('sideDiv').style.display=r.has_side?'':'none'; document.getElementById('sideTypeWrap').style.display=r.has_side?'':'none'; document.getElementById('maejangDiv').style.display=r.front_style==='maejang'?'':'none'; document.getElementById('stdDiv').style.display=r.front_style==='standard'?'':'none'; document.getElementById('familyRow').style.display=r.family_phrase?'':'none'; document.getElementById('btnAddSlot').style.display=r.front_style==='standard'?'':'none'; setHanja(frontTypeMJ,r.front_hanja); setHanja(frontTypeSD,r.front_hanja); setHanja(sideTypeEl,r.side_hanja); let bh=r.back_hanja; if(catEl.value==='평장4기'&&stoneEl?.value==='yes') bh=false; setHanja(backTypeEl,bh); updateLabel()}
-function buildSlotHTML(i,d={}){const s=(v,t)=>v===t?'selected':'';const birth=d[`f${i}_birth`]||'';const show=(d[`f${i}_birth_enabled`]==='yes'||birth);return `<div class="slot-box" id="slot_${i}"><div class="slot-title"><span>고인 ${i}</span>${i>1?`<button type="button" class="btn-del-slot" onclick="removeSlot(${i})">삭제</button>`:''}</div><div class="grid2"><div class="field is-big"><label>이름</label><input type="text" name="f${i}_name" value="${esc(d[`f${i}_name`]||'')}" autocomplete="off"></div><div class="field is-big"><label>세례명</label><input type="text" name="f${i}_baptism" value="${esc(d[`f${i}_baptism`]||'')}" autocomplete="off"></div></div><input type="hidden" name="f${i}_birth_enabled" id="f${i}_birth_enabled" value="${show?'yes':'no'}"><div class="birth-extra" id="slot_birth_${i}" style="display:${show?'grid':'none'};margin-top:12px"><div class="field is-sml"><label>생년월일</label><input type="text" name="f${i}_birth" value="${esc(birth)}" autocomplete="off"></div><div class="field is-sml"><label>생 표현</label><select name="f${i}_birth_type" onchange="handleBirthTypeChange(this,'slot_birth_${i}','f${i}_birth_enabled')"><option value="생" ${d[`f${i}_birth_type`]!=='없음'?'selected':''}>생</option><option value="없음" ${s(d[`f${i}_birth_type`],'없음')}>없음</option></select></div></div><div class="grid2" style="margin-top:12px"><div class="field is-sml"><label>사망일</label><input type="text" name="f${i}_death" value="${esc(d[`f${i}_death`]||'')}" autocomplete="off"></div><div class="field is-sml"><label>사망 표현</label><select name="f${i}_death_type"><option value="졸" ${(d[`f${i}_death_type`]==='졸'||d[`f${i}_death_type`]==='없음'||!d[`f${i}_death_type`])?'selected':''}>졸</option><option value="선종" ${s(d[`f${i}_death_type`],'선종')}>선종</option><option value="소천" ${s(d[`f${i}_death_type`],'소천')}>소천</option></select></div></div><div class="birth-action-row"><button type="button" class="btn-add-birth" onclick="showBirthFields('slot_birth_${i}','f${i}_birth_enabled',this)" style="display:${show?'none':'inline-flex'}">생년월일 추가</button></div></div>`}
-let curSC=parseInt(savedForm.slot_count||'1',10);function renderSlots(cnt,d){slotsCont.innerHTML='';for(let i=1;i<=cnt;i++)slotsCont.insertAdjacentHTML('beforeend',buildSlotHTML(i,d));curSC=cnt;slotCountEl.value=cnt;bindLive()}function addSlot(){curSC++;slotsCont.insertAdjacentHTML('beforeend',buildSlotHTML(curSC,{}));slotCountEl.value=curSC;bindLive();updatePreview()}function removeSlot(i){document.getElementById(`slot_${i}`)?.remove();const boxes=[...slotsCont.querySelectorAll('.slot-box')];boxes.forEach((b,idx)=>{const n=idx+1;b.id=`slot_${n}`;b.querySelector('.slot-title span').textContent=`고인 ${n}`;const del=b.querySelector('.btn-del-slot');if(del)del.setAttribute('onclick',`removeSlot(${n})`);b.querySelectorAll('[name]').forEach(el=>{el.name=el.name.replace(/f\d+_/,`f${n}_`)})});curSC=boxes.length;slotCountEl.value=curSC;updatePreview()}function showBirthFields(id,hid,btn){document.getElementById(id).style.display='grid';document.getElementById(hid).value='yes';if(btn)btn.style.display='none';bindLive();updatePreview()}function handleBirthTypeChange(sel,id,hid){if(sel.value!=='없음')return;const sec=document.getElementById(id);sec.querySelector('input')&&(sec.querySelector('input').value='');sec.style.display='none';document.getElementById(hid).value='no';const btn=sel.closest('.slot-box').querySelector('.btn-add-birth');if(btn)btn.style.display='inline-flex';updatePreview()}
-function goStep(n){currentStep=Math.max(0,Math.min(1,n));document.getElementById('currentStep').value=String(currentStep);document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',Number(s.dataset.step)===currentStep));document.querySelectorAll('.step-tab').forEach(t=>t.classList.toggle('active',Number(t.dataset.stepTab)===currentStep));window.scrollTo({top:0,behavior:'smooth'})}function nextStep(){goStep(currentStep+1)}function prevStep(){goStep(currentStep-1)}
-function updateSaveName(){const c=(q('contract_no')?.value||'').trim(), r=(q('contractor')?.value||'').trim(), l=tmplLbl.value;let p=[];if(c)p.push('#'+c);if(r)p.push(r);let n=p.join(' ');if(l)n=n?`${n} (${l})`:`(${l})`;document.getElementById('saveNamePreview').textContent=n||'저장명 미리보기'}
-function line(...a){return a.filter(x=>String(x||'').trim()).join(' ')}function updatePreview(){const r=rule();let front=[];if(r.front_style==='maejang'){if(val('religion_mark'))front.push('['+val('religion_mark')+']');if(val('jidmyo')!=='없음')front.push('지묘');if(val('front_extra'))front.push(val('front_extra'));let m=line(val('male_title')!=='없음'?val('male_title'):'',val('male_bongwan'),val('male_name'));let f=line(val('female_title')!=='없음'?val('female_title'):'',val('female_bongwan'),val('female_name'));if(m)front.push(m);if(f)front.push(f)}else{if(val('religion_mark'))front.push('['+val('religion_mark')+']');if(val('family_phrase'))front.push(val('family_phrase'));if(val('front_extra'))front.push(val('front_extra'));for(let i=1;i<=curSC;i++){let nm=line(val(`f${i}_name`),val(`f${i}_baptism`));let dates=[];if(val(`f${i}_birth`))dates.push(val(`f${i}_birth`)+(val(`f${i}_birth_type`)==='없음'?'':val(`f${i}_birth_type`)));if(val(`f${i}_death`))dates.push(val(`f${i}_death`)+(val(`f${i}_death_type`)==='없음'?'졸':val(`f${i}_death_type`)));if(nm)front.push(nm);if(dates.length)front.push(dates.join('  '))}}
-const side=[];for(const p of ['s1','s2']){let a=[];if(val(`${p}_birth`))a.push(val(`${p}_birth`)+(val(`${p}_birth_type`)==='없음'?'':val(`${p}_birth_type`)));if(val(`${p}_death`))a.push(val(`${p}_death`)+(val(`${p}_death_type`)==='없음'?'졸':val(`${p}_death_type`)));if(a.length)side.push(a.join(' / '))}const back=[];[['자','son_text'],['자부','daughter_in_law_text'],['손','grandson_text'],['녀','daughter_text'],['사위','son_in_law_text'],['외손','maternal_grandchild_text']].forEach(([k,n])=>{if(val(n))back.push(k+' '+val(n))});if(val('etc_text'))back.push(val('etc_text'));document.getElementById('pvFront').innerHTML=front.length?front.map((x,i)=>`<div class="${i>1?'pv-small':'pv-big'}">${esc(x)}</div>`).join(''):'<span class="empty-pv">비문을 입력하면 여기에 전면 예상 시안이 표시됩니다.</span>';document.getElementById('pvSide').textContent=side.join('\n')||'-';document.getElementById('pvBack').textContent=back.join('\n')||'-'}
-function bindLive(){document.querySelectorAll('#mainForm input,#mainForm select,#mainForm textarea').forEach(el=>{el.oninput=()=>{updateSaveName();updatePreview()};el.onchange=()=>{updateSaveName();updatePreview()}})}
-function newForm(){if(confirm('현재 입력 내용을 지우고 새로 작성하시겠습니까?')) location.href='/?new=1'}function resetForm(){if(confirm('입력 내용을 초기화할까요?')){document.getElementById('mainForm').reset();renderSlots(1,{});updateUI();goStep(0)}}
-function openDrawer(){renderDrawer();document.getElementById('overlay').classList.add('open');document.getElementById('drawer').classList.add('open')}function closeDrawer(){document.getElementById('overlay').classList.remove('open');document.getElementById('drawer').classList.remove('open')}function renderDrawer(){const kw=(document.getElementById('drawerSearch').value||'').toLowerCase();const box=document.getElementById('drawerList');const list=allList.filter(e=>JSON.stringify(e).toLowerCase().includes(kw));if(!list.length){box.innerHTML='<div class="dr-empty">저장된 신청서가 없습니다.</div>';return}box.innerHTML=list.map(e=>`<div class="dr-item"><div class="dr-stripe"></div><div class="dr-body"><div class="dr-name">${esc(e.save_name||'저장된 신청서')}</div><div class="dr-meta"><span class="status-badge">${esc(e.status||'접수됨')}</span>${esc(e.created_at||'')}<br>작성 ${esc(e.writer||'-')} · 작업 ${esc(e.designer||'-')} · 검수 ${esc(e.checker||'-')}</div><div class="dr-stats"><span class="dr-stat">큰글자 ${e.big_cnt||0}</span><span class="dr-stat">작은글자 ${e.sm_cnt||0}</span>${e.stone_amt?'<span class="dr-stat stone">스톤포토</span>':''}<span class="dr-stat">${Number(e.total_amt||0).toLocaleString()}원</span></div></div><div class="dr-acts"><a href="/?load=${e.id}">불러오기</a><button type="button" onclick="deleteSaved('${e.id}')">삭제</button></div></div>`).join('')}async function deleteSaved(id){if(!confirm('삭제할까요?'))return;await fetch('/api/delete/'+id,{method:'DELETE'});allList=allList.filter(e=>e.id!==id);renderDrawer();document.getElementById('listCount').textContent=allList.length}
-catEl.addEventListener('change',()=>{fillSub();updateUI()});subEl.addEventListener('change',updateUI);[sizeEl,oriEl,stoneEl,backTypeEl,sideTypeEl,frontTypeMJ,frontTypeSD].forEach(el=>el&&el.addEventListener('change',updateUI));document.getElementById('mainForm').addEventListener('submit',()=>{document.getElementById('currentStep').value=String(currentStep)});
-fillCat();fillSub();renderSlots(curSC,savedForm);updateUI();bindLive();goStep(currentStep);updatePreview();renderDrawer();
+const CATALOG = {{ catalog|tojson }};
+const RULES = {{ rules|tojson }};
+const STAFF = {{ staff_list|tojson }};
+const STATUS = {{ status_list|tojson }};
+const STONE_CATEGORIES = {{ stone_categories|tojson }};
+let savedList = {{ saved_list|tojson }};
+let currentSummary = null;
+
+const $ = (id)=>document.getElementById(id);
+const money = (n)=> (Number(n||0)).toLocaleString('ko-KR') + '원';
+const esc = (s)=>String(s||'').replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function fillSelect(el, list, selected=''){
+  el.innerHTML = '';
+  list.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v||'선택'; if(v===selected) o.selected=true; el.appendChild(o); });
+}
+function init(){
+  fillSelect($('category'), Object.keys(CATALOG), '매장묘');
+  fillSubcategory('단장');
+  ['writer','designer','checker'].forEach(id=>fillSelect($(id), STAFF));
+  fillSelect($('status'), STATUS, '접수됨');
+  renderSlots(1);
+  bindInputs();
+  updateUI();
+  renderList(savedList);
+}
+function fillSubcategory(selected=''){
+  const cat = $('category').value;
+  fillSelect($('subcategory'), CATALOG[cat] || [], selected || (CATALOG[cat]||[''])[0]);
+}
+function ruleKey(){return $('category').value + '||' + $('subcategory').value}
+function getRule(){return RULES[ruleKey()] || {slots:1,has_side:false,stone_photo:false}}
+function showPage(page){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active', x.dataset.page===page));
+  $(page).classList.add('active');
+}
+function renderSlots(count){
+  count = Math.max(1, Math.min(10, Number(count||1)));
+  $('slotCount').value = count;
+  let html='';
+  for(let i=1;i<=count;i++){
+    html += `<div class="slot-box" data-slot="${i}">
+      <div class="slot-head"><span>고인 ${i}</span>${i>1?`<button class="btn small-btn" type="button" onclick="removeSlot(${i})">삭제</button>`:''}</div>
+      <div class="grid2">
+        <div class="is-big"><label class="lbl">이름</label><input name="f${i}_name" id="f${i}Name" /></div>
+        <div class="is-big"><label class="lbl">세례명</label><input name="f${i}_baptism" id="f${i}Baptism" /></div>
+        <div class="is-small"><label class="lbl">생년월일</label><input name="f${i}_birth" id="f${i}Birth" /></div>
+        <div class="is-small"><label class="lbl">생 표현</label><select name="f${i}_birth_type"><option>생</option><option>없음</option></select></div>
+        <div class="is-small"><label class="lbl">사망일</label><input name="f${i}_death" id="f${i}Death" /></div>
+        <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
+      </div>
+    </div>`;
+  }
+  $('slots').innerHTML = html;
+  bindInputs(); updatePreview(); calc();
+}
+function addSlot(){ renderSlots(Number($('slotCount').value)+1); }
+function removeSlot(i){
+  const data = collectForm();
+  const count = Number($('slotCount').value);
+  for(let n=i;n<count;n++){
+    ['name','baptism','birth','birth_type','death','death_type'].forEach(k=>data[`f${n}_${k}`]=data[`f${n+1}_${k}`]||'');
+  }
+  renderSlots(count-1); fillForm(data);
+}
+function bindInputs(){
+  document.querySelectorAll('input,select,textarea').forEach(el=>{
+    el.oninput = ()=>{ updatePreview(); calc(); };
+    el.onchange = ()=>{ updateUI(); updatePreview(); calc(); };
+  });
+  $('category').onchange = ()=>{ fillSubcategory(); updateUI(true); updatePreview(); calc(); };
+  $('subcategory').onchange = ()=>{ updateUI(true); updatePreview(); calc(); };
+}
+function updateUI(resetSlots=false){
+  const r = getRule();
+  $('sideSection').classList.toggle('hidden', !r.has_side);
+  const stoneOk = STONE_CATEGORIES.includes($('category').value);
+  $('stoneBox').classList.toggle('hidden', !stoneOk);
+  if(!stoneOk) $('stonePhoto').value='no';
+  if(resetSlots) renderSlots(r.slots || 1);
+}
+function collectForm(){
+  const fd = new FormData($('mainForm'));
+  const data = {};
+  fd.forEach((v,k)=>data[k]=v);
+  return data;
+}
+function fillForm(data){
+  if(!data) return;
+  $('dataId').value = data.id || '';
+  $('createdAt').value = data.created_at || '';
+  if(data.category){ $('category').value=data.category; fillSubcategory(data.subcategory); }
+  renderSlots(data.slot_count || getRule().slots || 1);
+  Object.entries(data).forEach(([k,v])=>{
+    const el = document.querySelector(`[name="${CSS.escape(k)}"]`);
+    if(el) el.value = v ?? '';
+  });
+  updateUI(); updatePreview(); calc();
+}
+function updatePreview(){
+  const d = collectForm();
+  const markMap = {'불교':'卍','기독교':'✝','천주교':'✞'};
+  $('pvMark').textContent = markMap[d.religion_mark] || '';
+  $('pvExtra').textContent = d.front_extra || '';
+  let names='', dates=[];
+  const count = Number(d.slot_count||1);
+  for(let i=1;i<=count;i++){
+    const nm = d[`f${i}_name`] || '';
+    const bp = d[`f${i}_baptism`] || '';
+    if(nm || bp) names += `<div class="pv-name">${esc(bp ? bp+' '+nm : nm)}</div>`;
+    const birth = d[`f${i}_birth`] || '', death = d[`f${i}_death`] || '';
+    if(birth || death) dates.push(`${birth ? birth + ' ' + (d[`f${i}_birth_type`]||'생') : ''} ${death ? death + ' ' + (d[`f${i}_death_type`]||'졸') : ''}`.trim());
+  }
+  $('pvNames').innerHTML = names || '<div class="pv-name" style="opacity:.35">성명</div>';
+  $('pvDates').innerHTML = dates.map(esc).join('<br>');
+  const back = [d.son_text&&`자 ${d.son_text}`, d.daughter_in_law_text&&`자부 ${d.daughter_in_law_text}`, d.grandson_text&&`손 ${d.grandson_text}`, d.daughter_text&&`녀 ${d.daughter_text}`, d.son_in_law_text&&`사위 ${d.son_in_law_text}`, d.maternal_grandchild_text&&`외손 ${d.maternal_grandchild_text}`, d.etc_text].filter(Boolean).join(' · ');
+  $('pvBack').textContent = back || '후면 내용';
+}
+async function calc(){
+  const res = await fetch('/api/calc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collectForm())});
+  currentSummary = await res.json();
+  $('summaryBox').innerHTML = `
+    <div class="sum-item"><span>큰글자</span><strong>${currentSummary.big_cnt}자 · ${money(currentSummary.big_amt)}</strong></div>
+    <div class="sum-item"><span>작은글자</span><strong>${currentSummary.small_cnt + currentSummary.side_cnt + currentSummary.back_cnt}자 · ${money(currentSummary.small_amt + currentSummary.side_amt + currentSummary.back_amt)}</strong></div>
+    <div class="sum-item"><span>스톤포토</span><strong>${currentSummary.stone_added ? '추가 · '+money(currentSummary.stone_amt) : '없음'}</strong></div>
+    <div class="sum-item sum-total"><span>총액</span><strong>${money(currentSummary.total)}</strong></div>`;
+}
+async function saveForm(){
+  const data = collectForm();
+  const res = await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+  const out = await res.json();
+  if(out.ok){
+    $('dataId').value = out.id; if(!$('createdAt').value) $('createdAt').value = out.item.created_at;
+    $('saveMsg').textContent = '저장 완료'; setTimeout(()=>$('saveMsg').textContent='',1800);
+    await refreshList();
+  } else alert('저장 실패');
+}
+async function refreshList(){ const r=await fetch('/api/list'); savedList=await r.json(); renderList(savedList); }
+function renderList(list){
+  $('listBody').innerHTML = (list||[]).map(item=>`<tr>
+    <td>${esc(item.contract_no)}</td><td>${esc(item.contractor)}</td><td>${esc(item.type_label)}</td><td class="status-text">${esc(item.status)}</td>
+    <td class="money">큰글자 ${money(item.big_amt)}<br>작은글자 ${money(item.small_amt)}<br>스톤포토 ${esc(item.stone_photo)}</td>
+    <td>${esc(item.created_at)}</td>
+    <td><div class="list-actions"><button class="btn small-btn" onclick="loadItem('${item.id}')">불러오기</button><button class="btn small-btn btn-danger" onclick="deleteItem('${item.id}')">삭제</button></div></td>
+  </tr>`).join('') || `<tr><td colspan="7" style="text-align:center">저장된 신청서가 없습니다.</td></tr>`;
+}
+function openList(){ refreshList(); $('drawerBg').classList.add('open'); $('drawer').classList.add('open'); }
+function closeList(){ $('drawerBg').classList.remove('open'); $('drawer').classList.remove('open'); }
+async function loadItem(id){
+  const r = await fetch('/api/load/'+id); const out=await r.json();
+  if(out.ok){ fillForm(out.data); closeList(); showPage('page1'); }
+}
+async function deleteItem(id){ if(!confirm('삭제할까요?')) return; await fetch('/api/delete/'+id,{method:'POST'}); refreshList(); }
+function newForm(){ if(confirm('새로 작성할까요? 입력 중인 내용은 지워집니다.')) location.reload(); }
+init();
 </script>
 </body>
 </html>
