@@ -68,6 +68,7 @@ for c, subs in CATALOG.items():
             "slots": slots,
             "has_side": (c == "매장묘") or (c == "평장부부B" and s == "2번"),
             "stone_photo": c in STONE_PHOTO_CATEGORIES,
+            "front_style": "maejang" if (c == "매장묘" or (c == "평장부부B" and s == "2번")) else "standard",
         }
 
 
@@ -114,27 +115,46 @@ def calc_summary(form):
     side_cnt = 0
     back_cnt = 0
 
-    if form.get("religion_mark"):
-        big_cnt += 1
-    big_cnt += count_chars(form.get("front_extra"))
-
     try:
-        slot_count = int(form.get("slot_count") or rule.get("slots") or 1)
+        slot_count = int(form.get("slot_count") or 1)
     except Exception:
-        slot_count = rule.get("slots", 1)
+        slot_count = 1
     slot_count = max(1, min(slot_count, 10))
 
-    for i in range(1, slot_count + 1):
-        big_cnt += count_chars(form.get(f"f{i}_name"))
-        big_cnt += count_chars(form.get(f"f{i}_baptism"))
-        birth = form.get(f"f{i}_birth")
-        death = form.get(f"f{i}_death")
-        btype = form.get(f"f{i}_birth_type", "생")
-        dtype = form.get(f"f{i}_death_type", "졸")
-        if birth:
-            small_cnt += count_chars(birth) + (0 if btype == "없음" else count_chars(btype))
-        if death:
-            small_cnt += count_chars(death) + (0 if dtype == "없음" else count_chars(dtype or "졸"))
+    if rule.get("front_style") == "maejang":
+        if form.get("religion_mark"):
+            big_cnt += 1
+        if str(form.get("jidmyo", "있음") or "있음") == "있음":
+            big_cnt += 2  # 지묘
+
+        male_title = str(form.get("male_title", "없음") or "없음")
+        female_title = str(form.get("female_title", "없음") or "없음")
+        if male_title != "없음":
+            big_cnt += count_chars(male_title)
+            big_cnt += count_chars(form.get("male_bongwan"))
+            big_cnt += count_chars(form.get("male_name"))
+            big_cnt += 1  # 공
+        if female_title != "없음":
+            big_cnt += count_chars(female_title)
+            big_cnt += count_chars(form.get("female_bongwan"))
+            big_cnt += count_chars(form.get("female_name"))
+            big_cnt += 1  # 씨
+    else:
+        if form.get("religion_mark"):
+            big_cnt += 1
+        big_cnt += count_chars(form.get("front_extra"))
+
+        for i in range(1, slot_count + 1):
+            big_cnt += count_chars(form.get(f"f{i}_name"))
+            big_cnt += count_chars(form.get(f"f{i}_baptism"))
+            birth = form.get(f"f{i}_birth")
+            death = form.get(f"f{i}_death")
+            btype = form.get(f"f{i}_birth_type", "생")
+            dtype = form.get(f"f{i}_death_type", "졸")
+            if birth:
+                small_cnt += count_chars(birth) + (0 if btype == "없음" else count_chars(btype))
+            if death:
+                small_cnt += count_chars(death) + (0 if dtype == "없음" else count_chars(dtype or "졸"))
 
     if rule.get("has_side"):
         for prefix in ["s1", "s2"]:
