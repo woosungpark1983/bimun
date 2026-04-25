@@ -20,6 +20,7 @@ button,input,select,textarea{font-family:inherit}
 .logo{height:44px;object-fit:contain}.title{font-size:1.55rem;font-weight:900;letter-spacing:.03em;flex:1;text-align:center}.top-actions{display:flex;gap:8px}.btn{border:none;border-radius:11px;padding:11px 18px;font-weight:800;cursor:pointer;background:var(--paper);border:1px solid var(--line);color:var(--brown)}.btn-primary{background:var(--olive);color:#fff;border-color:var(--olive)}.btn-dark{background:var(--brown);color:#f5e9c0;border-color:var(--brown)}.btn-danger{color:var(--red)}
 .tabs{height:54px;background:var(--paper2);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:10px;position:sticky;top:72px;z-index:49;padding:8px 24px}.tab{min-width:220px;border:1px solid var(--line);background:var(--paper);border-radius:999px;font-weight:900;color:var(--brown2);cursor:pointer}.tab.active{background:var(--olive);color:white;border-color:var(--olive)}
 .wrap{max-width:1540px;margin:0 auto;padding:22px 28px 120px}.page{display:none}.page.active{display:block}.section-title{font-size:1.05rem;font-weight:900;margin:0 0 12px;display:flex;align-items:center;gap:8px}.section-title:before{content:"";width:4px;height:18px;border-radius:3px;background:var(--olive)}
+.sub-section-title{font-size:.98rem;font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:8px;color:var(--brown)}.sub-section-title:before{content:"";width:4px;height:16px;border-radius:3px;background:var(--gold)}.section-title + .sub-section-title{margin-top:6px}.right-panel-title{margin:0 0 12px;font-size:1.05rem;font-weight:900}
 .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px 22px;margin-bottom:16px;box-shadow:var(--shadow)}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
 .lbl{display:block;font-size:.78rem;font-weight:800;color:var(--brown2);margin-bottom:6px}input,select,textarea{width:100%;min-height:44px;border:1.5px solid var(--line);border-radius:11px;background:#fff;color:var(--brown);padding:10px 12px;font-size:15px}textarea{min-height:82px;resize:vertical;line-height:1.6}input:focus,select:focus,textarea:focus{outline:none;border-color:var(--olive2);box-shadow:0 0 0 3px rgba(93,107,32,.1)}.note{font-size:.72rem;color:#9a816d;margin-top:4px}.is-big input,.is-big select,.is-big textarea{background:var(--big-bg);border-color:#c8a040}.is-small input,.is-small select,.is-small textarea{background:var(--green-bg);border-color:#6a9660}
 .hidden{display:none!important}.row-gap{margin-top:12px}.small-btn{padding:7px 10px;border-radius:8px;font-size:.75rem}.grow{flex:1}
@@ -27,9 +28,9 @@ button,input,select,textarea{font-family:inherit}
 
 .hanja-disabled-note{font-size:.68rem;color:#b08d72;margin-top:4px;display:none}.hanja-limited .hanja-disabled-note{display:block}.family-box{margin-top:12px;padding:12px 14px;border:1px dashed #d8c7a8;border-radius:12px;background:#fffaf0}.orientation-wrap.hidden,.family-box.hidden{display:none!important}
 /* PC 고정 레이아웃 */
-.page1-layout{display:grid;grid-template-columns:7fr 3fr;gap:18px;align-items:start}.page1-layout .section-title{margin-top:0}.work-card{background:var(--paper)!important}.work-stack{display:flex;flex-direction:column;gap:12px}.work-stack textarea{min-height:150px}.size-wrap.hidden{display:none!important}
+.page1-layout{display:grid;grid-template-columns:7fr 3fr;gap:18px;align-items:start}.page1-layout .section-title{margin-top:0}.work-card{background:var(--paper)!important}.work-stack{display:flex;flex-direction:column;gap:12px}.work-stack textarea{min-height:150px}.size-wrap.hidden{display:none!important}.template-label input{background:#f6f1df;color:#7a5c44;font-weight:800}
 .bimun-layout{display:grid;grid-template-columns:6fr 4fr;gap:18px;align-items:start}.preview-panel{position:sticky;top:142px}.preview-title{font-weight:900;margin:0 0 10px}.preview-stone{background:linear-gradient(135deg,#2d2d2d,#111);border-radius:18px;min-height:330px;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:inset 0 0 30px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.18)}.pv-mark{font-size:1.25rem;margin-bottom:12px}.pv-name{font-size:2.05rem;font-weight:900;letter-spacing:.08em;margin:4px 0}.pv-date{font-size:1rem;color:#ccc;margin-top:7px}.pv-extra{font-size:1.25rem;margin-bottom:8px}.pv-back{font-size:.92rem;color:#ddd;line-height:1.7;margin-top:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;width:100%}
-.slot-box{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fbf8ea;margin:10px 0}.slot-head{font-weight:900;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}.birth-row{margin-bottom:10px}.birth-action{display:flex;justify-content:flex-end;margin-top:8px}.btn-add-birth{border:1.5px dashed var(--olive2);background:#eef2d2;color:var(--olive);border-radius:9px;padding:7px 12px;font-weight:900;cursor:pointer}
+.slot-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:14px 0}.slot-head{font-weight:900;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}.slot-box .grid2,.maejang-front-card .grid3{row-gap:18px}.birth-row,.side-birth-row{margin:14px 0}.death-row{margin-top:14px}.birth-action{display:flex;justify-content:flex-end;margin-top:10px}.btn-add-birth{border:1.5px dashed var(--olive2);background:#eef2d2;color:var(--olive);border-radius:9px;padding:7px 12px;font-weight:900;cursor:pointer}.date-note{font-size:.68rem;font-weight:700;color:#9a816d;margin-left:4px}.maejang-front-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:12px 0 4px}
 .bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.input-stone-box{background:var(--red-soft);border:1.5px solid var(--red-line);border-radius:14px;padding:12px 14px;margin:14px 0 0;max-width:360px}.input-stone-box select{border-color:#c98f8f;background:#fffafa}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
@@ -38,8 +39,8 @@ button,input,select,textarea{font-family:inherit}
 
 /* === 2026-04 계산/레이아웃 패치 === */
 .bimun-layout{grid-template-columns:6fr 4fr!important;}
-.calc-card{padding:16px 16px 14px!important;}
-.calc-panel-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.calc-card{padding:16px 16px 14px!important;margin-top:0!important;}
+.calc-panel-head{display:flex;align-items:center;justify-content:flex-end;gap:10px;margin-bottom:10px;}
 .calc-panel-title{font-weight:900;color:var(--brown);font-size:1.02rem;flex:1;margin:0!important;}
 .calc-btn{width:auto!important;margin-bottom:0!important;padding:9px 13px;background:var(--brown);color:#f5e9c0;border-color:var(--brown);border-radius:9px;}
 .summary{display:block!important;}
@@ -92,10 +93,11 @@ button,input,select,textarea{font-family:inherit}
               <div><label class="lbl">계약자</label><input name="contractor" id="contractor" /></div>
               <div><label class="lbl">연락처 <span class="note">시안 받으실 분</span></label><input name="phone" id="phone" placeholder="010-0000-0000" /></div>
             </div>
-            <div class="grid3 row-gap">
+            <div class="grid4 row-gap">
               <div><label class="lbl">대분류</label><select name="category" id="category"></select></div>
               <div><label class="lbl">소분류(세부유형)</label><select name="subcategory" id="subcategory"></select></div>
               <div class="size-wrap hidden" id="sizeWrap"><label class="lbl">크기</label><select name="size_type" id="sizeType"><option value="2.5">2.5</option><option value="3.0">3.0</option><option value="3.5">3.5</option></select></div>
+              <div class="template-label"><label class="lbl">최종 시안명</label><input name="template_label" id="templateLabel" readonly /></div>
               <div class="orientation-wrap hidden" id="orientationWrap"><label class="lbl">시안 방향</label><select name="orientation" id="orientation"><option value="세로시안">세로시안</option><option value="가로시안">가로시안</option></select></div>
             </div>
             <div class="grid3 row-gap">
@@ -126,32 +128,69 @@ button,input,select,textarea{font-family:inherit}
         <div>
           <div class="section-title">비문 입력</div>
 
-          <div class="section-title">전면</div>
+          <div class="sub-section-title">전면</div>
           <div class="card">
-            <div class="grid2" style="margin-bottom:12px">
+            <div class="grid3" style="margin-bottom:12px">
               <div id="frontTypeWrap"><label class="lbl">전면 문자</label><select name="front_type" id="frontType"><option value="korean">한글</option><option value="chinese">한자</option></select><div class="hanja-disabled-note">이 유형은 전면만 한자 표현을 선택할 수 있습니다.</div></div>
               <div class="is-big"><label class="lbl">종교 마크</label><select name="religion_mark" id="religionMark"><option value="">없음</option><option>불교</option><option>기독교</option><option>천주교</option></select></div>
+              <div id="jidmyoWrap" class="is-big hidden"><label class="lbl">지묘</label><select name="jidmyo" id="jidmyo"><option>있음</option><option>없음</option></select></div>
             </div>
             <div id="familyBox" class="family-box hidden">
               <label class="lbl">가족지묘 본관</label>
               <input name="family_bongwan" id="familyBongwan" placeholder="예: 김해김 → 김해김씨 가족지묘" />
             </div>
-            <div id="slots"></div>
-            <button class="btn small-btn" type="button" onclick="addSlot()">＋ 고인 추가</button>
+
+            <div id="maejangFrontBox" class="maejang-front-card hidden">
+              <div class="grid3">
+                <div class="is-big"><label class="lbl">남자 호칭</label><select name="male_title" id="maleTitle"><option>없음</option><option>학생</option><option>처사</option><option>집사</option><option>성도</option><option>권사</option><option>장로</option></select></div>
+                <div class="is-big"><label class="lbl">남자 본관 <span class="note">&lt;공 자동 적용&gt;</span></label><input name="male_bongwan" id="maleBongwan" /></div>
+                <div class="is-big"><label class="lbl">남자 이름</label><input name="male_name" id="maleName" /></div>
+                <div class="is-big"><label class="lbl">여자 호칭</label><select name="female_title" id="femaleTitle"><option>없음</option><option>유인</option><option>보살</option><option>집사</option><option>성도</option><option>권사</option></select></div>
+                <div class="is-big"><label class="lbl">여자 본관 <span class="note">&lt;씨 자동 적용&gt;</span></label><input name="female_bongwan" id="femaleBongwan" /></div>
+                <div class="is-big"><label class="lbl">여자 이름</label><input name="female_name" id="femaleName" /></div>
+              </div>
+            </div>
+
+            <div id="standardFrontBox">
+              <div id="slots"></div>
+              <button id="addSlotBtn" class="btn small-btn" type="button" onclick="addSlot()">＋ 고인 추가</button>
+            </div>
           </div>
 
           <div id="sideSection">
-            <div class="section-title">측면</div>
+            <div class="sub-section-title">측면</div>
             <div class="card">
               <div id="sideTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">측면 문자</label><select name="side_type" id="sideType"><option value="korean">한글</option><option value="chinese">한자</option></select><div class="hanja-disabled-note">이 유형은 측면 한자 표현을 사용할 수 없습니다.</div></div>
               <div class="grid2">
-                <div class="slot-box"><div class="slot-head">남</div><div class="grid2"><div class="is-small"><label class="lbl">생년월일</label><input name="s1_birth" id="s1Birth" /></div><div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type"><option>생</option><option>없음</option></select></div><div class="is-small"><label class="lbl">사망일</label><input name="s1_death" id="s1Death" /></div><div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div></div></div>
-                <div class="slot-box"><div class="slot-head">여</div><div class="grid2"><div class="is-small"><label class="lbl">생년월일</label><input name="s2_birth" id="s2Birth" /></div><div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type"><option>생</option><option>없음</option></select></div><div class="is-small"><label class="lbl">사망일</label><input name="s2_death" id="s2Death" /></div><div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div></div></div>
+                <div class="slot-box">
+                  <div class="slot-head">남</div>
+                  <div class="side-birth-row hidden" id="sideBirthRow1"><div class="grid2">
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s1_birth" id="s1Birth" /></div>
+                    <div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type" id="s1BirthType" onchange="sideBirthTypeChanged(1)"><option>생</option><option>없음</option></select></div>
+                  </div></div>
+                  <div class="grid2">
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s1_death" id="s1Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div>
+                  </div>
+                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn1" onclick="showSideBirth(1)">＋ 생년월일</button></div>
+                </div>
+                <div class="slot-box">
+                  <div class="slot-head">여</div>
+                  <div class="side-birth-row hidden" id="sideBirthRow2"><div class="grid2">
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s2_birth" id="s2Birth" /></div>
+                    <div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type" id="s2BirthType" onchange="sideBirthTypeChanged(2)"><option>생</option><option>없음</option></select></div>
+                  </div></div>
+                  <div class="grid2">
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s2_death" id="s2Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div>
+                  </div>
+                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn2" onclick="showSideBirth(2)">＋ 생년월일</button></div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="section-title">후면</div>
+          <div class="sub-section-title">후면</div>
           <div class="card">
             <div id="backTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">후면 문자</label><select name="back_type" id="backType"><option value="korean">한글</option><option value="chinese">한자</option></select><div class="hanja-disabled-note">이 유형은 후면 한자 표현을 사용할 수 없습니다.</div></div>
             <div class="grid3">
@@ -172,7 +211,7 @@ button,input,select,textarea{font-family:inherit}
         </div>
 
         <aside class="preview-panel">
-          <div class="preview-title">예상 시안 미리보기</div>
+          <div class="section-title right-panel-title">예상 시안 미리보기</div>
           <div class="preview-stone">
             <div class="pv-mark" id="pvMark"></div>
             <div class="pv-extra" id="pvExtra"></div>
@@ -180,9 +219,9 @@ button,input,select,textarea{font-family:inherit}
             <div class="pv-date" id="pvDates"></div>
             <div class="pv-back" id="pvBack"></div>
           </div>
-          <div class="card calc-card" style="margin-top:16px">
+          <div class="section-title right-panel-title calc-out-title">계산 결과</div>
+          <div class="card calc-card">
             <div class="calc-panel-head">
-              <div class="calc-panel-title">계산 결과</div>
               <button class="btn calc-btn" type="button" onclick="calc()">계산하기</button>
             </div>
             <div class="summary" id="summaryBox"></div>
@@ -229,7 +268,7 @@ function init(){
   ['writer','designer','checker'].forEach(id=>fillSelect($(id), STAFF));
   fillSelect($('status'), STATUS, '접수됨');
   renderSlots(1);
-  bindInputs(); updateUI(); renderList(savedList); calc();
+  bindInputs(); updateUI(); updateTemplateLabel(); renderList(savedList); calc();
 }
 function fillSubcategory(selected=''){
   const cat = $('category').value;
@@ -252,11 +291,11 @@ function renderSlots(count){
         <div class="is-big"><label class="lbl">세례명</label><input name="f${i}_baptism" id="f${i}Baptism" /></div>
       </div>
       <div class="birth-row hidden" id="birthRow${i}"><div class="grid2">
-        <div class="is-small"><label class="lbl">생년월일</label><input name="f${i}_birth" id="f${i}Birth" /></div>
+        <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="f${i}_birth" id="f${i}Birth" /></div>
         <div class="is-small"><label class="lbl">생 표현</label><select name="f${i}_birth_type" id="f${i}BirthType" onchange="birthTypeChanged(${i})"><option>생</option><option>없음</option></select></div>
       </div></div>
       <div class="grid2">
-        <div class="is-small"><label class="lbl">사망일</label><input name="f${i}_death" id="f${i}Death" /></div>
+        <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="f${i}_death" id="f${i}Death" /></div>
         <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
       </div>
       <div class="birth-action"><button class="btn-add-birth" type="button" id="birthBtn${i}" onclick="showBirth(${i})">＋ 생년월일</button></div>
@@ -267,6 +306,9 @@ function renderSlots(count){
 function showBirth(i){ $('birthRow'+i).classList.remove('hidden'); $('birthBtn'+i).classList.add('hidden'); const bt=$('f'+i+'BirthType'); if(bt) bt.value='생'; }
 function hideBirth(i){ const b=$('f'+i+'Birth'), bt=$('f'+i+'BirthType'); if(b) b.value=''; if(bt) bt.value='생'; $('birthRow'+i).classList.add('hidden'); $('birthBtn'+i).classList.remove('hidden'); updatePreview(); calc(); }
 function birthTypeChanged(i){ const bt=$('f'+i+'BirthType'); if(bt && bt.value==='없음') hideBirth(i); }
+function showSideBirth(n){ $('sideBirthRow'+n).classList.remove('hidden'); $('sideBirthBtn'+n).classList.add('hidden'); const bt=$('s'+n+'BirthType'); if(bt) bt.value='생'; }
+function hideSideBirth(n){ const b=$('s'+n+'Birth'), bt=$('s'+n+'BirthType'); if(b) b.value=''; if(bt) bt.value='생'; $('sideBirthRow'+n).classList.add('hidden'); $('sideBirthBtn'+n).classList.remove('hidden'); updatePreview(); calc(); }
+function sideBirthTypeChanged(n){ const bt=$('s'+n+'BirthType'); if(bt && bt.value==='없음') hideSideBirth(n); }
 function addSlot(){ renderSlots(Number($('slotCount').value)+1); }
 function removeSlot(i){ const data=collectForm(); const count=Number($('slotCount').value); for(let n=i;n<count;n++){['name','baptism','birth','birth_type','death','death_type'].forEach(k=>data[`f${n}_${k}`]=data[`f${n+1}_${k}`]||'');} renderSlots(count-1); fillForm(data); }
 function bindInputs(){
@@ -294,11 +336,16 @@ function updateHanjaAvailability(){
   setHanjaSelect('backType','backTypeWrap',backOk);
 }
 function updateUI(resetSlots=false){
+  updateTemplateLabel();
   const r=getRule(); $('sideSection').classList.toggle('hidden', !r.has_side);
   const isMaejang=$('category').value==='매장묘'; $('sizeWrap').classList.toggle('hidden', !isMaejang);
   $('orientationWrap')?.classList.toggle('hidden', !r.needs_orientation);
   $('familyBox')?.classList.toggle('hidden', !r.family_phrase);
   const stoneOk=STONE_CATEGORIES.includes($('category').value); $('inputStoneBox').classList.toggle('hidden', !stoneOk); if(!stoneOk) $('stonePhoto').value='no';
+  const isMaejangFront = r.front_style === 'maejang';
+  $('jidmyoWrap')?.classList.toggle('hidden', !isMaejangFront);
+  $('maejangFrontBox')?.classList.toggle('hidden', !isMaejangFront);
+  $('standardFrontBox')?.classList.toggle('hidden', isMaejangFront);
   updateHanjaAvailability();
   if(resetSlots) renderSlots(1);
 }
@@ -309,14 +356,29 @@ function fillForm(data){
   renderSlots(data.slot_count || getRule().slots || 1);
   Object.entries(data).forEach(([k,v])=>{ const el=document.querySelector(`[name="${CSS.escape(k)}"]`); if(el) el.value=v??''; });
   for(let i=1;i<=Number($('slotCount').value||1);i++){ if(data[`f${i}_birth`]) showBirth(i); }
+  for(let n=1;n<=2;n++){ if(data[`s${n}_birth`]) showSideBirth(n); }
   updateUI(); updatePreview(); calc();
 }
 function updatePreview(){
   const d=collectForm(); const markMap={'불교':'卍','기독교':'✝','천주교':'✞'}; $('pvMark').textContent=markMap[d.religion_mark]||'';
   const familyText = d.family_bongwan ? `${d.family_bongwan}씨 가족지묘` : '';
   $('pvExtra').textContent = familyText;
-  let names='', dates=[]; const count=Number(d.slot_count||1);
-  for(let i=1;i<=count;i++){ const nm=d[`f${i}_name`]||'', bp=d[`f${i}_baptism`]||''; if(nm||bp) names+=`<div class="pv-name">${esc(bp ? bp+' '+nm : nm)}</div>`; const birth=d[`f${i}_birth`]||'', death=d[`f${i}_death`]||''; if(birth||death) dates.push(`${birth ? birth+' '+(d[`f${i}_birth_type`]||'생') : ''} ${death ? death+' '+(d[`f${i}_death_type`]||'졸') : ''}`.trim()); }
+  let names='', dates=[]; const r=getRule();
+  if(r.front_style === 'maejang'){
+    const frontParts=[];
+    if(d.jidmyo === '있음') frontParts.push('지묘');
+    if((d.male_title||'없음') !== '없음' || d.male_bongwan || d.male_name){
+      frontParts.push(`${d.male_title && d.male_title !== '없음' ? d.male_title+' ' : ''}${d.male_bongwan||''} ${d.male_name||''} 공`.trim());
+    }
+    if((d.female_title||'없음') !== '없음' || d.female_bongwan || d.female_name){
+      frontParts.push(`${d.female_title && d.female_title !== '없음' ? d.female_title+' ' : ''}${d.female_bongwan||''} ${d.female_name||''} 씨`.trim());
+    }
+    names = frontParts.map(x=>`<div class="pv-name">${esc(x)}</div>`).join('');
+    ['1','2'].forEach(n=>{ const birth=d[`s${n}_birth`]||'', death=d[`s${n}_death`]||''; if(birth||death) dates.push(`${birth ? birth+' '+(d[`s${n}_birth_type`]||'생') : ''} ${death ? death+' '+(d[`s${n}_death_type`]||'졸') : ''}`.trim()); });
+  } else {
+    const count=Number(d.slot_count||1);
+    for(let i=1;i<=count;i++){ const nm=d[`f${i}_name`]||'', bp=d[`f${i}_baptism`]||''; if(nm||bp) names+=`<div class="pv-name">${esc(bp ? bp+' '+nm : nm)}</div>`; const birth=d[`f${i}_birth`]||'', death=d[`f${i}_death`]||''; if(birth||death) dates.push(`${birth ? birth+' '+(d[`f${i}_birth_type`]||'생') : ''} ${death ? death+' '+(d[`f${i}_death_type`]||'졸') : ''}`.trim()); }
+  }
   $('pvNames').innerHTML=names||'<div class="pv-name" style="opacity:.35">성명</div>'; $('pvDates').innerHTML=dates.map(esc).join('<br>');
   const back=[d.son_text&&`자 ${d.son_text}`,d.daughter_in_law_text&&`자부 ${d.daughter_in_law_text}`,d.grandson_text&&`손 ${d.grandson_text}`,d.daughter_text&&`녀 ${d.daughter_text}`,d.son_in_law_text&&`사위 ${d.son_in_law_text}`,d.maternal_grandchild_text&&`외손 ${d.maternal_grandchild_text}`,d.etc_text].filter(Boolean).join(' · '); $('pvBack').textContent=back||'후면 내용';
 }
