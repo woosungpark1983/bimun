@@ -1,0 +1,4073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>비문 신청서 · 우성공원</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"/>
+<style>
+/* ═══════════════════════════════════════════
+   우성공원 디자인 토큰
+   브로셔에서 추출: 아이보리 · 올리브그린 · 따뜻한 갈색 · 골드
+═══════════════════════════════════════════ */
+:root {
+  --ivory:        #f4f1e4;
+  --ivory-warm:   #ede9d6;
+  --ivory-soft:   #e8e3ce;
+  --paper:        #faf8f0;
+  --paper-card:   #fffef8;
+
+  --olive:        #5d6b20;
+  --olive-mid:    #6e7e28;
+  --olive-light:  #8fa03a;
+  --olive-pale:   #c8d47a;
+  --olive-mist:   #eef2d2;
+
+  --brown:        #3e2e1e;
+  --brown-warm:   #5c4232;
+  --brown-mid:    #7a5c44;
+  --brown-light:  #a0806a;
+  --brown-mute:   #b8a090;
+  --brown-ghost:  #d4c4b8;
+
+  --gold:         #c09840;
+  --gold-warm:    #d4aa50;
+  --gold-light:   #e8c87a;
+  --gold-pale:    #f5e9c0;
+  --gold-mist:    #faf4e0;
+
+  --big-bg:       #fdf6e0;
+  --big-bd:       #c8a040;
+  --big-tx:       #6a4e10;
+  --sml-bg:       #ebf2ea;
+  --sml-bd:       #6a9660;
+  --sml-tx:       #2a5220;
+
+  --red:          #a84040;
+  --red-soft:     #fdf0f0;
+
+  --r-card:   14px;
+  --r-input:  9px;
+  --r-btn:    10px;
+
+  --sh-card:  0 1px 3px rgba(62,46,30,.06), 0 4px 16px rgba(62,46,30,.06);
+  --sh-lift:  0 4px 20px rgba(62,46,30,.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; }
+body {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  background: var(--ivory);
+  color: var(--brown);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 스크롤바 */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--ivory-soft); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brown-ghost); }
+
+/* ═══════ 헤더 ═══════ */
+.topbar {
+  height: 62px;
+  background: var(--paper-card);
+  border-bottom: 1px solid var(--ivory-soft);
+  box-shadow: 0 1px 8px rgba(62,46,30,.07);
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 200;
+}
+
+/* 로고 */
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo-img {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.logo-fallback {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--olive);
+  letter-spacing: .04em;
+}
+.logo-sep {
+  width: 1px;
+  height: 26px;
+  background: var(--ivory-soft);
+  flex-shrink: 0;
+}
+.topbar-title {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--brown-warm);
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+
+/* 서명 3칸 */
+.sign3-wrap {
+  display: flex;
+  align-items: stretch;
+  background: var(--paper-card);
+  border: 1px solid var(--ivory-soft);
+  border-radius: 9px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sign3-col {
+  width: 66px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--ivory-soft);
+}
+.sign3-col:last-child { border-right: none; }
+.sign3-lbl {
+  background: var(--ivory-warm);
+  color: var(--brown-mid);
+  font-size: .58rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-align: center;
+  padding: 3px 0;
+  border-bottom: 1px solid var(--ivory-soft);
+  text-transform: uppercase;
+}
+.sign3-cv {
+  width: 66px;
+  height: 36px;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+  background: transparent;
+}
+.sign3-clr {
+  align-self: stretch;
+  background: none;
+  border: none;
+  border-left: 1px solid var(--ivory-soft);
+  color: var(--brown-mute);
+  font-size: .68rem;
+  padding: 0 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all .12s;
+}
+.sign3-clr:hover { background: var(--ivory-warm); color: var(--brown); }
+
+.topbar-spacer { flex: 1; }
+
+.save-path {
+  font-size: .6rem;
+  color: var(--brown-mute);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 상단 버튼 */
+.hdr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  font-size: .78rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .14s;
+  border: 1px solid transparent;
+}
+.hdr-btn-new {
+  background: var(--olive);
+  color: #fff;
+  border-color: var(--olive);
+}
+.hdr-btn-new:hover { background: var(--olive-mid); }
+.hdr-btn-list {
+  background: var(--paper-card);
+  color: var(--brown-warm);
+  border-color: var(--brown-ghost);
+}
+.hdr-btn-list:hover { background: var(--ivory-warm); }
+.badge {
+  background: var(--gold);
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  border-radius: 20px;
+  padding: 1px 6px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* ═══════ 레이아웃 ═══════ */
+.app-root { display: flex; flex-direction: column; height: 100vh; }
+.app-body { display: flex; flex: 1; overflow: hidden; }
+
+/* ═══════ 사이드바 ═══════ */
+.sidebar {
+  width: 176px;
+  flex-shrink: 0;
+  background: var(--paper-card);
+  border-right: 1px solid var(--ivory-soft);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.sidebar-hd {
+  padding: 14px 14px 8px;
+  font-size: .6rem;
+  letter-spacing: .18em;
+  color: var(--brown-mute);
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--ivory-soft);
+  flex-shrink: 0;
+}
+.nav-btn {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  border-left: 3px solid transparent;
+  color: var(--brown-mid);
+  font-family: inherit;
+  font-size: .82rem;
+  font-weight: 400;
+  text-align: left;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: all .12s;
+}
+.nav-btn:hover { background: var(--ivory); color: var(--brown); }
+.nav-btn.active {
+  background: var(--olive-mist);
+  color: var(--olive);
+  border-left-color: var(--olive);
+  font-weight: 600;
+}
+
+/* ═══════ 메인 영역 ═══════ */
+.main-scroll { flex: 1; overflow-y: auto; padding: 20px 22px 96px; }
+.form-sheet { max-width: 840px; margin: 0 auto; }
+
+
+/* 기본정보 오른쪽 결재/서명 */
+.section-top {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:14px;
+  margin:26px 0 10px;
+}
+.section-top .sec-hd { margin:0; flex:1; }
+.basic-sign-area { flex-shrink:0; }
+@media(max-width:720px){
+  .section-top{align-items:stretch;flex-direction:column;}
+  .basic-sign-area{align-self:flex-end;}
+}
+
+/* ═══════ 섹션 헤더 ═══════ */
+.sec-hd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 10px;
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .68rem;
+  font-weight: 600;
+  color: var(--brown-light);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.sec-hd::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: linear-gradient(to bottom, var(--olive), var(--gold));
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.sec-hd::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--ivory-soft);
+}
+.sec-hd:first-child { margin-top: 0; }
+
+/* ═══════ 카드 ═══════ */
+.card {
+  background: var(--paper-card);
+  border: 1px solid var(--ivory-soft);
+  border-radius: var(--r-card);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+  box-shadow: var(--sh-card);
+}
+.card-hd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-bottom: 13px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--ivory-soft);
+}
+.card-hd-ico {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .85rem;
+  flex-shrink: 0;
+}
+.card-hd-txt {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+}
+.c-front .card-hd-ico { background: var(--olive-mist); }
+.c-front .card-hd-txt { color: var(--olive); }
+.c-side .card-hd-ico  { background: var(--sml-bg); }
+.c-side .card-hd-txt  { color: #3d6e38; }
+.c-back .card-hd-ico  { background: var(--ivory-warm); }
+.c-back .card-hd-txt  { color: var(--brown-warm); }
+.c-result .card-hd-ico{ background: var(--gold-mist); }
+.c-result .card-hd-txt{ color: var(--gold); }
+
+/* ═══════ 그리드 ═══════ */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+.g4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; }
+
+/* ═══════ 라벨 ═══════ */
+.lbl {
+  display: block;
+  font-size: .66rem;
+  font-weight: 500;
+  color: var(--brown-light);
+  margin-bottom: 5px;
+  letter-spacing: .05em;
+}
+
+/* ═══════ 폼 요소 ═══════ */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1.5px solid var(--ivory-soft);
+  border-radius: var(--r-input);
+  font-size: 14px;
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  color: var(--brown);
+  background: var(--paper-card);
+  transition: border-color .15s, box-shadow .15s, background .15s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+input[type=text]:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--olive-light);
+  box-shadow: 0 0 0 3px rgba(93,107,32,.1);
+  background: var(--paper);
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='7' viewBox='0 0 10 7'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a0806a' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+  padding-right: 30px;
+  cursor: pointer;
+}
+textarea { resize: vertical; min-height: 52px; line-height: 1.6; }
+input[readonly] { background: var(--ivory-warm); color: var(--brown-mute); cursor: default; }
+.note { font-size: .63rem; color: var(--brown-mute); margin-top: 4px; }
+
+/* 큰글씨 / 작은글씨 */
+.is-big input, .is-big select, .is-big textarea {
+  border-color: var(--big-bd);
+  background: var(--big-bg);
+  color: var(--big-tx);
+}
+.is-big input:focus, .is-big select:focus, .is-big textarea:focus {
+  border-color: var(--gold-warm);
+  box-shadow: 0 0 0 3px rgba(192,152,64,.12);
+}
+.is-sml input, .is-sml select, .is-sml textarea {
+  border-color: var(--sml-bd);
+  background: var(--sml-bg);
+  color: var(--sml-tx);
+}
+.is-sml input:focus, .is-sml select:focus, .is-sml textarea:focus {
+  border-color: #4a8040;
+  box-shadow: 0 0 0 3px rgba(106,150,96,.12);
+}
+
+/* 범례 */
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 13px;
+  padding: 7px 12px;
+  background: var(--ivory);
+  border-radius: 8px;
+  border: 1px solid var(--ivory-soft);
+}
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: .64rem; color: var(--brown-mid); }
+.legend-dot { width: 9px; height: 9px; border-radius: 3px; border: 1.5px solid; flex-shrink: 0; }
+.ld-big { background: var(--big-bg); border-color: var(--big-bd); }
+.ld-sml { background: var(--sml-bg); border-color: var(--sml-bd); }
+
+/* ═══════ 슬롯 박스 ═══════ */
+.slot-box {
+  border: 1px solid var(--ivory-soft);
+  border-radius: 11px;
+  padding: 14px;
+  margin-top: 10px;
+  background: var(--ivory);
+}
+.slot-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--brown-mid);
+  letter-spacing: .04em;
+  margin-bottom: 10px;
+  padding-bottom: 7px;
+  border-bottom: 1px dashed var(--brown-ghost);
+}
+.btn-del-slot {
+  background: none;
+  border: 1px solid #d0b0b0;
+  color: var(--red);
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: .64rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .12s;
+}
+.btn-del-slot:hover { background: var(--red-soft); border-color: var(--red); }
+
+.btn-add-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  margin-top: 11px;
+  padding: 12px;
+  background: var(--ivory);
+  border: 1.5px dashed var(--olive-pale);
+  border-radius: 11px;
+  color: var(--olive-mid);
+  font-size: .82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all .14s;
+  letter-spacing: .02em;
+}
+.btn-add-slot:hover { background: var(--olive-mist); border-color: var(--olive-light); color: var(--olive); }
+
+.birth-extra {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+.birth-action-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+.btn-add-birth {
+  border: 1.5px dashed var(--olive-light);
+  background: var(--olive-mist);
+  color: var(--olive);
+  border-radius: 9px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: .75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-add-birth:hover {
+  background: #e4ebbf;
+}
+
+
+/* ═══════ 액션바 ═══════ */
+.action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 176px;
+  right: 0;
+  background: rgba(244,241,228,.95);
+  border-top: 1px solid var(--ivory-soft);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 11px 22px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+  z-index: 100;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 22px;
+  border-radius: var(--r-btn);
+  font-size: .86rem;
+  font-weight: 600;
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: all .14s;
+  white-space: nowrap;
+  letter-spacing: .01em;
+}
+.btn-calc {
+  background: var(--brown);
+  color: var(--gold-pale);
+  border-color: var(--brown);
+  box-shadow: 0 2px 8px rgba(62,46,30,.2);
+}
+.btn-calc:hover { background: var(--brown-warm); }
+.btn-save {
+  background: var(--olive);
+  color: #fff;
+  border-color: var(--olive);
+  box-shadow: 0 2px 8px rgba(93,107,32,.2);
+}
+.btn-save:hover { background: var(--olive-mid); }
+.btn-print {
+  background: var(--paper-card);
+  color: var(--brown-warm);
+  border-color: var(--brown-ghost);
+}
+.btn-print:hover { background: var(--ivory-warm); }
+.btn-reset {
+  background: transparent;
+  color: var(--brown-mute);
+  border-color: var(--brown-ghost);
+}
+.btn-reset:hover { background: var(--ivory-warm); }
+
+.save-preview {
+  margin-left: auto;
+  font-size: .7rem;
+  color: var(--brown-light);
+  background: var(--paper-card);
+  border: 1px solid var(--ivory-soft);
+  border-radius: 8px;
+  padding: 5px 12px;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.saved-ok { font-size: .76rem; color: var(--olive); font-weight: 600; }
+
+/* ═══════ 계산 결과 ═══════ */
+.sum-lines {
+  background: var(--ivory);
+  border: 1px solid var(--ivory-soft);
+  border-radius: 10px;
+  padding: 12px 15px;
+}
+.sum-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--ivory-soft);
+  font-size: .82rem;
+}
+.sum-row:last-of-type { border-bottom: none; }
+.sum-row-lbl { color: var(--brown-mute); }
+.sum-row-val { font-weight: 600; color: var(--brown); white-space: nowrap; }
+.sum-total {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1.5px solid var(--ivory-soft);
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  text-align: right;
+  color: var(--brown);
+}
+.chip-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.chip {
+  flex: 1;
+  min-width: 120px;
+  border-radius: 10px;
+  padding: 9px 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid;
+}
+.chip-lbl { font-size: .66rem; }
+.chip-val { font-weight: 700; font-size: .88rem; }
+.chip-big { background: var(--big-bg); border-color: var(--big-bd); }
+.chip-big .chip-lbl { color: var(--brown-light); }
+.chip-big .chip-val { color: var(--big-tx); }
+.chip-sml { background: var(--sml-bg); border-color: var(--sml-bd); }
+.chip-sml .chip-lbl { color: var(--brown-light); }
+.chip-sml .chip-val { color: var(--sml-tx); }
+.chip-stone { background: var(--gold-mist); border-color: var(--gold-light); }
+.chip-stone .chip-lbl { color: var(--brown-light); }
+.chip-stone .chip-val { color: var(--gold); }
+.chip-tot { background: var(--brown); border-color: var(--brown); }
+.chip-tot .chip-lbl { color: var(--gold-light); }
+.chip-tot .chip-val { color: var(--gold-pale); }
+
+/* ═══════ 서명 ═══════ */
+.agree-txt {
+  text-align: center;
+  font-size: .73rem;
+  line-height: 1.72;
+  color: var(--brown-light);
+  margin-bottom: 10px;
+}
+.agree-confirm {
+  text-align: center;
+  font-weight: 600;
+  font-size: .82rem;
+  color: var(--brown-warm);
+  margin: 10px 0;
+}
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: .82rem;
+  color: var(--brown);
+}
+.date-val {
+  display: inline-block;
+  min-width: 30px;
+  padding: 3px 7px;
+  border-bottom: 1.5px solid var(--brown-ghost);
+  text-align: center;
+}
+canvas#sig-pad {
+  width: 100%;
+  height: 110px;
+  display: block;
+  background: var(--paper-card);
+  border: 1.5px solid var(--ivory-soft);
+  border-radius: 10px;
+  touch-action: none;
+}
+.sig-wrap { padding-bottom: 4px; border-bottom: 1.5px solid var(--ivory-soft); }
+.sig-foot { display: flex; justify-content: flex-end; margin-top: 5px; }
+.btn-clr-sig {
+  background: var(--ivory);
+  border: 1px solid var(--ivory-soft);
+  border-radius: 6px;
+  padding: 3px 11px;
+  font-size: .7rem;
+  font-family: inherit;
+  color: var(--brown-mute);
+  cursor: pointer;
+}
+.btn-clr-sig:hover { background: var(--ivory-soft); }
+
+/* ═══════ 배너 ═══════ */
+.load-banner {
+  display: none;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  margin-bottom: 14px;
+  background: var(--olive-mist);
+  border: 1px solid var(--olive-pale);
+  border-radius: 11px;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--olive);
+}
+.load-banner.show { display: flex; }
+.load-banner button {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--olive-pale);
+  color: var(--olive);
+  border-radius: 6px;
+  padding: 2px 9px;
+  font-size: .7rem;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ═══════ 드로어 ═══════ */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(62,46,30,.32);
+  z-index: 300;
+  opacity: 0; pointer-events: none;
+  transition: opacity .22s;
+}
+.overlay.open { opacity: 1; pointer-events: auto; }
+.drawer {
+  position: fixed; top: 0; right: 0;
+  width: 450px; height: 100vh;
+  background: var(--paper-card);
+  z-index: 301;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform .26s cubic-bezier(.4,0,.2,1);
+  box-shadow: -6px 0 32px rgba(62,46,30,.14);
+}
+.drawer.open { transform: translateX(0); }
+.dr-head {
+  height: 62px;
+  background: var(--brown);
+  display: flex; align-items: center;
+  padding: 0 16px; gap: 10px;
+  border-bottom: 2px solid var(--gold);
+  flex-shrink: 0;
+}
+.dr-head-title {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .92rem;
+  font-weight: 600;
+  color: var(--gold-pale);
+  flex: 1;
+  letter-spacing: .02em;
+}
+.dr-cnt {
+  font-size: .72rem;
+  color: var(--gold-light);
+  background: rgba(255,255,255,.1);
+  padding: 2px 9px; border-radius: 20px;
+}
+.dr-close {
+  width: 28px; height: 28px;
+  background: none;
+  border: 1px solid rgba(192,152,64,.4);
+  border-radius: 50%;
+  color: var(--gold-light);
+  font-size: .88rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .12s;
+}
+.dr-close:hover { background: var(--gold); color: var(--brown); }
+
+.dr-search {
+  padding: 10px 13px;
+  border-bottom: 1px solid var(--ivory-soft);
+  background: var(--ivory);
+  flex-shrink: 0;
+}
+.dr-search-inner { position: relative; }
+.dr-search-ico {
+  position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  color: var(--brown-mute); font-size: .8rem; pointer-events: none;
+}
+.dr-search input {
+  width: 100%;
+  padding: 8px 9px 8px 30px;
+  border: 1px solid var(--brown-ghost);
+  border-radius: 8px;
+  font-size: .82rem;
+  font-family: inherit;
+  background: var(--paper-card);
+  color: var(--brown);
+}
+.dr-search input:focus { outline: none; border-color: var(--olive-light); }
+
+.dr-empty { text-align: center; padding: 40px 20px; color: var(--brown-mute); }
+.dr-empty-ico { font-size: 2rem; margin-bottom: 8px; }
+.dr-empty p { font-size: .84rem; line-height: 1.7; }
+.dr-list { overflow-y: auto; flex: 1; padding: 7px 0; }
+
+/* 드로어 항목 */
+.dr-item {
+  margin: 5px 11px;
+  border: 1px solid var(--ivory-soft);
+  border-radius: 12px;
+  background: var(--paper-card);
+  overflow: hidden;
+  box-shadow: var(--sh-card);
+  transition: all .13s;
+}
+.dr-item:hover { border-color: var(--gold-light); box-shadow: 0 3px 14px rgba(62,46,30,.1); transform: translateY(-1px); }
+.dr-item-stripe { height: 3px; background: linear-gradient(90deg, var(--olive-mid), var(--gold-warm)); }
+.dr-item-body { padding: 10px 13px 8px; }
+.dr-item-r1 { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 4px; }
+.dr-item-name { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; font-weight: 700; font-size: .86rem; color: var(--brown); flex: 1; line-height: 1.3; }
+.dr-item-date { font-size: .62rem; color: var(--brown-mute); white-space: nowrap; margin-top: 2px; }
+.dr-item-r2 { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+.dr-item-who { font-size: .74rem; color: var(--brown-mid); }
+.dr-item-memo { font-size: .7rem; color: var(--brown-mute); font-style: italic; }
+.dr-item-stats { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.dr-stat {
+  font-size: .65rem; padding: 2px 7px;
+  border-radius: 20px; border: 1px solid; font-weight: 600;
+}
+.dr-stat-big { background: var(--big-bg); border-color: var(--big-bd); color: var(--big-tx); }
+.dr-stat-sml { background: var(--sml-bg); border-color: var(--sml-bd); color: var(--sml-tx); }
+.dr-stat-amt {
+  margin-left: auto;
+  font-size: .78rem; font-weight: 700; color: var(--brown);
+  background: var(--gold-mist); border: 1px solid var(--gold-light);
+  border-radius: 7px; padding: 2px 9px;
+}
+.dr-item-acts {
+  display: flex;
+  border-top: 1px solid var(--ivory-soft);
+  padding: 7px 12px; gap: 7px;
+  background: var(--ivory);
+}
+.dr-load-btn {
+  flex: 1;
+  background: var(--brown); color: var(--gold-pale);
+  border: none; border-radius: 8px; padding: 8px 0;
+  font-size: .76rem; font-weight: 600; cursor: pointer; font-family: inherit;
+  transition: all .13s;
+  display: flex; align-items: center; justify-content: center; gap: 4px;
+}
+.dr-load-btn:hover { background: var(--olive); }
+.dr-del-btn {
+  background: none; border: 1px solid #d0b0b0; color: var(--red);
+  border-radius: 8px; padding: 8px 12px;
+  font-size: .72rem; font-family: inherit; cursor: pointer; transition: all .13s; white-space: nowrap;
+}
+.dr-del-btn:hover { background: var(--red-soft); border-color: var(--red); }
+.dr-confirm {
+  display: none; flex-direction: column;
+  border-top: 1px solid #f0d8d8; padding: 9px 13px; background: #fdf4f4; gap: 7px;
+}
+.dr-confirm.show { display: flex; }
+.dr-confirm-msg { font-size: .75rem; color: var(--red); font-weight: 600; }
+.dr-confirm-btns { display: flex; gap: 7px; }
+.dr-confirm-yes {
+  flex: 1; background: var(--red); color: #fff;
+  border: none; border-radius: 8px; padding: 8px 0;
+  font-size: .75rem; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+.dr-confirm-yes:hover { background: #883030; }
+.dr-confirm-no {
+  flex: 1; background: var(--ivory); color: var(--brown-mute);
+  border: 1px solid var(--brown-ghost); border-radius: 8px; padding: 8px 0;
+  font-size: .75rem; cursor: pointer; font-family: inherit;
+}
+
+/* ═══════ 반응형 ═══════ */
+@media (max-width: 900px) {
+  .action-bar { left: 0; }
+  .sidebar { display: none; }
+  .g4 { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 580px) {
+  .g4, .g3, .g2 { grid-template-columns: 1fr; }
+  .drawer { width: 100%; }
+  .main-scroll { padding: 14px 14px 96px; }
+}
+
+/* ═══════ 인쇄 ═══════ */
+@media print {
+  .topbar, .sidebar, .action-bar, .overlay, .drawer, .load-banner, .no-print { display: none !important; }
+  html, body { height: auto; overflow: auto; }
+  .app-root, .app-body { display: block; }
+  .main-scroll { overflow: visible; padding: 0; }
+  .form-sheet { max-width: 100%; }
+  .card { box-shadow: none; border-radius: 0; }
+  input, select, textarea { border: none !important; background: transparent !important; padding: 0 !important; }
+  textarea { min-height: auto !important; }
+}
+
+
+/* =========================================================
+   FINAL HEADER LAYOUT - 우성공원 확정본
+   상단: 로고 좌측 / 새로작성·저장목록 우측
+   본문 첫 줄: 비문 신청서 가운데 / 작성·작업·검수 우측
+========================================================= */
+.topbar {
+  height: 64px;
+  background: var(--paper-card);
+  border-bottom: 1px solid var(--ivory-soft);
+  box-shadow: 0 1px 8px rgba(62,46,30,.07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  gap: 16px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 200;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.logo-img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.logo-fallback {
+  display: none;
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--olive);
+}
+.logo-sep,
+.topbar-title,
+.topbar-spacer {
+  display: none !important;
+}
+.topbar-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.save-path {
+  font-size: .62rem;
+  color: var(--brown-mute);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hdr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-size: .82rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+.hdr-btn-new {
+  background: var(--olive);
+  color: #fff;
+  border-color: var(--olive);
+}
+.hdr-btn-list {
+  background: var(--paper-card);
+  color: var(--brown-warm);
+  border-color: var(--brown-ghost);
+}
+
+.document-head {
+  position: relative;
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 16px;
+}
+.doc-title {
+  text-align: center;
+  font-size: 1.22rem;
+  font-weight: 800;
+  color: var(--brown);
+  letter-spacing: .02em;
+}
+.document-head .basic-sign-area {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+}
+.document-head .sign3-wrap {
+  display: flex;
+  align-items: stretch;
+  background: var(--paper-card);
+  border: 1px solid var(--ivory-soft);
+  border-radius: 9px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(62,46,30,.06);
+}
+.document-head .sign3-col {
+  width: 72px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--ivory-soft);
+}
+.document-head .sign3-col:last-of-type {
+  border-right: none;
+}
+.document-head .sign3-lbl {
+  height: 22px;
+  line-height: 22px;
+  background: var(--ivory-warm);
+  color: var(--brown-mid);
+  font-size: .62rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0;
+  border-bottom: 1px solid var(--ivory-soft);
+}
+.document-head .sign3-cv {
+  width: 72px;
+  height: 48px;
+  background: #fff;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+}
+.document-head .sign3-clr {
+  align-self: stretch;
+  background: var(--paper-card);
+  border: none;
+  border-left: 1px solid var(--ivory-soft);
+  color: var(--brown-mute);
+  font-size: .7rem;
+  padding: 0 8px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .topbar {
+    padding: 0 16px;
+  }
+  .save-path {
+    display: none;
+  }
+  .document-head {
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .doc-title {
+    text-align: left;
+  }
+  .document-head .basic-sign-area {
+    position: static;
+    transform: none;
+    align-self: flex-end;
+  }
+}
+
+
+/* ===== 최종 UI 정리: 섹션 제목, 비문 안내, 카드 제목 ===== */
+.sec-hd {
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  color: var(--brown);
+}
+
+.sec-hd-bimun {
+  margin-top: 28px;
+}
+
+.legend-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 14px;
+  padding: 4px 10px;
+  border: 1px solid var(--ivory-soft);
+  border-radius: 999px;
+  background: var(--paper-card);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--brown-mid);
+  text-transform: none;
+}
+
+.legend-mark {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  border: 1.5px solid;
+}
+
+.legend-mark-big {
+  background: var(--big-bg);
+  border-color: var(--big-bd);
+}
+
+.legend-mark-sml {
+  background: var(--sml-bg);
+  border-color: var(--sml-bd);
+  margin-left: 6px;
+}
+
+.card-hd {
+  gap: 0;
+}
+
+.card-hd-txt {
+  font-size: .96rem;
+  font-weight: 800;
+}
+
+.c-side .card-hd-txt,
+.c-back .card-hd-txt,
+.c-front .card-hd-txt {
+  color: var(--brown);
+}
+
+
+/* ===== 비문 하위 카테고리 디자인 정리 ===== */
+.bimun-group {
+  margin-top: 8px;
+  padding: 14px 16px 6px;
+  border: 1px solid var(--ivory-soft);
+  border-radius: 18px;
+  background: rgba(255, 254, 248, .45);
+}
+
+.sub-sec-hd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 8px;
+  font-size: .88rem;
+  font-weight: 800;
+  color: var(--olive);
+  letter-spacing: .02em;
+}
+
+.sub-sec-hd::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--olive-light);
+  box-shadow: 0 0 0 4px var(--olive-mist);
+}
+
+.bimun-group > .sub-sec-hd:first-child {
+  margin-top: 2px;
+}
+
+.bimun-group .card {
+  margin-bottom: 16px;
+}
+
+
+/* ===== 최종 보정: 작성/작업/검수 서명칸 라인 복구 ===== */
+.document-head .sign3-wrap {
+  display: flex !important;
+  align-items: stretch !important;
+  border: 1px solid #d8d2b8 !important;
+  border-radius: 9px !important;
+  overflow: hidden !important;
+  background: #fffef8 !important;
+}
+.document-head .sign3-col {
+  width: 72px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 1px solid #d8d2b8 !important;
+  box-sizing: border-box !important;
+}
+.document-head .sign3-col:nth-of-type(3) {
+  border-right: none !important;
+}
+.document-head .sign3-lbl {
+  height: 22px !important;
+  line-height: 22px !important;
+  border-bottom: 1px solid #d8d2b8 !important;
+  background: #ede9d6 !important;
+  text-align: center !important;
+  font-weight: 700 !important;
+}
+.document-head .sign3-cv {
+  width: 72px !important;
+  height: 48px !important;
+  border-right: 1px solid #d8d2b8 !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+}
+.document-head .sign3-col:nth-of-type(3) .sign3-cv {
+  border-right: none !important;
+}
+.document-head .sign3-clr {
+  border-left: 1px solid #d8d2b8 !important;
+}
+
+/* =========================================================
+   FINAL DESIGN POLISH v5 - 태블릿 앱 느낌 + A4 1장 출력(고인 2명 기준)
+========================================================= */
+:root {
+  --final-card-gap: 14px;
+}
+
+body {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif !important;
+  letter-spacing: -0.01em;
+}
+
+.topbar {
+  height: 64px !important;
+  padding: 0 28px !important;
+  background: rgba(255,254,248,.98) !important;
+}
+.logo-img { height: 46px !important; }
+.topbar-right { gap: 10px !important; }
+.hdr-btn {
+  min-height: 38px !important;
+  padding: 0 17px !important;
+  font-size: .84rem !important;
+  font-weight: 700 !important;
+}
+
+.main-scroll { padding: 22px 24px 106px !important; }
+.form-sheet { max-width: 1080px !important; }
+
+.document-head {
+  min-height: 70px !important;
+  margin: 2px 0 18px !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+}
+.doc-title {
+  grid-column: 2 !important;
+  font-size: 1.34rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+  letter-spacing: .04em !important;
+}
+.document-head .basic-sign-area {
+  grid-column: 3 !important;
+  justify-self: end !important;
+  position: static !important;
+  transform: none !important;
+}
+.document-head .sign3-wrap {
+  border: 1.5px solid #d8d2b8 !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background: #fffefb !important;
+}
+.document-head .sign3-col {
+  width: 76px !important;
+  border-right: 1.5px solid #d8d2b8 !important;
+}
+.document-head .sign3-col:last-of-type { border-right: none !important; }
+.document-head .sign3-lbl {
+  height: 24px !important;
+  line-height: 24px !important;
+  border-bottom: 1.5px solid #d8d2b8 !important;
+  background: #eee8d0 !important;
+  color: var(--brown-mid) !important;
+  font-size: .68rem !important;
+  font-weight: 800 !important;
+}
+.document-head .sign3-cv {
+  width: 76px !important;
+  height: 58px !important;
+  background: #fff !important;
+}
+.document-head .sign3-clr {
+  border-left: 1.5px solid #d8d2b8 !important;
+}
+
+.sec-hd {
+  margin: 22px 0 12px !important;
+  font-size: 1.08rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+  letter-spacing: .02em !important;
+}
+.sec-hd::before { height: 18px !important; background: var(--olive) !important; }
+
+.legend-inline {
+  margin-left: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  font-size: .78rem !important;
+  font-weight: 700 !important;
+  color: var(--brown-light) !important;
+  letter-spacing: 0 !important;
+}
+.legend-inline .big-guide { color: var(--big-tx) !important; }
+.legend-inline .sml-guide { color: var(--sml-tx) !important; }
+
+.card {
+  border-radius: 16px !important;
+  padding: 20px 22px !important;
+  margin-bottom: var(--final-card-gap) !important;
+  box-shadow: 0 3px 18px rgba(62,46,30,.075) !important;
+}
+.bimun-group {
+  padding: 16px !important;
+  border-radius: 18px !important;
+  background: rgba(255,254,248,.52) !important;
+  border: 1px solid var(--ivory-soft) !important;
+}
+.bimun-group .card {
+  margin-bottom: 14px !important;
+  border-radius: 15px !important;
+}
+.card-hd {
+  padding-bottom: 12px !important;
+  margin-bottom: 16px !important;
+}
+.card-hd-ico { display: none !important; }
+.card-hd-txt {
+  font-size: .98rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+}
+.c-front .card-hd-txt,
+.c-side .card-hd-txt,
+.c-back .card-hd-txt { color: var(--brown) !important; }
+
+.lbl {
+  font-size: .74rem !important;
+  font-weight: 700 !important;
+  color: var(--brown-light) !important;
+  margin-bottom: 6px !important;
+}
+input[type=text], select, textarea {
+  min-height: 43px !important;
+  font-size: 14px !important;
+  border-radius: 10px !important;
+}
+textarea { min-height: 64px !important; }
+.note { font-size: .66rem !important; }
+
+.action-bar {
+  min-height: 72px !important;
+  padding: 12px 24px !important;
+  gap: 10px !important;
+}
+.btn {
+  min-height: 46px !important;
+  padding: 0 26px !important;
+  border-radius: 12px !important;
+  font-size: .92rem !important;
+  font-weight: 900 !important;
+}
+.btn-save {
+  box-shadow: 0 3px 12px rgba(93,107,32,.22) !important;
+}
+
+/* 저장 목록 패널 디테일 */
+.drawer { border-left: 1px solid var(--ivory-soft) !important; }
+.dr-item { border-radius: 14px !important; }
+.dr-load-btn, .dr-del-btn { border-radius: 10px !important; }
+
+/* =========================================================
+   PRINT: A4 1장 출력 전용 - 고인 2명 기준
+========================================================= */
+@media print {
+  @page { size: A4 portrait; margin: 7mm; }
+
+  html, body {
+    width: 210mm !important;
+    height: 297mm !important;
+    overflow: visible !important;
+    background: #fff !important;
+    font-size: 9.5px !important;
+    color: #111 !important;
+  }
+
+  .topbar,
+  .sidebar,
+  .action-bar,
+  .overlay,
+  .drawer,
+  .load-banner,
+  .btn-add-slot,
+  .btn-del-slot,
+  .btn-clr-sig,
+  .sign3-clr,
+  .no-print {
+    display: none !important;
+  }
+
+  .app-root,
+  .app-body {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .main-scroll {
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .form-sheet {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .document-head {
+    min-height: 0 !important;
+    margin: 0 0 3mm !important;
+    padding-bottom: 2mm !important;
+    border-bottom: 1px solid #777 !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+  }
+
+  .doc-title {
+    grid-column: 2 !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    color: #111 !important;
+  }
+
+  .document-head .basic-sign-area {
+    display: block !important;
+    grid-column: 3 !important;
+    justify-self: end !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .document-head .sign3-wrap {
+    border: 1px solid #555 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+  .document-head .sign3-col {
+    width: 16mm !important;
+    border-right: 1px solid #555 !important;
+  }
+  .document-head .sign3-col:last-of-type { border-right: none !important; }
+  .document-head .sign3-lbl {
+    height: 6mm !important;
+    line-height: 6mm !important;
+    border-bottom: 1px solid #555 !important;
+    background: #f3f3f3 !important;
+    font-size: 8px !important;
+    color: #111 !important;
+  }
+  .document-head .sign3-cv {
+    width: 16mm !important;
+    height: 10mm !important;
+    background: #fff !important;
+  }
+
+  .sec-hd {
+    margin: 2mm 0 1.2mm !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    color: #111 !important;
+    letter-spacing: 0 !important;
+  }
+  .sec-hd::before { height: 11px !important; width: 3px !important; background: #333 !important; }
+  .sec-hd::after { background: #bbb !important; }
+  .legend-inline {
+    font-size: 8px !important;
+    gap: 6px !important;
+    margin-left: 6px !important;
+    color: #333 !important;
+  }
+
+  .card,
+  .bimun-group,
+  .slot-box,
+  .sum-lines {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    border: 1px solid #999 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .card {
+    padding: 2mm !important;
+    margin: 0 0 1.6mm !important;
+  }
+  .bimun-group {
+    padding: 1.8mm !important;
+    margin-bottom: 1.6mm !important;
+  }
+  .bimun-group .card { margin-bottom: 1.6mm !important; }
+  .card-hd {
+    padding-bottom: 1mm !important;
+    margin-bottom: 1.4mm !important;
+    border-bottom: 1px solid #aaa !important;
+  }
+  .card-hd-txt {
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    color: #111 !important;
+  }
+
+  .g2, .g3, .g4 {
+    gap: 1.5mm !important;
+  }
+  .g4 { grid-template-columns: 1fr 1fr 1fr 1fr !important; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr !important; }
+  .g2 { grid-template-columns: 1fr 1fr !important; }
+
+  .lbl {
+    font-size: 7.5px !important;
+    margin-bottom: .5mm !important;
+    color: #333 !important;
+    font-weight: 700 !important;
+  }
+
+  input[type=text], select, textarea {
+    min-height: auto !important;
+    height: auto !important;
+    padding: .6mm 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #bbb !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 9px !important;
+    color: #111 !important;
+  }
+  textarea {
+    min-height: 7mm !important;
+    max-height: 13mm !important;
+    line-height: 1.25 !important;
+    resize: none !important;
+    overflow: hidden !important;
+  }
+  input[readonly] { color: #111 !important; }
+  .note { font-size: 7px !important; color: #555 !important; }
+
+  .slot-box {
+    padding: 1.5mm !important;
+    margin-top: 1.2mm !important;
+  }
+  .slot-title {
+    font-size: 8.5px !important;
+    margin-bottom: 1mm !important;
+    padding-bottom: .8mm !important;
+    border-bottom: 1px dashed #aaa !important;
+  }
+  /* 출력은 고인 2명까지만 한 장 기준으로 표시 */
+  #slotsContainer .slot-box:nth-of-type(n+3) {
+    display: none !important;
+  }
+
+  .sum-lines {
+    padding: 1.5mm !important;
+  }
+  .sum-row {
+    padding: .6mm 0 !important;
+    font-size: 8.5px !important;
+  }
+  .sum-total {
+    margin-top: 1mm !important;
+    padding-top: 1mm !important;
+    font-size: 10.5px !important;
+  }
+  .chip-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    gap: 1mm !important;
+    margin-top: 1mm !important;
+  }
+  .chip {
+    min-width: 0 !important;
+    padding: 1mm !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+    border: 1px solid #aaa !important;
+  }
+  .chip-lbl { font-size: 7px !important; }
+  .chip-val { font-size: 8px !important; }
+
+  .agree-txt {
+    text-align: center !important;
+    font-size: 8px !important;
+    line-height: 1.35 !important;
+    color: #111 !important;
+    margin-bottom: 1mm !important;
+  }
+  .agree-confirm {
+    font-size: 9px !important;
+    margin: 1mm 0 !important;
+  }
+  .date-row {
+    margin-bottom: 1mm !important;
+    font-size: 8.5px !important;
+  }
+  .date-val {
+    min-width: 8mm !important;
+    padding: .4mm 1mm !important;
+    border-bottom: 1px solid #777 !important;
+  }
+  #sig-pad {
+    height: 16mm !important;
+    border: 1px solid #777 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  /* 프린트 때 색 배경 최소화 */
+  .is-big input, .is-big select, .is-big textarea,
+  .is-sml input, .is-sml select, .is-sml textarea {
+    background: transparent !important;
+    color: #111 !important;
+  }
+}
+
+
+/* 신청인 서명 확대 팝업 */
+.sig-wrap { position: relative; cursor: pointer; }
+.sig-hint { position:absolute; right:10px; bottom:8px; font-size:12px; color:var(--brown-mute); background:rgba(255,255,255,.78); border:1px solid var(--ivory-soft); border-radius:999px; padding:3px 9px; pointer-events:none; }
+.sig-modal { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(62,46,30,.45); z-index:9999; padding:24px; }
+.sig-modal.open { display:flex; }
+.sig-modal-box { width:min(92vw,900px); background:var(--paper-card); border:1px solid var(--ivory-soft); border-radius:18px; box-shadow:0 20px 60px rgba(62,46,30,.28); padding:18px; }
+.sig-modal-head { display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:12px; }
+.sig-modal-title { font-size:20px; font-weight:800; color:var(--brown); }
+.sig-modal-sub { margin-top:4px; font-size:13px; color:var(--brown-light); }
+.sig-modal-close { width:34px; height:34px; border-radius:50%; border:1px solid var(--ivory-soft); background:var(--ivory); color:var(--brown-mid); font-size:22px; line-height:1; cursor:pointer; }
+#sig-modal-canvas { width:100%; height:360px; display:block; background:#fff; border:2px solid var(--ivory-soft); border-radius:14px; touch-action:none; }
+.sig-modal-actions { display:flex; justify-content:flex-end; gap:10px; margin-top:14px; }
+.sig-modal-btn { min-width:100px; padding:12px 18px; border-radius:10px; border:1.5px solid var(--ivory-soft); font-family:inherit; font-weight:700; cursor:pointer; }
+.sig-modal-clear,.sig-modal-cancel { background:#fff; color:var(--brown-mid); }
+.sig-modal-ok { background:var(--olive); border-color:var(--olive); color:#fff; }
+@media (max-width:700px){ .sig-modal{padding:12px;} #sig-modal-canvas{height:300px;} .sig-modal-actions{display:grid;grid-template-columns:1fr 1fr 1fr;} .sig-modal-btn{min-width:0;} }
+
+
+/* =========================================================
+   PRINT FINAL V1: 화면 톤 유지 + A4 1장 출력(고인 2명 기준)
+   - 화면 UI는 그대로, 인쇄 때만 압축
+   - 배경/카드 톤은 최대한 유지
+========================================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 6mm;
+  }
+
+  html, body {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: #f4f1e4 !important;
+    color: #3e2e1e !important;
+    font-size: 9px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    zoom: .82;
+  }
+
+  .topbar,
+  .sidebar,
+  .action-bar,
+  .overlay,
+  .drawer,
+  .load-banner,
+  .btn-add-slot,
+  .btn-del-slot,
+  .birth-add-row,
+  .btn-birth-add,
+  .btn-clr-sig,
+  .sign3-clr,
+  .sig-hint,
+  .sig-modal,
+  .no-print {
+    display: none !important;
+  }
+
+  .app-root, .app-body {
+    display: block !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    background: #f4f1e4 !important;
+  }
+
+  .main-scroll {
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    background: #f4f1e4 !important;
+  }
+
+  .form-sheet {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .document-head {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: start !important;
+    min-height: 0 !important;
+    padding: 0 0 2mm !important;
+    margin: 0 0 2mm !important;
+    border-bottom: 1px solid #d8d0b0 !important;
+  }
+
+  .doc-title {
+    grid-column: 2 !important;
+    text-align: center !important;
+    font-size: 15px !important;
+    line-height: 1.2 !important;
+    font-weight: 900 !important;
+    color: #3e2e1e !important;
+    letter-spacing: .02em !important;
+  }
+
+  .document-head .basic-sign-area {
+    display: block !important;
+    grid-column: 3 !important;
+    justify-self: end !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .document-head .sign3-wrap {
+    display: flex !important;
+    border: 1px solid #cfc7a8 !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    background: #fffef8 !important;
+    box-shadow: none !important;
+  }
+
+  .document-head .sign3-col {
+    width: 17mm !important;
+    border-right: 1px solid #cfc7a8 !important;
+  }
+  .document-head .sign3-col:last-child { border-right: none !important; }
+
+  .document-head .sign3-lbl {
+    height: 5mm !important;
+    line-height: 5mm !important;
+    background: #ede9d6 !important;
+    border-bottom: 1px solid #cfc7a8 !important;
+    font-size: 7.5px !important;
+    color: #3e2e1e !important;
+    font-weight: 700 !important;
+  }
+
+  .document-head .sign3-cv {
+    width: 17mm !important;
+    height: 9mm !important;
+    background: #fff !important;
+  }
+
+  .sec-hd {
+    margin: 1.6mm 0 1mm !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+    line-height: 1.2 !important;
+    color: #3e2e1e !important;
+  }
+  .sec-hd::before {
+    width: 3px !important;
+    height: 11px !important;
+    background: #5d6b20 !important;
+  }
+  .sec-hd::after { background: #d8d0b0 !important; }
+
+  .legend-inline {
+    font-size: 8px !important;
+    gap: 6px !important;
+    margin-left: 7px !important;
+    padding: 2px 7px !important;
+    border-radius: 999px !important;
+    background: #fffef8 !important;
+    border: 1px solid #e1d9bd !important;
+  }
+
+  .card, .bimun-group, .slot-box, .sum-lines {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    background: #fffef8 !important;
+    border: 1px solid #e1d9bd !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  .card {
+    padding: 2mm !important;
+    margin: 0 0 1.5mm !important;
+  }
+
+  .bimun-group {
+    padding: 2mm !important;
+    margin: 0 0 1.5mm !important;
+    background: rgba(255,254,248,.72) !important;
+  }
+
+  .bimun-group .card {
+    margin-bottom: 1.4mm !important;
+  }
+
+  .card-hd {
+    padding-bottom: .9mm !important;
+    margin-bottom: 1.2mm !important;
+    border-bottom: 1px solid #e1d9bd !important;
+  }
+
+  .card-hd-ico { display: none !important; }
+
+  .card-hd-txt {
+    font-size: 10px !important;
+    font-weight: 900 !important;
+    color: #5d6b20 !important;
+  }
+
+  .g2, .g3, .g4 { gap: 1.4mm !important; }
+  .g4 { grid-template-columns: 1fr 1fr 1fr 1fr !important; }
+  .g3 { grid-template-columns: 1fr 1fr 1fr !important; }
+  .g2 { grid-template-columns: 1fr 1fr !important; }
+
+  .lbl {
+    font-size: 7px !important;
+    margin-bottom: .4mm !important;
+    color: #7a5c44 !important;
+    font-weight: 800 !important;
+  }
+
+  input[type=text], select, textarea {
+    min-height: 0 !important;
+    height: auto !important;
+    padding: .7mm 1mm !important;
+    border: 1px solid #e1d9bd !important;
+    border-radius: 5px !important;
+    background: #fffefb !important;
+    box-shadow: none !important;
+    font-size: 8.5px !important;
+    line-height: 1.2 !important;
+    color: #111 !important;
+  }
+
+  textarea {
+    min-height: 7mm !important;
+    max-height: 12mm !important;
+    resize: none !important;
+    overflow: hidden !important;
+  }
+
+  input[readonly] {
+    background: #ede9d6 !important;
+    color: #7a5c44 !important;
+  }
+
+  .is-big input, .is-big select, .is-big textarea {
+    background: #fdf6e0 !important;
+    border-color: #d8c284 !important;
+    color: #111 !important;
+  }
+  .is-sml input, .is-sml select, .is-sml textarea {
+    background: #ebf2ea !important;
+    border-color: #b7ccb0 !important;
+    color: #111 !important;
+  }
+
+  .slot-box {
+    padding: 1.5mm !important;
+    margin-top: 1mm !important;
+  }
+  .slot-title {
+    font-size: 8px !important;
+    margin-bottom: 1mm !important;
+    padding-bottom: .7mm !important;
+    border-bottom: 1px dashed #d8d0b0 !important;
+  }
+  #slotsContainer .slot-box:nth-of-type(n+3) { display: none !important; }
+
+  .sum-lines { padding: 1.5mm !important; }
+  .sum-row { padding: .5mm 0 !important; font-size: 8px !important; }
+  .sum-total { margin-top: 1mm !important; padding-top: 1mm !important; font-size: 10px !important; }
+  .chip-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 1mm !important;
+    margin-top: 1mm !important;
+  }
+  .chip { min-width: 0 !important; padding: 1mm !important; border-radius: 6px !important; }
+  .chip-lbl { font-size: 6.8px !important; }
+  .chip-val { font-size: 7.5px !important; }
+
+  .agree-txt, .agree-desc {
+    text-align: center !important;
+    font-size: 7.8px !important;
+    line-height: 1.35 !important;
+    color: #7a5c44 !important;
+    margin-bottom: 1mm !important;
+  }
+  .agree-confirm { font-size: 8.5px !important; margin: 1mm 0 !important; }
+  .date-row { font-size: 8px !important; margin-bottom: 1mm !important; }
+  .date-val { min-width: 8mm !important; padding: .3mm 1mm !important; }
+
+  #sig-pad {
+    height: 16mm !important;
+    border: 1px solid #d8d0b0 !important;
+    border-radius: 6px !important;
+    background: #fff !important;
+  }
+}
+
+
+/* ===== 태블릿 3페이지 입력 모드 ===== */
+.step-indicator{display:flex;justify-content:center;gap:10px;margin:0 0 18px;}
+.step-dot{min-width:150px;text-align:center;padding:11px 15px;border-radius:999px;background:#fffef8;border:1px solid var(--ivory-soft);color:var(--brown-light);font-size:15px;font-weight:800;cursor:pointer;}
+.step-dot.active{background:var(--olive);color:#fff;border-color:var(--olive);box-shadow:0 3px 10px rgba(93,107,32,.18);}
+.form-step{display:none;}
+.form-step.active{display:block;}
+.btn-nav{background:#fffef8;color:var(--brown);border-color:var(--ivory-soft);}
+.btn-next{background:var(--brown);color:var(--gold-light);border-color:var(--brown);}
+.final-action{display:none;}
+.final-action.show{display:inline-flex;}
+.bimun-calc-row{display:flex;justify-content:flex-end;margin:16px 0 8px;}
+.btn-calc-inline{min-width:170px;justify-content:center;font-size:16px;padding:15px 28px;}
+.agree-txt{font-size:16px!important;line-height:1.8!important;text-align:center!important;color:var(--brown-mid)!important;}
+.agree-confirm{font-size:18px!important;margin:18px 0!important;}
+.date-row{font-size:17px!important;}
+.sig-wrap{min-height:140px!important;}
+#sig-pad{min-height:130px!important;}
+@media (max-width:900px){
+  .main-scroll{padding:16px 14px 112px!important}
+  .form-sheet{max-width:100%!important}
+  .step-indicator{position:sticky;top:0;z-index:80;background:rgba(244,241,228,.96);padding:10px 0;backdrop-filter:blur(10px)}
+  .step-dot{min-width:auto;flex:1;padding:12px 6px;font-size:14px}
+  .sec-hd{font-size:20px!important;margin:20px 0 12px!important}
+  .card{padding:22px 18px!important;border-radius:18px!important;margin-bottom:16px!important}
+  .card-hd-txt{font-size:18px!important}
+  .lbl{font-size:14px!important;margin-bottom:7px!important}
+  input[type=text],select,textarea{font-size:17px!important;min-height:52px!important;padding:13px 14px!important;border-radius:12px!important}
+  textarea{min-height:82px!important}
+  .slot-box{padding:18px!important;border-radius:16px!important}
+  .slot-title{font-size:16px!important}
+  .btn{min-height:54px;font-size:16px;padding:14px 22px;border-radius:13px}
+  .btn-add-slot,.btn-add-birth{font-size:16px!important;min-height:52px!important}
+  .action-bar{justify-content:space-between;gap:8px;padding:12px 14px!important}
+  .save-preview{display:none}
+  .agree-txt{font-size:17px!important;line-height:1.9!important}
+  .agree-confirm{font-size:20px!important}
+  .date-row{font-size:18px!important}
+}
+@media print{.form-step,.form-step.active{display:block!important}.step-indicator,.btn-nav,.bimun-calc-row{display:none!important}.final-action{display:none!important}}
+
+
+/* =========================================================
+   FINAL OVERRIDES: 기본정보 확대 + 프린트 중앙 정렬 + 후면 안내
+========================================================= */
+.basic-info-card {
+  padding: 24px 26px !important;
+}
+.basic-info-card .lbl {
+  font-size: 0.88rem !important;
+  font-weight: 800 !important;
+  color: var(--brown-mid) !important;
+  margin-bottom: 8px !important;
+}
+.basic-info-card input[type=text],
+.basic-info-card select {
+  min-height: 54px !important;
+  padding: 13px 15px !important;
+  font-size: 17px !important;
+  border-radius: 12px !important;
+}
+.basic-info-card .basic-row {
+  gap: 14px !important;
+}
+.back-input-guide {
+  margin: -2px 0 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--ivory-soft);
+  border-radius: 10px;
+  background: var(--ivory);
+  color: var(--brown-light);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+.back-family-grid textarea {
+  min-height: 92px !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+}
+
+@media print {
+  @page { size: A4 portrait; margin: 7mm !important; }
+  html, body {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body { zoom: .80 !important; }
+  .main-scroll {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+  .form-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .card, .bimun-group, .sec-hd, .doc-header-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  .basic-info-card input[type=text],
+  .basic-info-card select,
+  input[type=text], select, textarea {
+    font-size: 10px !important;
+    min-height: auto !important;
+    padding: 4px 6px !important;
+  }
+  .back-input-guide { display: none !important; }
+}
+
+/* ===== 후면 안내문 위치 조정 ===== */
+.back-type-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
+  margin-bottom: 13px;
+  flex-wrap: wrap;
+}
+.back-type-select {
+  width: 190px;
+  max-width: 100%;
+}
+.back-type-row .back-input-guide {
+  margin: 0 0 6px !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--ivory-soft);
+  border-radius: 999px;
+  background: var(--ivory);
+  color: var(--brown-light);
+  font-size: 0.84rem;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+@media (max-width: 780px) {
+  .back-type-row {
+    align-items: stretch;
+  }
+  .back-type-select {
+    width: 100%;
+  }
+  .back-type-row .back-input-guide {
+    white-space: normal;
+    border-radius: 12px;
+    margin: 0 !important;
+  }
+}
+
+
+/* ===== 후면 기타 문구 높이 통일 + 계산결과 하단 잘림 방지 ===== */
+textarea[name="etc_text"],
+.etc-textarea {
+  min-height: var(--back-textarea-height, 120px) !important;
+  height: var(--back-textarea-height, 120px) !important;
+}
+
+/* 후면 자/자부/손/녀/사위/외손/기타 문구 높이 통일 */
+.back-panel textarea,
+.back-section textarea,
+#backDiv textarea,
+textarea[name="son_text"],
+textarea[name="daughter_in_law_text"],
+textarea[name="grandson_text"],
+textarea[name="daughter_text"],
+textarea[name="son_in_law_text"],
+textarea[name="maternal_grandchild_text"],
+textarea[name="etc_text"] {
+  min-height: 120px !important;
+}
+
+/* 계산 결과가 하단 고정 버튼/태블릿 브라우저 바에 가리지 않도록 여백 확보 */
+.step-page,
+.page-step,
+.form-step,
+.main-scroll,
+.form-sheet {
+  scroll-padding-bottom: 180px;
+}
+
+.main-scroll {
+  padding-bottom: 190px !important;
+}
+
+.calc-result,
+.result-card,
+.summary-card,
+.sum-lines,
+.c-result {
+  scroll-margin-bottom: 180px;
+}
+
+/* 태블릿에서는 계산결과 영역 아래 여백을 더 확보 */
+@media (max-width: 1024px) {
+  .main-scroll {
+    padding-bottom: 240px !important;
+  }
+
+  .step-page,
+  .page-step,
+  .form-step {
+    padding-bottom: 180px !important;
+  }
+
+  .calc-result,
+  .result-card,
+  .summary-card,
+  .sum-lines,
+  .c-result {
+    margin-bottom: 120px !important;
+  }
+}
+
+/* 프린트에서는 여백 보정 제거 */
+@media print {
+  .main-scroll,
+  .step-page,
+  .page-step,
+  .form-step {
+    padding-bottom: 0 !important;
+  }
+
+  .calc-result,
+  .result-card,
+  .summary-card,
+  .sum-lines,
+  .c-result {
+    margin-bottom: 0 !important;
+  }
+}
+
+
+/* ===== FINAL: 프린트 전체 페이지 + 서명/저장 안정화 ===== */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 7mm !important;
+  }
+
+  html, body {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 auto !important;
+    background: #fff !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    zoom: .78 !important;
+  }
+
+  .topbar,
+  .sidebar,
+  .step-indicator,
+  .action-bar,
+  .drawer,
+  .overlay,
+  .sig-modal,
+  .no-print,
+  .btn-nav,
+  .bimun-calc-row,
+  .btn-add-slot,
+  .btn-add-birth,
+  .btn-del-slot,
+  .sig-foot {
+    display: none !important;
+  }
+
+  .app-body,
+  .main-scroll,
+  .form-sheet {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
+
+  .form-step,
+  .form-step.active {
+    display: block !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .card,
+  .bimun-group {
+    box-shadow: none !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .final-action,
+  button {
+    display: none !important;
+  }
+}
+
+#sig-pad,
+.sign3-cv,
+#sig-modal-canvas {
+  touch-action: none !important;
+}
+
+.sig-modal.open {
+  display: flex !important;
+}
+
+
+/* ===== 계산 결과 공백 축소: 태블릿 화면 전용 ===== */
+@media screen {
+  .card.c-result,
+  .result-card,
+  .summary-card {
+    padding: 14px 16px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .card.c-result .card-hd,
+  .result-card .card-hd,
+  .summary-card .card-hd {
+    padding-bottom: 8px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .sum-lines {
+    padding: 8px 10px !important;
+    margin: 0 !important;
+  }
+
+  .sum-row {
+    padding: 4px 0 !important;
+    min-height: auto !important;
+    line-height: 1.35 !important;
+  }
+
+  .sum-total {
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    line-height: 1.35 !important;
+  }
+
+  .chip-row {
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+
+  .chip {
+    padding: 7px 10px !important;
+    min-height: auto !important;
+  }
+
+  .chip-lbl,
+  .chip-val {
+    line-height: 1.25 !important;
+  }
+
+  .bimun-calc-row {
+    margin-bottom: 10px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .card.c-result,
+  .result-card,
+  .summary-card {
+    padding: 12px 14px !important;
+  }
+
+  .sum-lines {
+    padding: 7px 9px !important;
+  }
+
+  .sum-row {
+    font-size: 14px !important;
+  }
+
+  .sum-total {
+    font-size: 17px !important;
+  }
+
+  .chip {
+    padding: 6px 9px !important;
+  }
+}
+
+
+/* ===== 금액 산출 카드 위쪽 공백까지 축소 ===== */
+@media screen {
+  /* 결과 바로 앞 섹션 제목 여백 축소 */
+  .sec-hd:has(+ .card.c-result),
+  .sec-hd:has(+ .result-card),
+  .sec-hd:has(+ .summary-card) {
+    margin-top: 8px !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* :has 미지원 브라우저 대비: 결과 카드 자체 위쪽 당김 */
+  .card.c-result,
+  .result-card,
+  .summary-card {
+    margin-top: 6px !important;
+    padding-top: 10px !important;
+  }
+
+  .card.c-result .card-hd,
+  .result-card .card-hd,
+  .summary-card .card-hd {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 6px !important;
+    min-height: auto !important;
+  }
+
+  .card.c-result .card-hd-ico,
+  .result-card .card-hd-ico,
+  .summary-card .card-hd-ico {
+    width: 22px !important;
+    height: 22px !important;
+  }
+
+  .card.c-result .card-hd-txt,
+  .result-card .card-hd-txt,
+  .summary-card .card-hd-txt {
+    line-height: 1.2 !important;
+  }
+
+  /* 계산하기 버튼 줄과 결과 사이 여백 축소 */
+  .bimun-calc-row + .sec-hd,
+  .bimun-calc-row + .card,
+  .bimun-calc-row + .result-card,
+  .bimun-calc-row + .summary-card {
+    margin-top: 6px !important;
+  }
+
+  /* 비문 페이지에서 결과가 들어가는 컨테이너 상단 여백 제거 */
+  #resultArea,
+  #summaryArea,
+  .calc-area,
+  .summary-area {
+    padding-top: 0 !important;
+    margin-top: 4px !important;
+  }
+}
+
+
+/* ===== 태블릿 금액 산출 카드 내부 흰색 공백 제거 ===== */
+@media screen {
+  /* 결과 카드 자체 높이/여백 압축 */
+  .card.c-result,
+  .result-card,
+  .summary-card,
+  .card:has(.sum-lines) {
+    padding: 14px 16px !important;
+    margin-top: 8px !important;
+    margin-bottom: 12px !important;
+    min-height: 0 !important;
+  }
+
+  /* 금액 산출 제목 아래 큰 공백 제거 */
+  .card.c-result .card-hd,
+  .result-card .card-hd,
+  .summary-card .card-hd,
+  .card:has(.sum-lines) .card-hd {
+    margin-bottom: 8px !important;
+    padding-bottom: 8px !important;
+    min-height: 0 !important;
+  }
+
+  /* 혹시 중간에 빈 div/간격용 요소가 있으면 줄임 */
+  .card.c-result .card-hd + *,
+  .result-card .card-hd + *,
+  .summary-card .card-hd + *,
+  .card:has(.sum-lines) .card-hd + * {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  /* 계산 항목 리스트를 위로 당김 */
+  .sum-lines {
+    margin-top: 0 !important;
+    padding: 8px 10px !important;
+    min-height: 0 !important;
+  }
+
+  .sum-row {
+    padding: 4px 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    line-height: 1.35 !important;
+  }
+
+  .sum-total {
+    margin-top: 8px !important;
+    padding-top: 8px !important;
+    line-height: 1.35 !important;
+  }
+
+  .chip-row {
+    margin-top: 8px !important;
+    gap: 6px !important;
+  }
+
+  .chip {
+    padding: 7px 10px !important;
+    min-height: 0 !important;
+  }
+}
+
+/* 태블릿에서는 더 강하게 압축 */
+@media screen and (max-width: 1024px) {
+  .card.c-result,
+  .result-card,
+  .summary-card,
+  .card:has(.sum-lines) {
+    padding-top: 10px !important;
+  }
+
+  .card.c-result .card-hd,
+  .result-card .card-hd,
+  .summary-card .card-hd,
+  .card:has(.sum-lines) .card-hd {
+    margin-bottom: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  .sum-lines {
+    padding-top: 6px !important;
+  }
+}
+
+/* 프린트는 건드리지 않음 */
+@media print {
+  .card.c-result,
+  .result-card,
+  .summary-card,
+  .card:has(.sum-lines) {
+    min-height: initial !important;
+  }
+}
+
+
+/* =========================================================
+   2026-04 수정본: 상단 고정 헤더 + 하단 직원서명 + 태블릿 보정
+========================================================= */
+.fixed-doc-head{position:sticky;top:0;z-index:120;background:rgba(244,241,228,.97);padding:8px 0 12px;margin:-8px 0 14px;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(232,227,206,.88)}
+.fixed-doc-head .document-head{min-height:50px!important;margin:0 0 8px!important;display:flex!important;justify-content:center!important;align-items:center!important}
+.fixed-doc-head .doc-title{font-size:1.42rem!important;font-weight:900!important;letter-spacing:.04em!important}
+.fixed-doc-head .step-indicator{margin:0!important;position:static!important;background:transparent!important;padding:0!important}
+.staff-sign-section{display:flex;justify-content:flex-end;align-items:flex-end;gap:12px;margin:12px 0 6px}
+.staff-sign-title{font-size:.78rem;font-weight:800;color:var(--brown-light);margin-bottom:10px;letter-spacing:.04em}
+.staff-sign-area .sign3-wrap{display:flex!important;border:1.5px solid #d8d2b8!important;border-radius:12px!important;overflow:hidden!important;background:#fffef8!important;box-shadow:0 2px 10px rgba(62,46,30,.08)!important}
+.staff-sign-area .sign3-col{width:84px!important;border-right:1.5px solid #d8d2b8!important}
+.staff-sign-area .sign3-col:last-of-type{border-right:none!important}
+.staff-sign-area .sign3-lbl{height:28px!important;line-height:28px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important;background:#eee8d0!important;border-bottom:1.5px solid #d8d2b8!important;font-size:.72rem!important;font-weight:900!important}
+.staff-sign-area .sign3-cv{width:84px!important;height:88px!important;background:#fff!important}
+.staff-sign-area .sign3-clr{min-width:36px!important;border-left:1.5px solid #d8d2b8!important}
+.sign-dot,.list-sign-dot{display:inline-block;width:9px;height:9px;border-radius:999px;vertical-align:middle}
+.dot-write{background:#4faf66}.dot-work{background:#d9c32f}.dot-check{background:#1f5fbf}
+.dr-sign-dots{display:inline-flex;gap:6px;align-items:center;min-height:18px}.list-sign-dot{width:10px;height:10px}
+canvas#sig-pad{height:170px!important}
+.date-val{border-bottom:none!important;min-width:auto!important;padding:0 2px!important;font-weight:800!important}
+.chip-stone,.dr-stat-stone{background:#fff0f0!important;border-color:#d85b5b!important;color:#b12828!important}
+.chip-stone .chip-lbl,.chip-stone .chip-val{color:#b12828!important}
+.dr-stat-stone{font-size:.65rem;padding:2px 7px;border-radius:20px;border:1px solid;font-weight:800}
+.form-step[data-step="1"]{padding-bottom:4px!important;margin-bottom:0!important}
+.form-step[data-step="1"] .card:last-of-type{margin-bottom:4px!important}
+.birth-extra{align-items:end!important;margin-bottom:4px!important}
+.birth-action-row{margin-top:4px!important}
+.btn-add-birth{min-height:44px!important;padding:6px 12px!important;align-items:center!important}
+.slot-box{padding-bottom:10px!important}
+@media(max-width:900px){.main-scroll{padding-top:12px!important}.fixed-doc-head{margin-left:-2px;margin-right:-2px}.staff-sign-section{flex-direction:column;align-items:flex-end}.staff-sign-area .sign3-col{width:86px!important}.staff-sign-area .sign3-cv{width:86px!important;height:96px!important}canvas#sig-pad{height:190px!important}}
+@media print{.fixed-doc-head{position:static!important;display:block!important}.fixed-doc-head .step-indicator{display:none!important}.staff-sign-section{display:flex!important;page-break-inside:avoid}.staff-sign-section.no-print,.staff-sign-area.no-print{display:flex!important}}
+
+
+
+/* =========================================================
+   2026-04 최종 요청 반영 v2
+   - 3페이지 직원 확인 서명: 페이지 하단 오른쪽 배치
+   - 직원 서명칸 구분선 복구/높이 확대
+   - 비문 신청서 타이틀 확대 + 김정철 명조체 계열 적용
+   - 고객 동의/서명 영역 확대
+========================================================= */
+.fixed-doc-head .doc-title,
+.doc-title {
+  font-family: 'KimjungchulMyungjo', 'Kim Jung Chul Myungjo', '김정철 명조', '김정철명조', 'Noto Serif KR', 'Nanum Myeongjo', serif !important;
+  font-size: 1.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .035em !important;
+  color: var(--brown) !important;
+}
+
+/* 3페이지 자체를 세로 flex로 만들어 직원 확인 서명이 제일 아래 오른쪽에 붙도록 */
+.form-step[data-step="2"].active {
+  min-height: calc(100vh - 250px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.form-step[data-step="2"] > .card {
+  flex-shrink: 0 !important;
+}
+.staff-sign-section {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-top: 18px !important;
+}
+.staff-sign-area {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+.staff-sign-title {
+  width: 100% !important;
+  text-align: left !important;
+  margin: 0 0 6px 2px !important;
+  font-size: .88rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+  letter-spacing: .02em !important;
+}
+.staff-sign-area .sign3-wrap {
+  display: flex !important;
+  align-items: stretch !important;
+  border: 1.8px solid #cfc6a8 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #fffef8 !important;
+}
+.staff-sign-area .sign3-col {
+  width: 92px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 1.8px solid #cfc6a8 !important;
+  box-sizing: border-box !important;
+}
+.staff-sign-area .sign3-col:last-of-type {
+  border-right: none !important;
+}
+.staff-sign-area .sign3-lbl {
+  height: 30px !important;
+  line-height: 30px !important;
+  border-bottom: 1.8px solid #cfc6a8 !important;
+  background: #eee8d0 !important;
+  font-size: .78rem !important;
+  font-weight: 900 !important;
+}
+.staff-sign-area .sign3-cv {
+  width: 92px !important;
+  height: 112px !important;
+  background: #fff !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+.staff-sign-area .sign3-clr {
+  min-width: 38px !important;
+  border-left: 1.8px solid #cfc6a8 !important;
+  background: #fffef8 !important;
+}
+
+/* 고객 동의 및 서명 확대 */
+.agree-txt {
+  font-size: 18px !important;
+  line-height: 1.95 !important;
+  font-weight: 700 !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+  word-break: keep-all !important;
+}
+.agree-confirm {
+  font-size: 21px !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
+  margin: 20px 0 14px !important;
+  color: var(--brown) !important;
+}
+.date-row {
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  margin-bottom: 18px !important;
+}
+.date-val {
+  border-bottom: none !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  color: var(--olive) !important;
+  padding: 0 3px !important;
+}
+.signer-title,
+.card .sig-wrap + .sig-foot,
+.sig-foot { }
+#sig-pad,
+canvas#sig-pad {
+  height: 230px !important;
+  min-height: 230px !important;
+}
+.sig-wrap {
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+.sig-wrap + .sig-foot { margin-top: 8px !important; }
+
+/* 신청인의 서명 문구도 같이 확대 */
+.sig-wrap[title]::before { content: none !important; }
+
+@media (max-width: 900px) {
+  .fixed-doc-head .doc-title,
+  .doc-title { font-size: 1.62rem !important; }
+  .form-step[data-step="2"].active { min-height: calc(100vh - 230px) !important; }
+  .staff-sign-area .sign3-col { width: 96px !important; }
+  .staff-sign-area .sign3-cv { width: 96px !important; height: 124px !important; }
+  .agree-txt { font-size: 18px !important; line-height: 2 !important; }
+  .agree-confirm { font-size: 22px !important; }
+  .date-row { font-size: 19px !important; }
+  #sig-pad, canvas#sig-pad { height: 260px !important; min-height: 260px !important; }
+}
+
+@media print {
+  .fixed-doc-head .doc-title,
+  .doc-title { font-size: 18pt !important; }
+  .form-step[data-step="2"].active,
+  .form-step[data-step="2"] { display: block !important; min-height: auto !important; }
+  .staff-sign-section { justify-content: flex-end !important; margin-top: 8mm !important; page-break-inside: avoid !important; }
+  #sig-pad, canvas#sig-pad { height: 34mm !important; min-height: 34mm !important; }
+}
+
+
+/* =========================================================
+   FINAL OVERRIDE 2026-04-25
+   - 비문 신청서 타이틀 Pretendard 복구
+   - 직원 확인 서명 3페이지 최하단 오른쪽 보정
+   - 직원 서명칸 세로 확대 및 구분선 강제 복구
+   - 고객 동의문/날짜/신청인 서명/서명칸 확대
+========================================================= */
+.fixed-doc-head .doc-title,
+.doc-title {
+  font-family: 'Pretendard', 'Malgun Gothic', sans-serif !important;
+  font-size: 1.82rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .035em !important;
+  color: var(--brown) !important;
+}
+.form-step[data-step="2"].active {
+  min-height: calc(100vh - 225px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.form-step[data-step="2"] > .card { flex-shrink: 0 !important; }
+.staff-sign-section {
+  width: 100% !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-end !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding-top: 20px !important;
+  padding-bottom: 0 !important;
+}
+.staff-sign-area {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+}
+.staff-sign-title {
+  width: 100% !important;
+  text-align: left !important;
+  margin: 0 0 7px 2px !important;
+  font-size: .9rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+  letter-spacing: .02em !important;
+}
+.staff-sign-area .sign3-wrap {
+  display: flex !important;
+  align-items: stretch !important;
+  border: 2px solid #cfc6a8 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #fffef8 !important;
+  box-shadow: 0 2px 10px rgba(62,46,30,.08) !important;
+}
+.staff-sign-area .sign3-col {
+  width: 96px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 2px solid #cfc6a8 !important;
+  box-sizing: border-box !important;
+  background: #fff !important;
+}
+.staff-sign-area .sign3-col:last-of-type { border-right: 2px solid #cfc6a8 !important; }
+.staff-sign-area .sign3-lbl {
+  height: 32px !important;
+  line-height: 32px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border-bottom: 2px solid #cfc6a8 !important;
+  background: #eee8d0 !important;
+  font-size: .8rem !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+}
+.staff-sign-area .sign3-cv {
+  width: 96px !important;
+  height: 128px !important;
+  display: block !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+  touch-action: none !important;
+}
+.staff-sign-area .sign3-clr {
+  min-width: 40px !important;
+  border-left: 0 !important;
+  background: #fffef8 !important;
+  color: var(--brown-mute) !important;
+  font-weight: 800 !important;
+}
+.agree-txt {
+  font-size: 19px !important;
+  line-height: 2 !important;
+  font-weight: 700 !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+  word-break: keep-all !important;
+}
+.agree-confirm {
+  font-size: 22px !important;
+  line-height: 1.45 !important;
+  font-weight: 900 !important;
+  margin: 22px 0 16px !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+}
+.date-row {
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  margin-bottom: 20px !important;
+}
+.date-val {
+  border-bottom: none !important;
+  font-size: 19px !important;
+  font-weight: 900 !important;
+  color: var(--olive) !important;
+  padding: 0 3px !important;
+}
+.applicant-sign-title {
+  font-size: 21px !important;
+  font-weight: 900 !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+  margin-bottom: 14px !important;
+}
+#sig-pad,
+canvas#sig-pad {
+  height: 260px !important;
+  min-height: 260px !important;
+  touch-action: none !important;
+}
+.sig-wrap { padding-bottom: 0 !important; border-bottom: none !important; }
+@media (max-width: 900px) {
+  .fixed-doc-head .doc-title, .doc-title { font-size: 1.72rem !important; }
+  .form-step[data-step="2"].active { min-height: calc(100vh - 210px) !important; }
+  .staff-sign-area .sign3-col { width: 100px !important; }
+  .staff-sign-area .sign3-cv { width: 100px !important; height: 138px !important; }
+  .agree-txt { font-size: 19px !important; line-height: 2.05 !important; }
+  .agree-confirm { font-size: 23px !important; }
+  .date-row { font-size: 20px !important; }
+  .date-val { font-size: 20px !important; }
+  .applicant-sign-title { font-size: 22px !important; }
+  #sig-pad, canvas#sig-pad { height: 285px !important; min-height: 285px !important; }
+}
+@media print {
+  .fixed-doc-head .doc-title, .doc-title {
+    font-family: 'Pretendard', 'Malgun Gothic', sans-serif !important;
+    font-size: 18pt !important;
+  }
+  .form-step[data-step="2"].active, .form-step[data-step="2"] { display: block !important; min-height: auto !important; }
+  .staff-sign-section { justify-content: flex-end !important; margin-top: 8mm !important; page-break-inside: avoid !important; }
+  #sig-pad, canvas#sig-pad { height: 38mm !important; min-height: 38mm !important; }
+}
+
+
+/* =========================================================
+   FINAL FIX 2026-04-25 - 동의문구 2줄 + 직원서명 선 복구
+========================================================= */
+.agree-txt {
+  max-width: 900px !important;
+  margin: 0 auto 22px !important;
+  font-size: 18px !important;
+  line-height: 1.75 !important;
+  font-weight: 500 !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  letter-spacing: -0.035em !important;
+}
+.agree-confirm {
+  font-size: 23px !important;
+  line-height: 1.45 !important;
+  font-weight: 600 !important;
+  margin: 24px 0 16px !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+}
+.applicant-sign-title, .applicant-sign-title[style] {
+  font-size: 23px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  color: var(--brown) !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+}
+.staff-sign-area .sign3-wrap {
+  display: inline-flex !important;
+  align-items: stretch !important;
+  border: 2px solid #cfc6a8 !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  background: #fffef8 !important;
+}
+.staff-sign-area .sign3-wrap > .sign3-col {
+  width: 108px !important;
+  min-width: 108px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 2px solid #cfc6a8 !important;
+  background: #fff !important;
+  box-sizing: border-box !important;
+}
+.staff-sign-area .sign3-wrap > .sign3-col.sign3-check {
+  border-right: 2px solid #cfc6a8 !important;
+}
+.staff-sign-area .sign3-lbl {
+  height: 34px !important;
+  line-height: 34px !important;
+  border-bottom: 2px solid #cfc6a8 !important;
+  background: #eee8d0 !important;
+}
+.staff-sign-area .sign3-cv {
+  width: 100% !important;
+  height: 160px !important;
+  min-height: 160px !important;
+  border: 0 !important;
+  background: #fff !important;
+  display: block !important;
+  flex: 1 0 auto !important;
+  box-sizing: border-box !important;
+}
+.staff-sign-area .sign3-clr {
+  min-width: 42px !important;
+  border-left: 0 !important;
+  background: #fffef8 !important;
+}
+@media (max-width: 900px) {
+  .agree-txt {
+    max-width: 890px !important;
+    font-size: 18px !important;
+    line-height: 1.75 !important;
+    font-weight: 500 !important;
+    letter-spacing: -0.045em !important;
+  }
+  .agree-confirm { font-size: 23px !important; font-weight: 600 !important; }
+  .applicant-sign-title, .applicant-sign-title[style] { font-size: 23px !important; font-weight: 600 !important; }
+}
+
+</style>
+</head>
+<body>
+<div class="app-root">
+
+<!-- ══════════ 헤더 ══════════ -->
+<header class="topbar">
+  <div class="logo-area">
+    <img src="{{ url_for('static', filename='logo.png') }}"
+         alt="우성공원"
+         class="logo-img"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+    <span class="logo-fallback" style="display:none">우성공원</span>
+  </div>
+
+  <div class="topbar-right">
+    <span class="save-path" title="{{ save_dir }}">{{ save_dir }}</span>
+    <button class="hdr-btn hdr-btn-new" type="button" onclick="newForm()">새로 작성</button>
+    <button class="hdr-btn hdr-btn-list" type="button" onclick="openDrawer()">
+      저장 목록 <span class="badge" id="listCnt">{{ saved_list|length }}</span>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════ 드로어 ══════════ -->
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="dr-head">
+    <span class="dr-head-title">📂 저장된 목록</span>
+    <span class="dr-cnt" id="drCnt">{{ saved_list|length }}건</span>
+    <button class="dr-close" type="button" onclick="closeDrawer()">✕</button>
+  </div>
+  <div class="dr-search">
+    <div class="dr-search-inner">
+      <span class="dr-search-ico">🔍</span>
+      <input type="text" id="searchInput" placeholder="저장명 · 계약자 · 비고 검색..." oninput="filterDrawer()"/ autocomplete="off">
+    </div>
+  </div>
+  <div class="dr-list" id="drList"></div>
+</div>
+
+<!-- ══════════ 바디 ══════════ -->
+<div class="app-body">
+
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+    <div class="sidebar-hd">양식 선택</div>
+    <div id="navBtns"></div>
+  </aside>
+
+  <!-- 메인 -->
+  <main class="main-scroll">
+  <form method="post" action="{{ url_for('home') }}" id="mainForm" autocomplete="off">
+  <input type="hidden" name="_current_step" id="currentStepInput" value="{{ form.get('_current_step', '0') if form else '0' }}"/>
+  <input type="hidden" name="slot_count" id="slotCount" value="{{ form.slot_count|default('1') }}"/>
+  <input type="hidden" name="signature_main" id="signature_main" value='{{ form.signature_main|default("") }}'/>
+  <input type="hidden" name="signature_sign3_0" id="signature_sign3_0" value='{{ form.signature_sign3_0|default("") }}'/>
+  <input type="hidden" name="signature_sign3_1" id="signature_sign3_1" value='{{ form.signature_sign3_1|default("") }}'/>
+  <input type="hidden" name="signature_sign3_2" id="signature_sign3_2" value='{{ form.signature_sign3_2|default("") }}'/>
+
+  <div class="form-sheet">
+
+    <!-- 배너 -->
+    <div class="load-banner {% if just_saved=='1' %}show{% endif %}" id="loadBanner">
+      {% if just_saved=='1' %}✅ 저장이 완료되었습니다.
+      {% else %}📥 저장된 데이터를 불러왔습니다.{% endif %}
+      <button type="button" onclick="this.closest('.load-banner').classList.remove('show')">✕</button>
+    </div>
+
+    <div class="fixed-doc-head no-print">
+      <div class="document-head">
+        <div class="doc-title">비문 신청서</div>
+      </div>
+      <div class="step-indicator">
+        <span class="step-dot active" data-step-dot="0">1. 기본정보</span>
+        <span class="step-dot" data-step-dot="1">2. 비문</span>
+        <span class="step-dot" data-step-dot="2">3. 동의 및 서명</span>
+      </div>
+    </div>
+
+    <section class="form-step active" data-step="0">
+    <!-- ───────── 기본 정보 ───────── -->
+    <div class="sec-hd">기본 정보</div>
+    <div class="card basic-info-card">
+      <div class="g2 basic-row" style="margin-bottom:14px">
+        <div>
+          <label class="lbl">계약번호</label>
+          <input type="text" name="contract_no" id="contractNo" value="{{ form.contract_no }}" oninput="updateSaveName()"/ autocomplete="off">
+        </div>
+        <div>
+          <label class="lbl">계약자명</label>
+          <input type="text" name="contractor" id="contractorEl" value="{{ form.contractor }}" oninput="updateSaveName()"/ autocomplete="off">
+        </div>
+      </div>
+
+      <div class="g3 basic-row" style="margin-bottom:14px">
+        <div><label class="lbl">지구</label><input type="text" name="jigu" value="{{ form.jigu }}"/ autocomplete="off"></div>
+        <div><label class="lbl">열</label><input type="text" name="yeol" value="{{ form.yeol }}"/ autocomplete="off"></div>
+        <div><label class="lbl">호</label><input type="text" name="ho" value="{{ form.ho }}"/ autocomplete="off"></div>
+      </div>
+
+      <div class="g2 basic-row" style="margin-bottom:14px">
+        <div>
+          <label class="lbl">대분류</label>
+          <select id="catEl" name="category"></select>
+        </div>
+        <div>
+          <label class="lbl">세부유형</label>
+          <select id="subEl" name="subcategory"></select>
+        </div>
+      </div>
+
+      <div class="g4 basic-row" style="margin-bottom:14px">
+        <div id="sizeRow">
+          <label class="lbl">크기</label>
+          <select name="size_type" id="sizeEl">
+            <option value="2.5" {{ 'selected' if form.size_type=='2.5' }}>2.5</option>
+            <option value="3.0" {{ 'selected' if form.size_type=='3.0' }}>3.0</option>
+            <option value="3.5" {{ 'selected' if form.size_type=='3.5' }}>3.5</option>
+          </select>
+        </div>
+        <div>
+          <label class="lbl">최종 시안명</label>
+          <input type="text" id="tmplLabel" name="template_label" value="{{ form.template_label }}" readonly oninput="updateSaveName()"/ autocomplete="off">
+        </div>
+        <div id="oriRow">
+          <label class="lbl">시안 방향</label>
+          <select name="orientation" id="oriEl">
+            <option value="" {{ 'selected' if form.orientation=='' }}>선택안함</option>
+            <option value="세로" {{ 'selected' if form.orientation=='세로' }}>세로</option>
+            <option value="가로" {{ 'selected' if form.orientation=='가로' }}>가로</option>
+          </select>
+        </div>
+        <div id="stoneRow">
+          <label class="lbl">스톤포토</label>
+          <select name="stone_photo" id="stoneEl">
+            <option value="no" {{ 'selected' if form.stone_photo=='no' }}>없음</option>
+            <option value="yes" {{ 'selected' if form.stone_photo=='yes' }}>있음</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label class="lbl">비고</label>
+        <input type="text" name="memo" value="{{ form.memo }}" placeholder="비고 (저장 목록에 표시)"/ autocomplete="off">
+      </div>
+    </div>
+
+    </section>
+    <section class="form-step" data-step="1">
+    <!-- ───────── 비문 공통 안내 ───────── -->
+    <div class="sec-hd sec-hd-bimun">
+      비문
+      <span class="legend-inline">
+        <span class="legend-mark legend-mark-big"></span>큰글씨
+        <span class="legend-mark legend-mark-sml"></span>작은글씨
+      </span>
+    </div>
+
+    <div class="bimun-group">
+    <!-- ───────── 전면: 매장묘형 ───────── -->
+    <div id="maejangDiv">
+      <div class="card">
+        <div class="card-hd c-front">
+          <span class="card-hd-txt">전면</span>
+        </div>
+        <div class="g3" style="margin-bottom:12px">
+          <div>
+            <label class="lbl">전면 문자</label>
+            <select name="front_type" id="frontTypeMaejang">
+              <option value="korean" {{ 'selected' if form.front_type=='korean' }}>한글</option>
+              <option value="chinese" {{ 'selected' if form.front_type=='chinese' }}>한자</option>
+            </select>
+          </div>
+          <div class="is-big">
+            <label class="lbl">종교마크</label>
+            <select name="religion_mark" id="religion_mark_m">
+              <option value="" {{ 'selected' if form.religion_mark=='' }}>없음</option>
+              <option value="불교" {{ 'selected' if form.religion_mark=='불교' }}>불교</option>
+              <option value="기독교" {{ 'selected' if form.religion_mark=='기독교' }}>기독교</option>
+              <option value="천주교" {{ 'selected' if form.religion_mark=='천주교' }}>천주교</option>
+            </select>
+          </div>
+          <div class="is-big">
+            <label class="lbl">지묘</label>
+            <select name="jidmyo" id="jidmyoEl">
+              <option value="있음" {{ 'selected' if form.jidmyo in ['있음','유'] }}>있음</option>
+              <option value="없음" {{ 'selected' if form.jidmyo in ['없음','무'] }}>없음</option>
+            </select>
+          </div>
+        </div>
+        <div class="g3" style="margin-bottom:12px">
+          <div class="is-big">
+            <label class="lbl">남자 호칭</label>
+            <select name="male_title">
+              <option value="없음" {{ 'selected' if form.male_title=='없음' }}>없음</option>
+              <option value="학생" {{ 'selected' if form.male_title=='학생' }}>학생</option>
+              <option value="성도" {{ 'selected' if form.male_title=='성도' }}>성도</option>
+              <option value="교우" {{ 'selected' if form.male_title=='교우' }}>교우</option>
+            </select>
+          </div>
+          <div class="is-big">
+            <label class="lbl">남자 본관 <span class="note">&lt;공 자동 적용&gt;</span></label>
+            <input type="text" name="male_bongwan" value="{{ form.male_bongwan }}"/ autocomplete="off">
+          </div>
+          <div class="is-big">
+            <label class="lbl">남자 이름</label>
+            <input type="text" name="male_name" value="{{ form.male_name }}"/ autocomplete="off">
+          </div>
+        </div>
+        <div class="g3">
+          <div class="is-big">
+            <label class="lbl">여자 호칭</label>
+            <select name="female_title">
+              <option value="없음" {{ 'selected' if form.female_title=='없음' }}>없음</option>
+              <option value="유인" {{ 'selected' if form.female_title=='유인' }}>유인</option>
+              <option value="성도" {{ 'selected' if form.female_title=='성도' }}>성도</option>
+              <option value="교우" {{ 'selected' if form.female_title=='교우' }}>교우</option>
+            </select>
+          </div>
+          <div class="is-big">
+            <label class="lbl">여자 본관 <span class="note">&lt;씨 자동 적용&gt;</span></label>
+            <input type="text" name="female_bongwan" value="{{ form.female_bongwan }}"/ autocomplete="off">
+          </div>
+          <div class="is-big">
+            <label class="lbl">여자 이름</label>
+            <input type="text" name="female_name" value="{{ form.female_name }}"/ autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────── 전면: 표준형 ───────── -->
+    <div id="stdDiv">
+      <div class="card">
+        <div class="card-hd c-front">
+          <span class="card-hd-txt">전면</span>
+        </div>
+        <div class="g3" style="margin-bottom:12px">
+          <div>
+            <label class="lbl">전면 문자</label>
+            <select name="front_type" id="frontTypeStd">
+              <option value="korean" {{ 'selected' if form.front_type=='korean' }}>한글</option>
+              <option value="chinese" {{ 'selected' if form.front_type=='chinese' }}>한자</option>
+            </select>
+          </div>
+          <div class="is-big">
+            <label class="lbl">종교마크</label>
+            <select name="religion_mark" id="religion_mark_s">
+              <option value="" {{ 'selected' if form.religion_mark=='' }}>없음</option>
+              <option value="불교" {{ 'selected' if form.religion_mark=='불교' }}>불교</option>
+              <option value="기독교" {{ 'selected' if form.religion_mark=='기독교' }}>기독교</option>
+              <option value="천주교" {{ 'selected' if form.religion_mark=='천주교' }}>천주교</option>
+            </select>
+          </div>
+          <div class="is-big" id="familyRow">
+            <label class="lbl">가족지묘 본관</label>
+            <input type="text" name="family_phrase" value="{{ form.family_phrase }}" placeholder="예: 김해김"/ autocomplete="off">
+            <div class="note">"씨 가족지묘" 자동 계산</div>
+          </div>
+        </div>
+        <div id="slotsContainer"></div>
+        <button type="button" class="btn-add-slot" id="btnAddSlot" onclick="addSlot()">＋ 고인 추가</button>
+      </div>
+    </div>
+
+    <!-- ───────── 측면 ───────── -->
+    <div id="sideDiv">
+      <div class="card">
+        <div class="card-hd c-side">
+          <span class="card-hd-txt">측면</span>
+        </div>
+        <div style="margin-bottom:13px;max-width:190px">
+          <label class="lbl">측면 문자</label>
+          <select name="side_type" id="sideTypeEl" class="is-sml">
+            <option value="korean" {{ 'selected' if form.side_type=='korean' }}>한글</option>
+            <option value="chinese" {{ 'selected' if form.side_type=='chinese' }}>한자</option>
+          </select>
+        </div>
+        <div class="g2">
+          <div class="slot-box">
+            <div class="slot-title"><span>남</span></div>
+            <input type="hidden" name="s1_birth_enabled" id="s1_birth_enabled" value="{{ form.s1_birth_enabled }}">
+            <div class="birth-extra" id="side_birth_s1" style="display: {{ 'grid' if form.s1_birth_enabled=='yes' or form.s1_birth else 'none' }};">
+              <div class="is-sml"><label class="lbl">생년월일</label><input type="text" name="s1_birth" value="{{ form.s1_birth }}"/ autocomplete="off"></div>
+              <div class="is-sml"><label class="lbl">생 표현</label>
+                <select name="s1_birth_type" onchange="handleBirthTypeChange(this, 'side_birth_s1', 's1_birth_enabled')">
+                  <option value="생" {{ 'selected' if form.s1_birth_type!='없음' }}>생</option>
+                  <option value="없음" {{ 'selected' if form.s1_birth_type=='없음' }}>없음</option>
+                </select>
+              </div>
+            </div>
+            <div class="g2">
+              <div class="is-sml"><label class="lbl">사망일</label><input type="text" name="s1_death" value="{{ form.s1_death }}"/ autocomplete="off"></div>
+              <div class="is-sml"><label class="lbl">사망 표현</label>
+                <select name="s1_death_type">
+                  <option value="졸" {{ 'selected' if form.s1_death_type in ['졸','없음',''] }}>졸</option>
+                  <option value="선종" {{ 'selected' if form.s1_death_type=='선종' }}>선종</option>
+                  <option value="소천" {{ 'selected' if form.s1_death_type=='소천' }}>소천</option>
+                </select>
+              </div>
+            </div>
+            <div class="birth-action-row">
+              <button type="button" class="btn-add-birth" onclick="showBirthFields('side_birth_s1','s1_birth_enabled',this)" style="display: {{ 'none' if form.s1_birth_enabled=='yes' or form.s1_birth else 'inline-flex' }};">생년월일 추가</button>
+            </div>
+          </div>
+          <div class="slot-box">
+            <div class="slot-title"><span>여</span></div>
+            <input type="hidden" name="s2_birth_enabled" id="s2_birth_enabled" value="{{ form.s2_birth_enabled }}">
+            <div class="birth-extra" id="side_birth_s2" style="display: {{ 'grid' if form.s2_birth_enabled=='yes' or form.s2_birth else 'none' }};">
+              <div class="is-sml"><label class="lbl">생년월일</label><input type="text" name="s2_birth" value="{{ form.s2_birth }}"/ autocomplete="off"></div>
+              <div class="is-sml"><label class="lbl">생 표현</label>
+                <select name="s2_birth_type" onchange="handleBirthTypeChange(this, 'side_birth_s2', 's2_birth_enabled')">
+                  <option value="생" {{ 'selected' if form.s2_birth_type!='없음' }}>생</option>
+                  <option value="없음" {{ 'selected' if form.s2_birth_type=='없음' }}>없음</option>
+                </select>
+              </div>
+            </div>
+            <div class="g2">
+              <div class="is-sml"><label class="lbl">사망일</label><input type="text" name="s2_death" value="{{ form.s2_death }}"/ autocomplete="off"></div>
+              <div class="is-sml"><label class="lbl">사망 표현</label>
+                <select name="s2_death_type">
+                  <option value="졸" {{ 'selected' if form.s2_death_type in ['졸','없음',''] }}>졸</option>
+                  <option value="선종" {{ 'selected' if form.s2_death_type=='선종' }}>선종</option>
+                  <option value="소천" {{ 'selected' if form.s2_death_type=='소천' }}>소천</option>
+                </select>
+              </div>
+            </div>
+            <div class="birth-action-row">
+              <button type="button" class="btn-add-birth" onclick="showBirthFields('side_birth_s2','s2_birth_enabled',this)" style="display: {{ 'none' if form.s2_birth_enabled=='yes' or form.s2_birth else 'inline-flex' }};">생년월일 추가</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ───────── 후면 ───────── -->
+    <div class="card">
+      <div class="card-hd c-back">
+        <span class="card-hd-txt">후면</span>
+      </div>
+      <div class="back-type-row">
+        <div class="back-type-select">
+          <label class="lbl">후면 문자</label>
+          <select name="back_type" id="backTypeEl" class="is-sml">
+            <option value="korean" {{ 'selected' if form.back_type=='korean' }}>한글</option>
+            <option value="chinese" {{ 'selected' if form.back_type=='chinese' }}>한자</option>
+          </select>
+        </div>
+        <div class="back-input-guide">여러 명은 줄바꿈으로 입력하세요.</div>
+      </div>
+      <div class="g3 back-family-grid">
+        <div class="is-sml"><label class="lbl">자</label><textarea name="son_text" autocomplete="off">{{ form.son_text }}</textarea></div>
+        <div class="is-sml"><label class="lbl">자부</label><textarea name="daughter_in_law_text" autocomplete="off">{{ form.daughter_in_law_text }}</textarea></div>
+        <div class="is-sml"><label class="lbl">손</label><textarea name="grandson_text" autocomplete="off">{{ form.grandson_text }}</textarea></div>
+        <div class="is-sml"><label class="lbl">녀</label><textarea name="daughter_text" autocomplete="off">{{ form.daughter_text }}</textarea></div>
+        <div class="is-sml"><label class="lbl">사위</label><textarea name="son_in_law_text" autocomplete="off">{{ form.son_in_law_text }}</textarea></div>
+        <div class="is-sml"><label class="lbl">외손</label><textarea name="maternal_grandchild_text" autocomplete="off">{{ form.maternal_grandchild_text }}</textarea></div>
+      </div>
+      <div class="is-sml" style="margin-top:11px">
+        <label class="lbl">기타 문구</label>
+        <textarea name="etc_text" autocomplete="off" class="etc-textarea">{{ form.etc_text }}</textarea>
+      </div>
+    </div>
+
+    </div><!-- /bimun-group -->
+
+    <div class="bimun-calc-row no-print">
+      <button type="submit" name="_action" value="calc" class="btn btn-calc btn-calc-inline">계산하기</button>
+    </div>
+
+    <!-- ───────── 계산 결과 ───────── -->
+    {% if summary %}
+    <div class="sec-hd">계산 결과</div>
+    <div class="card">
+      <div class="card-hd c-result">
+        <span class="card-hd-ico">📊</span>
+        <span class="card-hd-txt">금액 산출</span>
+      </div>
+      <div class="sum-lines">
+        {% for line in summary.lines %}
+        <div class="sum-row">
+          <span class="sum-row-lbl">{{ line[0] }}</span>
+          <span class="sum-row-val">
+            {% if line[1] is not none %}
+              {{ line[1] }}자 × {{ "{:,}".format(line[2]) }}원 = {{ "{:,}".format(line[3]) }}원
+            {% else %}
+              {{ "{:,}".format(line[3]) }}원
+            {% endif %}
+          </span>
+        </div>
+        {% endfor %}
+        <div class="sum-total">총 금액 : {{ "{:,}".format(summary.total) }}원</div>
+      </div>
+      <div class="chip-row">
+        <div class="chip chip-big">
+          <span class="chip-lbl">大 큰글씨</span>
+          <span class="chip-val">{{ summary.big_cnt }}자 / {{ "{:,}".format(summary.big_amt) }}원</span>
+        </div>
+        <div class="chip chip-sml">
+          <span class="chip-lbl">小 작은글씨</span>
+          <span class="chip-val">{{ summary.sm_cnt }}자 / {{ "{:,}".format(summary.sm_amt) }}원</span>
+        </div>
+        {% if summary.stone_amt %}
+        <div class="chip chip-stone">
+          <span class="chip-lbl">스톤포토</span>
+          <span class="chip-val">{{ "{:,}".format(summary.stone_amt) }}원</span>
+        </div>
+        {% endif %}
+        <div class="chip chip-tot">
+          <span class="chip-lbl">최종 합계</span>
+          <span class="chip-val">{{ "{:,}".format(summary.total) }}원</span>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    </section>
+
+    <section class="form-step" data-step="2">
+    <!-- ───────── 동의/서명 ───────── -->
+    <div class="sec-hd">동의 및 서명</div>
+    <div class="card">
+      <div class="agree-txt">본 비문 신청서 작성 후, 당사는 신청인에게 최종 시안을 문자로 발송해드립니다. 신청인은 시안 확인 후 회신을 주셔야 작업이 진행되며, 이후 발생하는 오탈자 및 구성 문제는 책임지지 않습니다.</div>
+      <div class="agree-confirm">위 내용을 확인하였으며 동의합니다.</div>
+      <div class="date-row">
+        <span class="date-val">{{ today.year }}</span>년
+        <span class="date-val">{{ today.month }}</span>월
+        <span class="date-val">{{ today.day }}</span>일
+      </div>
+      <div class="applicant-sign-title" style="text-align:center;font-weight:900;font-size:19px;color:var(--brown);margin-bottom:12px">신청인의 서명</div>
+      <div class="sig-wrap" onclick="openSignatureModal('sig-pad')" title="클릭하면 크게 서명할 수 있습니다">
+        <canvas id="sig-pad"></canvas>
+        <div class="sig-hint no-print">클릭해서 크게 서명하기</div>
+      </div>
+      <div class="sig-foot no-print">
+        <button type="button" class="btn-clr-sig" onclick="clearSig(); event.stopPropagation();">서명 지우기</button>
+      </div>
+    </div>
+
+    <div class="staff-sign-section no-print">
+      <div class="basic-sign-area staff-sign-area">
+        <div class="staff-sign-title">직원 확인 서명</div>
+        <div class="sign3-wrap">
+          <div class="sign3-col sign3-write">
+            <div class="sign3-lbl"><span class="sign-dot dot-write"></span>작성</div>
+            <canvas class="sign3-cv" id="sign3_0" onclick="openSignatureModal('sign3_0')"></canvas>
+          </div>
+          <div class="sign3-col sign3-work">
+            <div class="sign3-lbl"><span class="sign-dot dot-work"></span>작업</div>
+            <canvas class="sign3-cv" id="sign3_1" onclick="openSignatureModal('sign3_1')"></canvas>
+          </div>
+          <div class="sign3-col sign3-check">
+            <div class="sign3-lbl"><span class="sign-dot dot-check"></span>검수</div>
+            <canvas class="sign3-cv" id="sign3_2" onclick="openSignatureModal('sign3_2')"></canvas>
+          </div>
+          <button class="sign3-clr" type="button" onclick="clearSign3All()" title="직원 서명 초기화">↺</button>
+        </div>
+      </div>
+    </div>
+
+    </section>
+
+  </div><!-- /form-sheet -->
+
+  <!-- 액션바 -->
+  <div class="action-bar no-print">
+    <button type="button" class="btn btn-nav" id="btnPrevStep" onclick="prevStep()">◀ 이전</button>
+    <button type="button" class="btn btn-nav btn-next" id="btnNextStep" onclick="nextStep()">다음 ▶</button>
+    <button type="submit" name="_action" value="save" class="btn btn-save final-action">저장</button>
+    <button type="button" class="btn btn-print final-action" onclick="window.print()">프린트</button>
+    <button type="button" class="btn btn-reset" onclick="resetForm()">초기화</button>
+    <span class="save-preview" id="saveNamePreview">저장명 미리보기</span>
+    {% if just_saved=='1' %}<span class="saved-ok">✅ 저장 완료!</span>{% endif %}
+  </div>
+
+  </form>
+  </main>
+</div><!-- /app-body -->
+</div><!-- /app-root -->
+
+
+<!-- 신청인 서명 확대 팝업 -->
+<div id="sigModal" class="sig-modal no-print" aria-hidden="true">
+  <div class="sig-modal-box">
+    <div class="sig-modal-head">
+      <div>
+        <div class="sig-modal-title" id="sigModalTitle">신청인의 서명</div>
+        <div class="sig-modal-sub">태블릿 화면에서 크게 서명한 뒤 확인을 눌러주세요.</div>
+      </div>
+      <button type="button" class="sig-modal-close" onclick="closeSigModal()">×</button>
+    </div>
+    <canvas id="sig-modal-canvas"></canvas>
+    <div class="sig-modal-actions">
+      <button type="button" class="sig-modal-btn sig-modal-clear" onclick="clearModalSig()">지우기</button>
+      <button type="button" class="sig-modal-btn sig-modal-cancel" onclick="closeSigModal()">취소</button>
+      <button type="button" class="sig-modal-btn sig-modal-ok" onclick="saveModalSig()">확인</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════ 데이터 ════ */
+const CATALOG   = {{ catalog_json|safe }};
+const RULES     = {{ rules_json|safe }};
+const savedCat  = {{ form.category|tojson }};
+const savedSub  = {{ form.subcategory|tojson }};
+const savedForm = {{ form|tojson }};
+const isLoadedFromList = {{ 'true' if request.args.get('load') else 'false' }};
+let allList     = {{ saved_list|tojson }};
+
+/* ════ 요소 ════ */
+const catEl       = document.getElementById("catEl");
+const subEl       = document.getElementById("subEl");
+const tmplLbl     = document.getElementById("tmplLabel");
+const stoneEl     = document.getElementById("stoneEl");
+const backTypeEl  = document.getElementById("backTypeEl");
+const sideTypeEl  = document.getElementById("sideTypeEl");
+const frontTypeMJ = document.getElementById("frontTypeMaejang");
+const frontTypeSD = document.getElementById("frontTypeStd");
+const sizeEl      = document.getElementById("sizeEl");
+const oriEl       = document.getElementById("oriEl");
+const slotCountEl = document.getElementById("slotCount");
+const slotsCont   = document.getElementById("slotsContainer");
+
+/* ════ 서명 기능은 아래 통합 서명 스크립트에서 처리 ════ */
+
+/* ════ 고인 슬롯 ════ */
+let curSC=parseInt(savedForm.slot_count||"1",10);
+
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+function buildSlotHTML(i,d){
+  const name   =esc(d?.[`f${i}_name`]      ??"");
+  const bapt   =esc(d?.[`f${i}_baptism`]   ??"");
+  const birth  =esc(d?.[`f${i}_birth`]     ??"");
+  const btype  =    d?.[`f${i}_birth_type`]??"없음";
+  const benabled = d?.[`f${i}_birth_enabled`] ?? "no";
+  const showBirth = (benabled === "yes" || birth);
+  const death  =esc(d?.[`f${i}_death`]     ??"");
+  const dtype  =    d?.[`f${i}_death_type`]??"없음";
+  const s=(v,t)=>v===t?"selected":"";
+  return `
+  <div class="slot-box" id="slot_${i}">
+    <div class="slot-title">
+      <span>고인 ${i}</span>
+      ${i>1?`<button type="button" class="btn-del-slot" onclick="removeSlot(${i})">✕ 삭제</button>`:""}
+    </div>
+    <div class="g2" style="margin-bottom:9px">
+      <div class="is-big"><label class="lbl">이름</label><input type="text" name="f${i}_name" value="${name}"/ autocomplete="off"></div>
+      <div class="is-big"><label class="lbl">세례명</label><input type="text" name="f${i}_baptism" value="${bapt}" placeholder="없으면 비워두세요"/ autocomplete="off"></div>
+    </div>
+    <input type="hidden" name="f${i}_birth_enabled" id="f${i}_birth_enabled" value="${showBirth ? 'yes' : 'no'}">
+    <div class="birth-extra" id="slot_birth_${i}" style="display:${showBirth ? 'grid' : 'none'};">
+      <div class="is-sml"><label class="lbl">생년월일</label><input type="text" name="f${i}_birth" value="${birth}" placeholder="예: 1940.03.15"/ autocomplete="off"></div>
+      <div class="is-sml"><label class="lbl">생 표현</label>
+        <select name="f${i}_birth_type" onchange="handleBirthTypeChange(this, 'slot_birth_${i}', 'f${i}_birth_enabled')">
+          <option value="생" ${btype !== "없음" ? "selected" : ""}>생</option>
+          <option value="없음" ${s(btype,"없음")}>없음</option>
+        </select>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="is-sml"><label class="lbl">사망일</label><input type="text" name="f${i}_death" value="${death}" placeholder="예: 2025.11.20"/ autocomplete="off"></div>
+      <div class="is-sml"><label class="lbl">사망 표현</label>
+        <select name="f${i}_death_type">
+          <option value="졸"   ${(dtype==="졸" || dtype==="없음" || !dtype) ? "selected" : ""}>졸</option>
+          <option value="선종" ${s(dtype,"선종")}>선종</option>
+          <option value="소천" ${s(dtype,"소천")}>소천</option>
+        </select>
+      </div>
+    </div>
+    <div class="birth-action-row">
+      <button type="button" class="btn-add-birth" onclick="showBirthFields('slot_birth_${i}','f${i}_birth_enabled',this)" style="display:${showBirth ? 'none' : 'inline-flex'};">생년월일 추가</button>
+    </div>
+  </div>`;
+}
+function showBirthFields(sectionId, hiddenId, btn){
+  const section = document.getElementById(sectionId);
+  const hidden = document.getElementById(hiddenId);
+  if(section) {
+    section.style.display = "grid";
+    const birthType = section.querySelector('select[name$="_birth_type"]');
+    if (birthType) birthType.value = "생";
+  }
+  if(hidden) hidden.value = "yes";
+  if(btn) btn.style.display = "none";
+}
+
+function handleBirthTypeChange(selectEl, sectionId, hiddenId){
+  if(selectEl.value !== "없음") return;
+  const section = document.getElementById(sectionId);
+  const hidden = document.getElementById(hiddenId);
+  if(section){
+    const birthInput = section.querySelector('input[name$="_birth"]');
+    if(birthInput) birthInput.value = "";
+    section.style.display = "none";
+  }
+  if(hidden) hidden.value = "no";
+  const slotBox = selectEl.closest(".slot-box");
+  const btn = slotBox ? slotBox.querySelector(".btn-add-birth") : null;
+  if(btn) btn.style.display = "inline-flex";
+}
+
+function renderSlots(cnt,d){
+  slotsCont.innerHTML="";
+  for(let i=1;i<=cnt;i++) slotsCont.insertAdjacentHTML("beforeend",buildSlotHTML(i,d||{}));
+  curSC=cnt; slotCountEl.value=cnt;
+}
+function addSlot(){
+  curSC++;
+  slotsCont.insertAdjacentHTML("beforeend",buildSlotHTML(curSC,{}));
+  slotCountEl.value=curSC;
+  document.getElementById(`slot_${curSC}`).scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+function removeSlot(i){
+  const el=document.getElementById(`slot_${i}`);
+  if(el)el.remove();
+  const bs=slotsCont.querySelectorAll(".slot-box");
+  bs.forEach((b,idx)=>{
+    const n=idx+1; b.id=`slot_${n}`;
+    const sp=b.querySelector(".slot-title span");if(sp)sp.textContent=`고인 ${n}`;
+    const db=b.querySelector(".btn-del-slot");if(db)db.setAttribute("onclick",`removeSlot(${n})`);
+    b.querySelectorAll("[name]").forEach(el=>{el.name=el.name.replace(/f\d+_/,`f${n}_`);});
+  });
+  curSC=bs.length; slotCountEl.value=curSC;
+}
+
+/* ════ 저장명 ════ */
+function updateSaveName(){
+  const c=(document.getElementById("contractNo")?.value||"").trim();
+  const r=(document.getElementById("contractorEl")?.value||"").trim();
+  const l=(document.getElementById("tmplLabel")?.value||"").trim();
+  let p=[];if(c)p.push(`#${c}`);if(r)p.push(r);
+  let n=p.join(" ");if(l)n=n?`${n} (${l})`:`(${l})`;
+  document.getElementById("saveNamePreview").textContent=n||"저장명 미리보기";
+}
+
+/* ════ 새로 작성 ════ */
+function newForm(){
+  if(!confirm("현재 입력 내용을 지우고 새로 작성하시겠습니까?"))return;
+  window.location.href="/?new=1";
+}
+
+/* ════ 사이드바 ════ */
+(function buildNav(){
+  const w=document.getElementById("navBtns");
+  Object.keys(CATALOG).forEach(cat=>{
+    const b=document.createElement("button");
+    b.type="button";b.className="nav-btn";b.textContent=cat;b.dataset.cat=cat;
+    b.onclick=()=>{catEl.value=cat;fillSub();updateUI();};
+    w.appendChild(b);
+  });
+  highlightNav();
+})();
+function highlightNav(){document.querySelectorAll(".nav-btn").forEach(b=>b.classList.toggle("active",b.dataset.cat===catEl.value));}
+
+/* ════ 카탈로그 ════ */
+function fillCat(){
+  catEl.innerHTML="";
+  Object.keys(CATALOG).forEach(c=>{
+    const o=document.createElement("option");
+    o.value=c;o.textContent=c;if(c===savedCat)o.selected=true;catEl.appendChild(o);
+  });
+}
+function fillSub(){
+  subEl.innerHTML="";
+  (CATALOG[catEl.value]||[]).forEach(s=>{
+    const o=document.createElement("option");
+    o.value=s;o.textContent=s;if(s===savedSub)o.selected=true;subEl.appendChild(o);
+  });
+}
+const rk=()=>`${catEl.value}||${subEl.value}`;
+const rule=()=>RULES[rk()]||RULES["매장묘||단장"];
+
+/* ════ UI 업데이트 ════ */
+function updateUI(){
+  const r=rule();
+  const show=(id,v)=>{const e=document.getElementById(id);if(e)e.style.display=v?"":"none";};
+  show("sizeRow",    r.needs_size);
+  show("oriRow",     r.needs_orientation);
+  show("stoneRow",   r.stone_photo);
+  show("sideDiv",    r.has_side);
+  show("maejangDiv", r.front_style==="maejang");
+  show("stdDiv",     r.front_style==="standard");
+  show("familyRow",  r.family_phrase);
+  show("btnAddSlot", r.front_style==="standard");
+  setHanja(frontTypeMJ,r.front_hanja);
+  setHanja(frontTypeSD,r.front_hanja);
+  setHanja(sideTypeEl, r.side_hanja);
+  let bh=r.back_hanja;
+  if(catEl.value==="평장4기"&&stoneEl.value==="yes")bh=false;
+  setHanja(backTypeEl,bh);
+  updateLabel();highlightNav();
+}
+function setHanja(sel,allow){
+  if(!sel)return;
+  const opt=sel.querySelector('option[value="chinese"]');if(!opt)return;
+  opt.disabled=!allow;if(!allow&&sel.value==="chinese")sel.value="korean";
+}
+function updateLabel(){
+  const p=[catEl.value,subEl.value];
+  if(catEl.value==="매장묘"&&sizeEl)p.push(sizeEl.value);
+  if(catEl.value==="4기"&&subEl.value==="B"&&oriEl&&oriEl.value)p.push(oriEl.value);
+  tmplLbl.value=p.filter(Boolean).join(" / ");
+  updateSaveName();
+}
+catEl.addEventListener("change",()=>{fillSub();updateUI();});
+subEl.addEventListener("change",updateUI);
+if(sizeEl) sizeEl.addEventListener("change",updateLabel);
+if(oriEl)  oriEl.addEventListener("change",updateLabel);
+if(stoneEl)stoneEl.addEventListener("change",updateUI);
+
+fillCat();fillSub();
+renderSlots(parseInt(savedForm.slot_count||"1",10),savedForm);
+updateUI();updateSaveName();
+
+/* ════ 폼 액션 ════ */
+function setAction(a){document.getElementById("actionInput").value=a;}
+function resetForm(){
+  if(!confirm("입력 내용을 모두 초기화할까요?"))return;
+  document.getElementById("mainForm").reset();
+  document.getElementById("loadBanner").classList.remove("show");
+  renderSlots(1,{});updateUI();updateSaveName();
+}
+
+
+/* ════ 서명 저장 + 확대 팝업 통합 안정화 버전 ════ */
+const signatureState = {
+  currentId: null,
+  modalCanvas: null,
+  modalCtx: null,
+  drawing: false,
+  lastPoint: null,
+  saved: {
+    "sig-pad": savedForm.signature_main || "",
+    "sign3_0": savedForm.signature_sign3_0 || "",
+    "sign3_1": savedForm.signature_sign3_1 || "",
+    "sign3_2": savedForm.signature_sign3_2 || ""
+  }
+};
+
+function signatureHiddenId(canvasId) {
+  if (canvasId === "sig-pad") return "signature_main";
+  if (canvasId === "sign3_0") return "signature_sign3_0";
+  if (canvasId === "sign3_1") return "signature_sign3_1";
+  if (canvasId === "sign3_2") return "signature_sign3_2";
+  return "";
+}
+
+function signatureTitle(canvasId) {
+  if (canvasId === "sign3_0") return "작성 서명";
+  if (canvasId === "sign3_1") return "작업 서명";
+  if (canvasId === "sign3_2") return "검수 서명";
+  return "신청인의 서명";
+}
+
+function fitCanvas(canvas, lineWidth = 2.4) {
+  if (!canvas) return null;
+  const rect = canvas.getBoundingClientRect();
+  const dpr = Math.max(window.devicePixelRatio || 1, 1);
+  const w = Math.max(1, Math.round(rect.width * dpr));
+  const h = Math.max(1, Math.round(rect.height * dpr));
+  if (canvas.width !== w || canvas.height !== h) {
+    canvas.width = w;
+    canvas.height = h;
+  }
+  const ctx = canvas.getContext("2d");
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.lineWidth = lineWidth;
+  ctx.lineCap = "round";
+  ctx.lineJoin = "round";
+  ctx.strokeStyle = "#3e2e1e";
+  return ctx;
+}
+
+function clearCanvas(canvas) {
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  ctx.save();
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.restore();
+}
+
+function drawDataUrlToCanvas(canvas, dataUrl) {
+  if (!canvas || !dataUrl) return;
+
+  const rect = canvas.getBoundingClientRect();
+
+  // 숨겨진 페이지 안의 캔버스는 width/height가 0으로 잡혀서 나중에 다시 그려야 함
+  if (rect.width < 2 || rect.height < 2) return false;
+
+  const ctx = fitCanvas(canvas, canvas.classList.contains("sign3-cv") ? 1.7 : 2.4);
+  clearCanvas(canvas);
+
+  const img = new Image();
+  img.onload = function() {
+    const r = canvas.getBoundingClientRect();
+    if (r.width >= 2 && r.height >= 2) {
+      ctx.drawImage(img, 0, 0, r.width, r.height);
+    }
+  };
+  img.src = dataUrl;
+  return true;
+}
+
+function redrawSavedSignatures() {
+  ["sig-pad","sign3_0","sign3_1","sign3_2"].forEach(function(id){
+    const canvas = document.getElementById(id);
+    const data = signatureState.saved[id] || "";
+    if (canvas && data) {
+      drawDataUrlToCanvas(canvas, data);
+    }
+  });
+}
+
+function saveSignatureData(canvasId, dataUrl) {
+  signatureState.saved[canvasId] = dataUrl || "";
+  const hidden = document.getElementById(signatureHiddenId(canvasId));
+  if (hidden) hidden.value = dataUrl || "";
+}
+
+function syncSignatureHiddenInputs() {
+  ["sig-pad","sign3_0","sign3_1","sign3_2"].forEach(function(id){
+    const hidden = document.getElementById(signatureHiddenId(id));
+    if (hidden) hidden.value = signatureState.saved[id] || "";
+  });
+}
+
+function openSignatureModal(canvasId) {
+  const modal = document.getElementById("sigModal");
+  const title = document.getElementById("sigModalTitle");
+  if (!modal) return;
+
+  signatureState.currentId = canvasId;
+  if (title) title.textContent = signatureTitle(canvasId);
+
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden","false");
+
+  setTimeout(function(){
+    const c = document.getElementById("sig-modal-canvas");
+    signatureState.modalCanvas = c;
+    signatureState.modalCtx = fitCanvas(c, 3.2);
+    clearCanvas(c);
+    const existing = signatureState.saved[canvasId] || "";
+    if (existing) drawDataUrlToCanvas(c, existing);
+  }, 30);
+}
+
+function closeSigModal() {
+  const modal = document.getElementById("sigModal");
+  if (!modal) return;
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden","true");
+  signatureState.drawing = false;
+  signatureState.lastPoint = null;
+}
+
+function clearModalSig() {
+  if (signatureState.modalCanvas) clearCanvas(signatureState.modalCanvas);
+}
+
+function saveModalSig() {
+  const targetId = signatureState.currentId;
+  const modalCanvas = signatureState.modalCanvas || document.getElementById("sig-modal-canvas");
+  if (!targetId || !modalCanvas) return closeSigModal();
+
+  const dataUrl = modalCanvas.toDataURL("image/png");
+  saveSignatureData(targetId, dataUrl);
+
+  const target = document.getElementById(targetId);
+  if (target) drawDataUrlToCanvas(target, dataUrl);
+
+  closeSigModal();
+}
+
+function clearSignature(canvasId) {
+  saveSignatureData(canvasId, "");
+  const c = document.getElementById(canvasId);
+  if (c) clearCanvas(c);
+}
+
+function clearSign3All(){ ["sign3_0","sign3_1","sign3_2"].forEach(clearSignature); }
+function clearSig(){ clearSignature("sig-pad"); clearModalSig(); }
+
+function bindModalDrawing() {
+  const c = document.getElementById("sig-modal-canvas");
+  if (!c || c.dataset.drawBound === "1") return;
+  c.dataset.drawBound = "1";
+  signatureState.modalCanvas = c;
+  signatureState.modalCtx = fitCanvas(c, 3.2);
+
+  function point(e) {
+    const rect = c.getBoundingClientRect();
+    const p = e.touches ? e.touches[0] : e;
+    return {x: p.clientX - rect.left, y: p.clientY - rect.top};
+  }
+
+  function start(e) {
+    if (e.cancelable) e.preventDefault();
+    signatureState.drawing = true;
+    const p = point(e);
+    signatureState.lastPoint = p;
+    const ctx = signatureState.modalCtx || fitCanvas(c, 3.2);
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+  }
+
+  function move(e) {
+    if (!signatureState.drawing) return;
+    if (e.cancelable) e.preventDefault();
+    const p = point(e);
+    const ctx = signatureState.modalCtx || fitCanvas(c, 3.2);
+    ctx.lineTo(p.x, p.y);
+    ctx.stroke();
+    signatureState.lastPoint = p;
+  }
+
+  function end(e) {
+    if (e && e.cancelable) e.preventDefault();
+    signatureState.drawing = false;
+    signatureState.lastPoint = null;
+  }
+
+  c.addEventListener("pointerdown", start, {passive:false});
+  c.addEventListener("pointermove", move, {passive:false});
+  c.addEventListener("pointerup", end, {passive:false});
+  c.addEventListener("pointercancel", end, {passive:false});
+  c.addEventListener("mouseleave", end);
+  c.addEventListener("touchstart", start, {passive:false});
+  c.addEventListener("touchmove", move, {passive:false});
+  c.addEventListener("touchend", end, {passive:false});
+}
+
+function bindSignatureTargets() {
+  ["sig-pad","sign3_0","sign3_1","sign3_2"].forEach(function(id){
+    const c = document.getElementById(id);
+    if (!c || c.dataset.openBound === "1") return;
+    c.dataset.openBound = "1";
+    fitCanvas(c, id.startsWith("sign3_") ? 1.7 : 2.4);
+    if (signatureState.saved[id]) drawDataUrlToCanvas(c, signatureState.saved[id]);
+
+    c.style.cursor = "pointer";
+    c.style.touchAction = "none";
+
+    const open = function(e) {
+      if (e && e.cancelable) e.preventDefault();
+      openSignatureModal(id);
+    };
+
+    c.addEventListener("click", open, {passive:false});
+    c.addEventListener("pointerup", open, {passive:false});
+  });
+
+  const form = document.getElementById("mainForm");
+  if (form && form.dataset.sigSubmitBound !== "1") {
+    form.dataset.sigSubmitBound = "1";
+    form.addEventListener("submit", syncSignatureHiddenInputs);
+  }
+}
+
+window.addEventListener("load", function(){
+  bindModalDrawing();
+  bindSignatureTargets();
+  setTimeout(redrawSavedSignatures, 80);
+  setTimeout(redrawSavedSignatures, 300);
+});
+
+window.addEventListener("resize", function(){
+  setTimeout(redrawSavedSignatures, 120);
+  const mc = document.getElementById("sig-modal-canvas");
+  if (mc && document.getElementById("sigModal")?.classList.contains("open")) fitCanvas(mc, 3.2);
+});
+
+/* ════ 드로어 ════ */
+function openDrawer(){
+  renderList(allList);
+  document.getElementById("overlay").classList.add("open");
+  document.getElementById("drawer").classList.add("open");
+  document.getElementById("searchInput").value="";
+}
+function closeDrawer(){
+  document.getElementById("overlay").classList.remove("open");
+  document.getElementById("drawer").classList.remove("open");
+}
+function filterDrawer(){
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  renderList(allList.filter(i=>
+    (i.save_name||"").toLowerCase().includes(q)||
+    (i.contractor||"").toLowerCase().includes(q)||
+    (i.memo||"").toLowerCase().includes(q)||
+    (i.template_label||"").toLowerCase().includes(q)
+  ));
+}
+function renderList(list){
+  const wrap=document.getElementById("drList");
+  document.getElementById("drCnt").textContent=allList.length+"건";
+  if(!list.length){
+    wrap.innerHTML=`<div class="dr-empty"><div class="dr-empty-ico">📭</div><p>${allList.length===0?"저장된 내용이 없습니다.":"검색 결과가 없습니다."}</p></div>`;
+    return;
+  }
+  wrap.innerHTML="";
+  list.forEach(item=>{
+    const bc=item.big_cnt||0,sc=item.sm_cnt||0,amt=item.total_amt||0;
+    const nm=item.save_name||item.template_label||item.category||"-";
+    const el=document.createElement("div");el.className="dr-item";
+    el.innerHTML=`
+      <div class="dr-item-stripe"></div>
+      <div class="dr-item-body">
+        <div class="dr-item-r1">
+          <div class="dr-item-name">${esc(nm)}</div>
+          <div class="dr-item-date">${item.created_at||""}</div>
+        </div>
+        <div class="dr-item-r2">
+          ${item.contractor?`<span class="dr-item-who">👤 ${esc(item.contractor)}</span>`:""}
+          ${item.memo?`<span class="dr-item-memo">📝 ${esc(item.memo)}</span>`:""}
+        </div>
+        <div class="dr-item-stats">
+          ${bc>0?`<span class="dr-stat dr-stat-big">大 ${bc}자</span>`:""}
+          ${sc>0?`<span class="dr-stat dr-stat-sml">小 ${sc}자</span>`:""}
+          ${(item.stone_amt||0)>0?`<span class="dr-stat dr-stat-stone">스톤포토</span>`:""}
+          <span class="dr-sign-dots" title="직원 서명 상태">
+            ${item.sign_write?`<span class="list-sign-dot dot-write"></span>`:""}
+            ${item.sign_work?`<span class="list-sign-dot dot-work"></span>`:""}
+            ${item.sign_check?`<span class="list-sign-dot dot-check"></span>`:""}
+          </span>
+          <span class="dr-stat-amt">${amt.toLocaleString()}원</span>
+        </div>
+      </div>
+      <div class="dr-item-acts">
+        <button type="button" class="dr-load-btn" onclick="loadItem('${item.id}')">불러오기</button>
+        <button type="button" class="dr-del-btn"  onclick="showConfirm('${item.id}',event)">삭제</button>
+      </div>
+      <div class="dr-confirm" id="conf_${item.id}">
+        <div class="dr-confirm-msg">⚠️ 정말 삭제하시겠습니까?</div>
+        <div class="dr-confirm-btns">
+          <button type="button" class="dr-confirm-yes" onclick="deleteItem('${item.id}')">삭제 확인</button>
+          <button type="button" class="dr-confirm-no"  onclick="hideConfirm('${item.id}')">취소</button>
+        </div>
+      </div>`;
+    wrap.appendChild(el);
+  });
+}
+function loadItem(id){closeDrawer();window.location.href="/?load="+id;}
+function showConfirm(id,e){
+  e.stopPropagation();
+  document.querySelectorAll(".dr-confirm.show").forEach(el=>{if(el.id!=="conf_"+id)el.classList.remove("show");});
+  document.getElementById("conf_"+id).classList.toggle("show");
+}
+function hideConfirm(id){document.getElementById("conf_"+id).classList.remove("show");}
+function deleteItem(id){
+  fetch("/api/delete/"+id,{method:"DELETE"}).then(r=>r.json()).then(()=>{
+    allList=allList.filter(i=>i.id!==id);
+    document.getElementById("listCnt").textContent=allList.length;
+    renderList(allList);
+  });
+}
+
+/* ===== 태블릿 페이지 전환 ===== */
+let currentStep=0;
+const initialStep = {{ 1 if summary else 0 }};
+const totalSteps=3;
+function showStep(step){
+  currentStep=Math.max(0,Math.min(totalSteps-1,step));
+  document.querySelectorAll('.form-step').forEach((el,idx)=>el.classList.toggle('active',idx===currentStep));
+  document.querySelectorAll('[data-step-dot]').forEach((el,idx)=>el.classList.toggle('active',idx===currentStep));
+  const prev=document.getElementById('btnPrevStep');
+  const next=document.getElementById('btnNextStep');
+  if(prev)prev.style.display=currentStep===0?'none':'inline-flex';
+  if(next)next.style.display=currentStep===totalSteps-1?'none':'inline-flex';
+  document.querySelectorAll('.final-action').forEach(btn=>btn.classList.toggle('show',currentStep===totalSteps-1));
+
+  // 숨겨져 있던 3페이지 서명칸은 페이지가 보인 뒤 다시 그려야 정상 표시됨
+  if (typeof redrawSavedSignatures === "function") {
+    setTimeout(redrawSavedSignatures, 40);
+    setTimeout(redrawSavedSignatures, 180);
+  }
+
+  const scroller=document.querySelector('.main-scroll');
+  if(scroller && arguments[1] !== false)scroller.scrollTo({top:0,behavior:'smooth'});
+}
+function nextStep(){showStep(currentStep+1)}
+function prevStep(){showStep(currentStep-1)}
+document.querySelectorAll('[data-step-dot]').forEach((el,idx)=>el.addEventListener('click',()=>showStep(idx)));
+showStep(initialStep, false);
+
+
+
+/* ===== 태블릿/웹 계산 버튼 안정화: 기본 submit 사용 ===== */
+(function initNativeSubmitSafety(){
+  const form = document.getElementById("mainForm");
+  if(!form) return;
+
+  form.addEventListener("submit", function(){
+    const stepInput = document.getElementById("currentStepInput");
+    if(stepInput && typeof currentStep !== "undefined") stepInput.value = String(currentStep);
+
+    const scroller = document.querySelector(".main-scroll");
+    const y = scroller ? scroller.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
+    sessionStorage.setItem("bimun_scroll_y", String(y));
+
+    if (typeof syncSignatureHiddenInputs === "function") syncSignatureHiddenInputs();
+  });
+
+  window.addEventListener("load", function(){
+    const y = sessionStorage.getItem("bimun_scroll_y");
+    if(y !== null){
+      setTimeout(function(){
+        const scroller = document.querySelector(".main-scroll");
+        if(scroller) scroller.scrollTop = parseInt(y,10) || 0;
+        else window.scrollTo(0, parseInt(y,10) || 0);
+        sessionStorage.removeItem("bimun_scroll_y");
+      }, 80);
+    }
+  });
+})();
+
+
+/* ===== 불러오기 시 무조건 1. 기본정보로 시작 ===== */
+window.addEventListener("load", function(){
+  if (typeof isLoadedFromList !== "undefined" && isLoadedFromList) {
+    sessionStorage.removeItem("bimun_restore_step");
+    sessionStorage.removeItem("bimun_scroll_y");
+    sessionStorage.removeItem("bimun_restore_scroll");
+    if (typeof showStep === "function") {
+      setTimeout(function(){ showStep(0); }, 30);
+      setTimeout(function(){ showStep(0); window.scrollTo(0, 0); }, 160);
+    }
+  }
+});
+
+</script>
+</body>
+</html>
