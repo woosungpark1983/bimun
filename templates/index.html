@@ -28,9 +28,131 @@ button,input,select,textarea{font-family:inherit}
 
 /* PC 고정 레이아웃 */
 .page1-layout{display:grid;grid-template-columns:7fr 3fr;gap:18px;align-items:start}.page1-layout .section-title{margin-top:0}.work-card{background:var(--paper)!important}.work-stack{display:flex;flex-direction:column;gap:12px}.work-stack textarea{min-height:150px}.size-wrap.hidden{display:none!important}.template-label input{background:#f6f1df;color:#7a5c44;font-weight:800}
-.bimun-layout{display:grid;grid-template-columns:6fr 4fr;gap:18px;align-items:start}.preview-panel{position:sticky;top:142px}.preview-title{font-weight:900;margin:0 0 10px}.preview-stone{background:linear-gradient(135deg,#2d2d2d,#111);border-radius:18px;min-height:330px;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;box-shadow:inset 0 0 30px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.18)}.pv-mark{font-size:1.25rem;margin-bottom:12px}.pv-name{font-size:2.05rem;font-weight:900;letter-spacing:.08em;margin:4px 0}.pv-date{font-size:1rem;color:#ccc;margin-top:7px}.pv-extra{font-size:1.25rem;margin-bottom:8px}.pv-back{font-size:.92rem;color:#ddd;line-height:1.7;margin-top:16px;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;width:100%}
+.bimun-layout{display:grid;grid-template-columns:6fr 4fr;gap:18px;align-items:start}.preview-panel{position:sticky;top:142px}.preview-title{font-weight:900;margin:0 0 10px}.preview-stone{background:linear-gradient(135deg,#2d2d2d,#111);border-radius:18px;min-height:320px;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:22px 18px;text-align:center;position:relative;box-shadow:inset 0 0 30px rgba(255,255,255,.04),0 4px 20px rgba(0,0,0,.18);font-family:'Gungsuh','궁서','Batang',serif}
+.pv-religion-abs{display:none}
+.pv-rel-wrap{margin:0 auto 10px;text-align:center}
+.pv-rel-img{filter:brightness(0) invert(1);object-fit:contain;display:block;margin:0 auto}
+.pv-names,.pv-dates,.pv-back{width:100%}
+.pv-dates{font-size:.85rem;color:#ccc;margin-top:6px;line-height:1.6}
+.pv-back{margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,.15)}
+.pv-baptism{font-size:.88rem;color:#bbb;letter-spacing:.04em;margin-bottom:1px}
+.pv-name-lg{font-size:1.85rem;font-weight:900;letter-spacing:.08em;margin:3px 0}
+.pv-names-row{display:flex;gap:28px;justify-content:center;width:100%}
+.pv-person{flex:1;text-align:center;max-width:160px}
+.pv-person .pv-name-lg{font-size:1.4rem;margin:2px 0}
+.pv-person .pv-baptism{font-size:.78rem}
+/* 쌍납/평장부부A 전면: 좌/우 고인 기준선 고정 + 세례명 위치 */
+.pv-names-row.couple-lr-row{
+  width:90%;
+  max-width:620px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  column-gap:72px;
+  align-items:start;
+}
+.pv-person.couple-lr-male,.pv-person.couple-lr-female{
+  position:relative;
+  max-width:none;
+  text-align:center;
+  min-height:96px;
+}
+.pv-couple-namebox{
+  position:relative;
+  display:inline-block;
+  padding-top:1.05em;
+  line-height:1;
+}
+.pv-couple-namebox .pv-name-lg{
+  font-size:1.85rem;
+  margin:0;
+  line-height:1.05;
+}
+.pv-couple-namebox .pv-baptism{
+  position:absolute;
+  top:0;
+  margin:0;
+  font-size:.88rem;
+  line-height:1;
+  white-space:nowrap;
+  color:#bbb;
+}
+.pv-person.couple-lr-male .pv-couple-namebox .pv-baptism{left:0;text-align:left;}
+.pv-person.couple-lr-female .pv-couple-namebox .pv-baptism{right:0;text-align:right;}
+.pv-person.couple-lr-male .pv-date-sm,.pv-person.couple-lr-female .pv-date-sm{
+  margin-top:10px;
+  font-size:1.15rem;
+  letter-spacing:.08em;
+  line-height:1.4;
+}
+.pv-date-sm{font-size:.78rem;color:#ccc;margin-top:8px;line-height:1.7}
+.pv-burial-grid{display:flex;gap:6px;justify-content:center;align-items:flex-start;width:100%;margin:6px 0}
+.pv-burial-grid-couple{display:grid;grid-template-columns:34px auto auto 34px;gap:6px;justify-content:center;align-items:flex-start;width:100%;margin:6px 0}
+.pv-burial-grid-couple.only-male{transform:translateX(-72px)}
+.pv-burial-grid-couple.only-female{transform:translateX(72px)}
+.pv-burial-grid-couple .pv-burial-side-chars{min-width:26px}
+.pv-burial-grid-single{display:flex;gap:6px;justify-content:center;align-items:flex-start;width:100%;margin:6px 0}
+.pv-burial-side-chars{display:flex;flex-direction:column;align-items:center;font-size:.95rem;color:#bbb;line-height:1.2;flex:0 0 1.4em;padding:0 1px}
+.pv-burial-name-col{display:flex;flex-direction:column;align-items:center;flex:0 0 auto;margin:0 4px}
+.pv-baptism-vt{font-size:.8rem;color:#bbb;writing-mode:vertical-rl;margin-bottom:4px;letter-spacing:.08em}
+.pv-name-vt{font-size:1.9rem;font-weight:900;letter-spacing:.14em;writing-mode:vertical-rl;text-orientation:mixed;min-height:90px}
+.pv-jidmyo-vt{font-size:1.7rem;font-weight:900;color:#ddd;letter-spacing:.14em;margin:8px auto 4px;writing-mode:vertical-rl;text-orientation:mixed}
+.pv-single-name{font-size:1.85rem;font-weight:900;letter-spacing:.08em;margin:8px 0;text-align:center}
+.pv-bp-pfx{font-size:.68em;color:#bbb;font-weight:700;margin-right:.38em}
+.pv-tb-stack{display:flex;flex-direction:column;gap:10px;width:100%;align-items:center}
+.pv-tb-person{text-align:center;width:100%;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.1)}
+.pv-tb-person:last-child{border-bottom:none}
+.pv-burial-back{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:6px}
+.pv-burial-back-col{display:flex;flex-direction:column;align-items:center;min-width:36px}
+.pv-back-lbl-v{font-size:1.15rem;color:#999;text-align:left;flex-shrink:0;white-space:nowrap;min-width:40px}
+.pv-back-val-v{font-size:1.15rem;color:#ddd;line-height:1.25;white-space:pre-wrap;text-align:left}
+.pv-bb-row{display:flex;flex-direction:row;gap:6px;justify-content:flex-end;flex-wrap:wrap;width:100%;margin-bottom:5px}
+.pv-bb-desc-grid{display:grid;grid-template-columns:repeat(4,auto);gap:28px 12px;justify-content:end;align-items:start;width:100%}
+.pv-bb-col-cell{display:flex;flex-direction:column;align-items:flex-end;min-width:22px}
+.pv-bb-label-chars{display:flex;flex-direction:column;align-items:center;font-size:1.15rem;color:#999;line-height:20px;min-height:40px;width:24px}
+.pv-bb-name-gap{height:10px}
+.pv-bb-name-line{font-size:.74rem;color:#ddd;line-height:1.35;white-space:nowrap;text-align:center}
+.pv-bb-name-char{font-size:1.15rem;color:#ddd;line-height:20px;text-align:center}
+.pv-bb-name-sep{height:.4em}
+/* 매장묘/평장부부B 2번/부부A 후면 자손 안정화: 글자 크기와 간격 분리 */
+.pv-bb-name-row{display:flex;flex-direction:row-reverse;gap:8px;align-items:flex-start;justify-content:flex-start;}
+.pv-bb-person-col{display:flex;flex-direction:column;align-items:center;width:24px;min-width:24px;max-width:24px;}
+.pv-bb-person-char{display:block;width:24px;height:20px;font-size:1.15rem;color:#ddd;line-height:20px;text-align:center;}
+.pv-bb-field{display:flex;flex-direction:column;align-items:flex-end;}
+.pv-bb-name-pre{font-size:1.15rem;color:#ddd;line-height:20px;white-space:pre;writing-mode:vertical-rl;text-orientation:upright;text-align:start;}
+.pv-bb-etc{margin-top:8px;font-size:1.15rem;color:#ddd;line-height:20px;white-space:pre-wrap;text-align:left;width:100%;}
+/* 매장묘 단장 전면 전용 */
+.pv-burial-single-front{position:relative;width:100%;min-height:245px;margin:6px 0;display:flex;justify-content:center;align-items:flex-start;}
+.pv-burial-single-date{position:absolute;left:calc(50% - 90px);top:58px;}
+.pv-burial-single-main{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;margin:0 auto;}
+.pv-burial-single-main .pv-rel-wrap{margin:0 auto 10px;}
+.pv-date-grp-gap{height:.5em}
+.pv-date-type-gap{height:.8em}
+
+.pv-date-char{line-height:1.3;}
+.pv-date-dot{line-height:.85;margin-top:-.18em;margin-bottom:.35em;}
+.pv-back-col-item{display:flex;flex-direction:row;gap:4px;align-items:baseline}
+.pv-sc-grid2r3c{display:grid;grid-template-columns:repeat(3,max-content);gap:3px 34px;width:86%;max-width:460px;margin:0 auto;justify-content:center;justify-items:start}
+.pv-sc-cell{min-width:0}
+.pv-sc-etc{margin-top:4px;font-size:.76rem;color:#ddd;line-height:1.6}
+.pv-dates-hoz{font-size:1.15rem;letter-spacing:.18em;word-spacing:.65em;line-height:2.5;width:100%}
+.pv-date-line-spread{display:flex;justify-content:space-between;width:100%}
+.chip-staff{background:#eaf4ec;border:1px solid #c8e0cc;color:#3a6b43;border-radius:6px;padding:2px 8px;font-size:11px;margin-left:6px;white-space:nowrap}
+.btn-send{background:#b85c5c!important;color:#fff!important;border-color:#b85c5c!important}
+.pv-multi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(65px,1fr));gap:5px;width:100%;margin:6px 0}
+.pv-multi-slot{border:1px solid rgba(255,255,255,.13);border-radius:8px;padding:6px 4px;text-align:center}
+.pv-name-md{font-size:.92rem;font-weight:900;letter-spacing:.04em}
+.pv-date-xs{font-size:.6rem;color:#bbb;margin-top:3px;line-height:1.4}
+.pv-family-phrase{font-size:1.55rem;font-weight:900;letter-spacing:.09em;margin:14px 0 8px;line-height:1.5}
+.pv-back-section{width:100%}
+.pv-back-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:6px}
+.pv-back-item{display:inline-flex;gap:4px;align-items:baseline}
+.pv-back-lbl{font-size:.7rem;color:#999}
+.pv-back-val{font-size:.8rem;color:#ddd}
+.is-small textarea{min-height:110px;resize:vertical}
+.calc-out-title{margin-top:28px!important}
 .slot-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:14px 0}.slot-head{font-weight:900;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}.slot-box .grid2,.maejang-front-card .grid3{row-gap:18px}.birth-row,.side-birth-row{margin:14px 0}.death-row{margin-top:14px}.birth-action{display:flex;justify-content:flex-end;margin-top:10px}.btn-add-birth{border:1.5px dashed var(--olive2);background:#eef2d2;color:var(--olive);border-radius:9px;padding:7px 12px;font-weight:900;cursor:pointer}.date-note{font-size:.68rem;font-weight:700;color:#9a816d;margin-left:4px}.maejang-front-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:12px 0 4px}
-.bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.input-stone-box{background:var(--red-soft);border:1.5px solid var(--red-line);border-radius:14px;padding:12px 14px;margin:14px 0 0;max-width:360px}.input-stone-box select{border-color:#c98f8f;background:#fffafa}
+.bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.input-stone-box{background:var(--red-soft);border:1.5px solid var(--red-line);border-radius:14px;padding:12px 14px;margin:14px 0 0;max-width:360px}.stone-photo-label{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:800;color:var(--red)}.stone-photo-label input[type=checkbox]{width:20px;height:20px;min-height:auto;accent-color:var(--red);cursor:pointer;border:none}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
@@ -58,6 +180,314 @@ button,input,select,textarea{font-family:inherit}
 .calc-chip-stone{border-color:#d7a4a4;background:#f7eeee;}
 .calc-chip-total{grid-column:1/-1;background:var(--brown);border-color:var(--brown);color:#f5e9c0;}
 .calc-chip-total span{color:#e8c87a;}
+
+/* === 글자 크기 통일: 평장1기/단납 기준 === */
+/* 전체 묘 날짜: 구조는 건드리지 않고 크기만 통일 */
+.pv-dates,
+.pv-dates-hoz,
+.pv-date-sm,
+.pv-date-xs,
+.pv-date-char,
+.pv-date-dot{
+  font-size:1.15rem !important;
+}
+/* 전체 묘 세례명: 구조는 건드리지 않고 크기만 통일 */
+.pv-baptism,
+.pv-bp-pfx,
+.pv-person .pv-baptism,
+.pv-tb-person .pv-baptism,
+.pv-multi-slot .pv-baptism{
+  font-size:1.15rem !important;
+}
+/* 전체 묘 후면 자손/기타 글자 크기 통일 */
+.pv-back-lbl-v,
+.pv-back-val-v,
+.pv-back-lbl,
+.pv-back-val,
+.pv-sc-etc,
+.pv-bb-label-chars,
+.pv-bb-name-pre,
+.pv-bb-name-char,
+.pv-bb-person-char,
+.pv-bb-etc{
+  font-size:1.15rem !important;
+}
+
+
+
+/* === 송수재 개인/부부 전용 미리보기 === */
+.pv-song-front{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin-top:4px;}
+.pv-song-main{display:flex;align-items:center;justify-content:center;gap:14px;min-height:92px;}
+.pv-song-main.song-single{display:flex;align-items:center;justify-content:center;gap:8px;}
+.pv-song-main.song-couple{flex-direction:column;gap:8px;}
+/* 송수재 개인: 종교마크가 이름 앞 같은 라인에 오도록 래퍼 여백 제거 */
+.pv-song-religion-left{flex:0 0 auto;display:flex;align-items:center;justify-content:center;align-self:center;line-height:1;transform:translateY(.72em);}
+.pv-song-religion-left .pv-rel-wrap{margin:0;text-align:center;display:flex;align-items:center;justify-content:center;}
+.pv-song-religion-left .pv-rel-img{margin:0;display:block;}
+.pv-song-religion-left .pv-rel-text{display:block;}
+.pv-song-religion-top{display:flex;align-items:center;justify-content:center;height:44px;margin-bottom:0;}
+/* 세례명은 이름과 너무 붙지 않도록 위로 더 올림 */
+.pv-song-namebox{position:relative;display:inline-block;padding-top:1.42em;line-height:1;text-align:center;}
+.pv-song-namebox .pv-baptism{position:absolute;top:-.18em;left:0;margin:0;font-size:.88rem;line-height:1;color:#bbb;white-space:nowrap;text-align:left;}
+.pv-song-namebox .pv-name-lg{font-size:2.05rem;line-height:1.05;margin:0;font-weight:900;letter-spacing:.08em;}
+.pv-song-dates{font-size:1.15rem;letter-spacing:.08em;line-height:1.45;margin-top:10px;color:#ddd;}
+.pv-rel-text{font-size:2.0rem;font-weight:900;line-height:1;color:#eee;font-family:'Gungsuh','궁서','Batang',serif;}
+/* 송수재 부부 + 스톤포토: 왼쪽 사진 자리는 위아래로 긴 직사각형 */
+.pv-song-stone-front{width:86%;display:grid;grid-template-columns:34% 66%;gap:16px;align-items:center;margin-top:8px;}
+.pv-song-photo-box{width:118px;height:158px;justify-self:center;border:1px solid rgba(255,255,255,.45);background:rgba(255,255,255,.03);}
+.pv-song-stone-front .pv-song-main{justify-content:center;}
+
+/* 송수재 후면: 평장1기 글자 크기 유지 + 3행 2열 */
+.pv-song-back-grid{display:grid;grid-template-columns:repeat(2,auto);gap:14px 46px;justify-content:center;align-items:start;width:100%;}
+.pv-song-back-grid .pv-back-col-item{justify-content:flex-start;}
+
+
+
+/* === RESTORE: 매장묘/부부A 후면은 index_restore_maejang_done_v8 기준으로 고정 === */
+.pv-bb-desc-grid{display:grid;grid-template-columns:repeat(4,auto);gap:28px 12px;justify-content:end;align-items:start;width:100%}
+.pv-bb-col-cell{display:flex;flex-direction:column;align-items:flex-end;min-width:22px}
+.pv-bb-label-chars{display:flex;flex-direction:column;align-items:center;font-size:.95rem !important;color:#999;line-height:1.3;min-height:2.6rem}
+.pv-bb-name-gap{height:.7em}
+.pv-bb-name-line{font-size:.74rem;color:#ddd;line-height:1.35;white-space:nowrap;text-align:center}
+.pv-bb-name-char{font-size:.95rem;color:#ddd;line-height:1.3;text-align:center}
+.pv-bb-name-sep{height:.4em}
+.pv-bb-name-row{display:flex;flex-direction:row-reverse;gap:8px;align-items:flex-start;justify-content:flex-start;}
+.pv-bb-person-col{display:flex;flex-direction:column;align-items:center;min-width:1.05em;}
+.pv-bb-person-char{font-size:.95rem !important;color:#ddd;line-height:1.3;text-align:center;}
+.pv-bb-field{display:flex;flex-direction:column;align-items:flex-end;}
+.pv-bb-name-pre{font-size:.95rem !important;color:#ddd;line-height:1.3;white-space:pre;writing-mode:vertical-rl;text-orientation:upright;text-align:start;}
+.pv-bb-etc{margin-top:8px;font-size:.78rem !important;color:#ddd;line-height:1.6;white-space:pre-wrap;text-align:left;width:100%;}
+
+
+
+/* === 2026-04-28 안정화 추가 패치 ===
+   - 매장묘/평장부부B 2번/부부A 후면: 간격은 px 고정, 글자 크기만 평장1기/단납급으로 확대
+   - 평장부부B 기본 전면: 성함만 / 호칭+본관+성함 / 스톤포토형 분기
+   - 평장1기/단납 스톤포토: 이름 앞 사진 박스 표시
+*/
+.pv-bb-desc-grid{grid-template-columns:repeat(4,auto) !important;gap:28px 12px !important;justify-content:end !important;align-items:start !important;}
+.pv-bb-col-cell{display:flex !important;flex-direction:column !important;align-items:flex-end !important;min-width:22px !important;}
+.pv-bb-label-chars{display:flex !important;flex-direction:column !important;align-items:center !important;font-size:1.15rem !important;color:#999 !important;line-height:20px !important;min-height:40px !important;width:24px !important;}
+.pv-bb-name-gap{height:14px !important;}
+.pv-bb-name-row{display:flex !important;flex-direction:row-reverse !important;gap:8px !important;align-items:flex-start !important;justify-content:flex-start !important;}
+.pv-bb-person-col{display:flex !important;flex-direction:column !important;align-items:center !important;width:24px !important;min-width:24px !important;}
+.pv-bb-person-char{display:block !important;width:24px !important;height:20px !important;font-size:1.15rem !important;color:#ddd !important;line-height:20px !important;text-align:center !important;}
+.pv-bb-etc{font-size:1.15rem !important;line-height:1.45 !important;}
+
+.bubub-layout-wrap{margin:12px 0 0;max-width:280px;}
+.pv-bubub-front{width:100%;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:4px;}
+.pv-bubub-person{text-align:center;width:100%;}
+.pv-bubub-namebox{display:inline-flex;align-items:baseline;justify-content:center;gap:10px;white-space:nowrap;}
+.pv-bubub-name-full{font-size:1.95rem;font-weight:900;letter-spacing:.05em;line-height:1.15;}
+.pv-bubub-name-only{font-size:2.15rem;font-weight:900;letter-spacing:.06em;line-height:1.15;}
+.pv-bubub-bp-full{font-size:1.05rem;font-weight:900;color:#ddd;line-height:1.1;margin-bottom:4px;text-align:right;}
+.pv-bubub-bp-inline{font-size:1.4rem;font-weight:900;color:#ddd;line-height:1.15;}
+.pv-bubub-bp-front{font-size:.72em;font-weight:900;color:#ddd;margin-right:8px;}
+.pv-bubub-date{font-size:1.15rem;color:#ddd;letter-spacing:.08em;line-height:1.45;margin-top:8px;}
+.pv-bubub-stone-front{width:92%;display:flex;flex-direction:column;gap:18px;margin:0 auto;}
+.pv-bubub-stone-row{display:grid;grid-template-columns:118px 1fr;gap:22px;align-items:center;}
+.pv-bubub-stone-namebox{display:flex;align-items:baseline;justify-content:center;gap:10px;white-space:nowrap;}
+.pv-bubub-stone-bp{font-size:1.1rem;font-weight:900;color:#ddd;}
+.pv-bubub-stone-name{font-size:2.2rem;font-weight:900;letter-spacing:.06em;}
+.pv-single-stone-front{width:86%;display:grid;grid-template-columns:118px 1fr;gap:18px;align-items:center;margin:4px auto 0;}
+.pv-single-stone-main{display:flex;flex-direction:column;align-items:center;justify-content:center;}
+
+
+/* === 평장부부B 1/3/4 전면: 부부A형 + 세례명 위치 분기 === */
+.pv-names-row.pv-bubub134-row{
+  width:92%;
+  max-width:680px;
+  column-gap:64px;
+}
+.pv-bubub134-namebox{
+  position:relative;
+  display:inline-block;
+  line-height:1;
+}
+.pv-bubub134-namebox.has-top-bp{
+  padding-top:1.05em;
+}
+.pv-bubub134-namebox .pv-name-lg{
+  margin:0;
+  line-height:1.05;
+}
+.pv-bubub134-bp-front{
+  font-size:.62em;
+  font-weight:800;
+  color:#bbb;
+  margin-right:.34em;
+  vertical-align:middle;
+  letter-spacing:.02em;
+}
+.pv-bubub134-bp-top-right{
+  position:absolute;
+  top:0;
+  right:0;
+  font-size:1.15rem;
+  line-height:1;
+  color:#bbb;
+  white-space:nowrap;
+  letter-spacing:.03em;
+}
+
+
+/* === 2026-04-28 요청 패치: 평장부부B/평장1기P/4기 전면·후면 전용 === */
+.pv-namebox-topright{position:relative;display:inline-block;line-height:1;padding-top:.72em;}
+.pv-bp-topright{position:absolute;right:0;top:0;font-size:.62em;color:#bbb;white-space:nowrap;line-height:1;}
+.pv-bp-front-inline{font-size:.72em;color:#bbb;margin-right:7px;vertical-align:baseline;}
+.pv-p1p-namebox{position:relative;display:inline-block;line-height:1;padding-top:1.05em;}
+.pv-p1p-namebox .pv-baptism{position:absolute;left:0;top:0;margin:0;font-size:1.15rem;line-height:1;white-space:nowrap;color:#bbb;text-align:left;}
+.pv-four-ab-person .pv-name-lg{display:inline-flex;align-items:baseline;gap:7px;justify-content:center;}
+.pv-four-ab-rel{display:inline-flex;align-items:center;justify-content:center;line-height:1;}
+.pv-four-ab-rel .pv-rel-wrap{display:inline-flex;margin:0;text-align:center;align-items:center;justify-content:center;}
+.pv-four-ab-rel .pv-rel-img{height:30px!important;margin:0;}
+.pv-four-ab-bp{font-size:.72em;color:#bbb;white-space:nowrap;}
+.pv-four-vertical-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,max-content));gap:8px 22px;justify-content:center;align-items:start;width:100%;margin:8px auto 0;}
+.pv-four-vertical-person{display:grid;grid-template-columns:auto auto;column-gap:8px;align-items:start;justify-content:center;}
+.pv-four-date-v{display:flex;flex-direction:column;align-items:center;color:#ddd;font-size:1.15rem;line-height:1.18;}
+.pv-four-name-v{writing-mode:vertical-rl;text-orientation:mixed;font-size:1.45rem;font-weight:900;letter-spacing:.12em;color:#eee;}
+.pv-back-r-grid{display:grid;grid-template-columns:repeat(4,auto);gap:28px 12px;justify-content:end;align-items:start;width:100%;}
+
+
+
+/* === 2026-04-28 재수정: 요청한 항목만 보정 === */
+/* 평장부부B 1/3/4 전면은 부부A 좌우형 그대로 쓰되, 세례명 위치만 이름 길이에 따라 분기 */
+.pv-bubub134-namebox{position:relative;display:inline-block;line-height:1;}
+.pv-bubub134-namebox .pv-name-lg{margin:0;line-height:1.05;}
+.pv-bp-front-inline{font-size:.72em;color:#bbb;margin-right:7px;vertical-align:baseline;}
+.pv-namebox-topright{position:relative;display:inline-block;line-height:1;padding-top:.72em;}
+.pv-bp-topright{position:absolute;right:0;top:0;font-size:.62em;color:#bbb;white-space:nowrap;line-height:1;}
+
+/* 4기 A/B/P: 위에서 아래로 4명 */
+.pv-four-stack{gap:8px;align-items:center;}
+.pv-four-stack-person{border-bottom:none;padding:3px 0;}
+
+/* 4기 C/R 세로형: 이름 간격 넓힘 + 세례명은 이름 위 */
+.pv-four-vertical-grid{gap:10px 34px !important;}
+.pv-four-vertical-person{column-gap:12px !important;}
+.pv-four-name-wrap-v{display:flex;flex-direction:column;align-items:center;gap:6px;}
+.pv-four-bp-v{display:flex;flex-direction:column;align-items:center;color:#bbb;font-size:1.0rem;line-height:1.15;}
+.pv-four-name-v{letter-spacing:.22em !important;line-height:1.35 !important;}
+
+/* 4기 R 후면: 외손 손 사위 녀 자부 자 한 줄 */
+.pv-back-r-grid{display:grid !important;grid-template-columns:repeat(6,auto) !important;gap:28px 12px !important;justify-content:end !important;align-items:start !important;width:100% !important;}
+
+
+/* === 2026-04-28 추가 보정: 평장부부B 1/3/4, 4기 A/B/P, 평장4기P === */
+.pv-bubub134-stack{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px;}
+.pv-bubub134-stack .pv-tb-person{border-bottom:none;padding:3px 0;}
+.pv-four-inline-name{display:inline-flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;}
+.pv-four-inline-rel{display:inline-flex;align-items:center;justify-content:center;line-height:1;}
+.pv-four-inline-rel .pv-rel-wrap{display:inline-flex;margin:0;align-items:center;justify-content:center;}
+.pv-four-inline-rel .pv-rel-img{height:30px!important;margin:0;}
+.pv-four-inline-rel .pv-rel-text{font-size:1.15rem;line-height:1;}
+.pv-four-inline-bp{font-size:.72em;color:#bbb;white-space:nowrap;font-weight:800;}
+.pv-four-vertical-grid{gap:14px 46px !important;}
+.pv-four-vertical-person{column-gap:14px !important;}
+.pv-four-bp-v{letter-spacing:.32em !important;line-height:1.4 !important;}
+.pv-four-name-v{letter-spacing:.36em !important;line-height:1.45 !important;}
+.pv-pyeong4p-stack{width:100%;display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:4px;}
+.pv-pyeong4p-person{border-bottom:none;padding:3px 0;text-align:center;width:100%;}
+.pv-pyeong4p-name{display:inline-flex;align-items:baseline;gap:7px;justify-content:center;white-space:nowrap;}
+.pv-pyeong4p-bp-after{font-size:.72em;color:#bbb;white-space:nowrap;font-weight:800;}
+
+
+
+/* === 2026-04-28 family/multi layout 추가 패치 === */
+/* 전체 종교마크 확대: 이름 앞 인라인 마크는 별도 크기 유지 */
+.pv-names > .pv-rel-wrap .pv-rel-img,
+.pv-song-religion-left .pv-rel-img,
+.pv-song-religion-top .pv-rel-img,
+.pv-burial-single-main .pv-rel-img,
+.pv-family-front .pv-rel-img,
+.pv-family-phrase-v-wrap .pv-rel-img{height:64px !important;}
+.pv-family-front .pv-rel-wrap,
+.pv-family-phrase-v-wrap .pv-rel-wrap{margin-bottom:12px;}
+/* 4기 C/R: 날짜 전체 너비와 이름 전체 너비 동일하게 고정 */
+.pv-four-vertical-person{grid-template-columns:52px 52px !important;column-gap:14px !important;}
+.pv-four-date-v,.pv-four-name-wrap-v{width:52px !important;align-items:center !important;justify-content:flex-start;}
+.pv-four-name-v{letter-spacing:.48em !important;line-height:1.48 !important;}
+.pv-four-bp-v{letter-spacing:.38em !important;line-height:1.4 !important;}
+
+.pv-family-front{width:100%;display:flex;flex-direction:column;align-items:center;gap:10px;}
+.pv-family-front-v{width:100%;display:flex;flex-direction:column;align-items:center;gap:12px;}
+.pv-family-phrase-v-wrap{display:flex;flex-direction:column;align-items:center;gap:10px;}
+.pv-family-phrase-v{writing-mode:vertical-rl;text-orientation:mixed;font-size:1.65rem;font-weight:900;letter-spacing:.18em;color:#eee;line-height:1.4;}
+.pv-family-person-v-grid{display:flex;flex-direction:row-reverse;justify-content:center;align-items:flex-start;gap:34px;width:100%;margin-top:8px;}
+.pv-family-person-v{display:grid;grid-template-columns:42px 42px;column-gap:10px;align-items:start;justify-content:center;}
+.pv-family-date-v{display:flex;flex-direction:column;align-items:center;color:#ddd;font-size:1.05rem;line-height:1.18;width:42px;}
+.pv-family-name-wrap-v{display:flex;flex-direction:column;align-items:center;width:42px;gap:5px;}
+.pv-family-bp-v{display:flex;flex-direction:column;align-items:center;color:#bbb;font-size:.92rem;line-height:1.25;letter-spacing:.25em;}
+.pv-family-name-v{writing-mode:vertical-rl;text-orientation:mixed;color:#eee;font-size:1.38rem;font-weight:900;letter-spacing:.34em;line-height:1.42;}
+.pv-family-person-h-stack{width:100%;display:flex;flex-direction:column;align-items:center;gap:9px;margin-top:6px;}
+.pv-family-person-h{display:flex;align-items:baseline;justify-content:center;gap:8px;font-size:1.55rem;font-weight:900;color:#eee;white-space:nowrap;}
+.pv-family-h-rel .pv-rel-wrap{display:inline-flex;margin:0;align-items:center;justify-content:center;vertical-align:middle;}
+.pv-family-h-rel .pv-rel-img{height:34px !important;margin:0;}
+.pv-family-h-bp{font-size:.72em;color:#bbb;font-weight:800;}
+.pv-family-date-h{font-size:1.05rem;color:#ddd;letter-spacing:.06em;line-height:1.35;text-align:center;}
+
+/* === FINAL FIX 2026-04-28: 4기 C/R + 가족형 세로/가로 레이아웃 안정화 === */
+/* 4기 C/R: 고인 세로형은 전통 세로쓰기 순서(오른쪽 → 왼쪽)로 배치 */
+.pv-four-vertical-grid{
+  display:flex !important;
+  flex-direction:row-reverse !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  gap:46px !important;
+  width:100% !important;
+  margin:8px auto 0 !important;
+}
+/* 날짜 column과 이름 column 전체 폭을 동일하게 고정 */
+.pv-four-vertical-person{
+  display:grid !important;
+  grid-template-columns:56px 56px !important;
+  column-gap:16px !important;
+  align-items:start !important;
+  justify-content:center !important;
+}
+.pv-four-date-v,.pv-four-name-wrap-v{
+  width:56px !important;
+  align-items:center !important;
+  justify-content:flex-start !important;
+}
+/* 이름 세로 길이가 날짜와 맞도록 이름 글자 간격 확대 */
+.pv-four-name-v{
+  letter-spacing:.72em !important;
+  line-height:1.58 !important;
+}
+.pv-four-bp-v{
+  letter-spacing:.52em !important;
+  line-height:1.45 !important;
+}
+/* 8기 / 12기A·20기·30기 후면 고인도 4기 C/R처럼 오른쪽 → 왼쪽 세로형 */
+.pv-family-person-v-grid{
+  display:flex !important;
+  flex-direction:row-reverse !important;
+  justify-content:center !important;
+  align-items:flex-start !important;
+  gap:34px !important;
+  width:100% !important;
+  margin-top:8px !important;
+}
+/* 12기B / 24기 오석 고인은 가로형으로 위에서 아래로 */
+.pv-family-person-h-stack{
+  width:100% !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:9px !important;
+  margin-top:6px !important;
+}
+
+
+/* 입력 미리보기 안내문 */
+.preview-note{
+  margin-top:10px;
+  font-size:12px;
+  color:#aaa;
+  text-align:left;
+  line-height:1.4;
+}
 
 </style>
 </head>
@@ -90,7 +520,7 @@ button,input,select,textarea{font-family:inherit}
             <div class="grid3">
               <div><label class="lbl">계약번호</label><input name="contract_no" id="contractNo" /></div>
               <div><label class="lbl">계약자</label><input name="contractor" id="contractor" /></div>
-              <div><label class="lbl">연락처 <span class="note">시안 받으실 분</span></label><input name="phone" id="phone" placeholder="010-0000-0000" /></div>
+              <div><label class="lbl">연락처 <span class="note">시안 받으실 분</span></label><input name="phone" id="phone" maxlength="13" placeholder="010-0000-0000" /></div>
             </div>
             <div class="grid4 row-gap">
               <div><label class="lbl">대분류</label><select name="category" id="category"></select></div>
@@ -129,52 +559,63 @@ button,input,select,textarea{font-family:inherit}
           <div class="sub-section-title">전면</div>
           <div class="card">
             <div class="grid3" style="margin-bottom:12px">
-              <div><label class="lbl">전면 문자</label><select name="front_type" id="frontType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+              <div class="hidden" id="frontTypeWrap"><label class="lbl">전면 문자</label><select name="front_type" id="frontType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
               <div class="is-big"><label class="lbl">종교 마크</label><select name="religion_mark" id="religionMark"><option value="">없음</option><option>불교</option><option>기독교</option><option>천주교</option></select></div>
-              <div class="is-big hidden" id="jidmyoWrap"><label class="lbl">지묘</label><select name="jidmyo" id="jidmyo"><option>있음</option><option>없음</option></select></div>
+              <div class="is-big hidden" id="jidmyoWrap"><label class="lbl">지묘 문구</label><input name="jidmyo" id="jidmyo" placeholder="예: 지묘" /></div>
             </div>
             <div id="maejangFront" class="maejang-front-card hidden">
               <div class="grid3">
-                <div class="is-big"><label class="lbl">남자 호칭</label><select name="male_title" id="maleTitle"><option>없음</option><option>학생</option><option>처사</option><option>집사</option><option>권사</option><option>장로</option></select></div>
-                <div class="is-big"><label class="lbl">남자 본관 <span class="note">&lt;공 자동 적용&gt;</span></label><input name="male_bongwan" id="maleBongwan" /></div>
+                <div class="is-big"><label class="lbl">남자 호칭</label><input name="male_title" id="maleTitle" placeholder="예) 학생 / 성도 / 교우 / 學生" /></div>
+                <div class="is-big"><label class="lbl">남자 본관 <span class="note">&lt;공 자동&gt;</span></label><input name="male_bongwan" id="maleBongwan" /></div>
                 <div class="is-big"><label class="lbl">남자 이름</label><input name="male_name" id="maleName" /></div>
-                <div class="is-big"><label class="lbl">여자 호칭</label><select name="female_title" id="femaleTitle"><option>없음</option><option>유인</option><option>보살</option><option>권사</option><option>집사</option></select></div>
-                <div class="is-big"><label class="lbl">여자 본관 <span class="note">&lt;씨 자동 적용&gt;</span></label><input name="female_bongwan" id="femaleBongwan" /></div>
+                <div class="is-big"><label class="lbl">여자 호칭</label><input name="female_title" id="femaleTitle" placeholder="예) 유인 / 성도 / 교우 / 孺人" /></div>
+                <div class="is-big"><label class="lbl">여자 본관 <span class="note">&lt;씨 자동&gt;</span></label><input name="female_bongwan" id="femaleBongwan" /></div>
                 <div class="is-big"><label class="lbl">여자 이름</label><input name="female_name" id="femaleName" /></div>
               </div>
             </div>
             <div id="standardFront">
+              <div id="familyPhraseWrap" class="hidden" style="margin-bottom:10px">
+                <div class="is-big"><label class="lbl">가족명/본관 <span class="note">&lt;씨 가족지묘 자동&gt;</span></label><input name="family_bongwan" id="familyBongwan" placeholder="예: 김해김 / 金海金" /></div>
+              </div>
               <div id="slots"></div>
               <button class="btn small-btn" type="button" onclick="addSlot()">＋ 고인 추가</button>
+            </div>
+            <div id="bubuBFrontLayoutWrap" class="bubub-layout-wrap hidden">
+              <label class="lbl">평장부부B 기본 전면 형태</label>
+              <select name="bubub_front_layout" id="bubuBFrontLayout">
+                <option value="nameOnly">성함만</option>
+                <option value="full">호칭+본관+성함</option>
+                <option value="stone">스톤포토형</option>
+              </select>
             </div>
           </div>
 
           <div id="sideSection">
             <div class="sub-section-title">측면</div>
             <div class="card">
-              <div style="max-width:220px;margin-bottom:12px"><label class="lbl">측면 문자</label><select name="side_type" id="sideType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+              <div class="hidden" id="sideTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">측면 문자</label><select name="side_type" id="sideType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
               <div class="grid2">
                 <div class="slot-box">
                   <div class="slot-head">남</div>
                   <div class="side-birth-row hidden" id="sideBirthRow1"><div class="grid2">
-                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s1_birth" id="s1Birth" /></div>
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_birth" id="s1Birth" /></div>
                     <div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type" id="s1BirthType"><option>생</option><option>없음</option></select></div>
                   </div></div>
                   <div class="grid2 death-row">
-                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s1_death" id="s1Death" /></div>
-                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div>
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_death" id="s1Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
                   </div>
                   <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn1" onclick="showSideBirth(1)">＋ 생년월일</button></div>
                 </div>
                 <div class="slot-box">
                   <div class="slot-head">여</div>
                   <div class="side-birth-row hidden" id="sideBirthRow2"><div class="grid2">
-                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s2_birth" id="s2Birth" /></div>
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_birth" id="s2Birth" /></div>
                     <div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type" id="s2BirthType"><option>생</option><option>없음</option></select></div>
                   </div></div>
                   <div class="grid2 death-row">
-                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="s2_death" id="s2Death" /></div>
-                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option></select></div>
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_death" id="s2Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
                   </div>
                   <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn2" onclick="showSideBirth(2)">＋ 생년월일</button></div>
                 </div>
@@ -184,33 +625,35 @@ button,input,select,textarea{font-family:inherit}
 
           <div class="sub-section-title">후면</div>
           <div class="card">
-            <div style="max-width:220px;margin-bottom:12px"><label class="lbl">후면 문자</label><select name="back_type" id="backType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
+            <div class="hidden" id="backTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">후면 문자</label><select name="back_type" id="backType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
             <div class="grid3">
-              <div class="is-small"><label class="lbl">자</label><input name="son_text" id="sonText" /></div>
-              <div class="is-small"><label class="lbl">자부</label><input name="daughter_in_law_text" /></div>
-              <div class="is-small"><label class="lbl">손</label><input name="grandson_text" /></div>
-              <div class="is-small"><label class="lbl">녀</label><input name="daughter_text" /></div>
-              <div class="is-small"><label class="lbl">사위</label><input name="son_in_law_text" /></div>
-              <div class="is-small"><label class="lbl">외손</label><input name="maternal_grandchild_text" /></div>
+              <div class="is-small"><label class="lbl">자</label><textarea name="son_text" id="sonText" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">자부</label><textarea name="daughter_in_law_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">손</label><textarea name="grandson_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">녀</label><textarea name="daughter_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">사위</label><textarea name="son_in_law_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">외손</label><textarea name="maternal_grandchild_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
             </div>
             <div class="is-small" style="margin-top:12px"><label class="lbl">기타</label><textarea name="etc_text" id="etcText"></textarea></div>
           </div>
 
           <div id="inputStoneBox" class="input-stone-box hidden">
-            <label class="lbl">스톤포토</label>
-            <select name="stone_photo" id="stonePhoto"><option value="no">없음</option><option value="yes">추가</option></select>
+            <label class="stone-photo-label">
+              <input type="checkbox" name="stone_photo" id="stonePhoto" value="yes" onchange="updatePreview();calc();" />
+              <span>스톤포토 추가</span>
+            </label>
           </div>
         </div>
 
         <aside class="preview-panel">
-          <div class="section-title right-panel-title">예상 시안 미리보기</div>
+          <div class="section-title right-panel-title">입력 미리보기</div>
           <div class="preview-stone">
-            <div class="pv-mark" id="pvMark"></div>
-            <div class="pv-extra" id="pvExtra"></div>
-            <div id="pvNames"></div>
-            <div class="pv-date" id="pvDates"></div>
+            <img id="pvReligionImg" class="pv-religion-abs" />
+            <div class="pv-names" id="pvNames"></div>
+            <div class="pv-dates" id="pvDates"></div>
             <div class="pv-back" id="pvBack"></div>
           </div>
+          <div class="preview-note">※ 본 미리보기는 입력 내용 확인용이며, 실제 조각 시안과 위치·간격·비율이 차이가 있습니다.</div>
           <div class="section-title right-panel-title calc-out-title">계산 결과</div>
           <div class="card calc-card">
             <div class="calc-panel-head">
@@ -228,7 +671,7 @@ button,input,select,textarea{font-family:inherit}
   <button class="btn btn-primary" type="button" onclick="saveForm()">저장</button>
   <button class="btn" type="button" onclick="openList()">저장목록</button>
   <button class="btn" type="button" onclick="window.print()">프린트</button>
-  <button class="btn btn-danger" type="button" onclick="newForm()">초기화</button>
+  <button class="btn btn-danger" type="button" onclick="resetCurrentPage()">초기화</button>
   <span class="save-msg" id="saveMsg"></span><span class="grow"></span>
 </div>
 
@@ -250,6 +693,18 @@ let currentSummary = null;
 const $ = (id)=>document.getElementById(id);
 const money = (n)=> (Number(n||0)).toLocaleString('ko-KR') + '원';
 const esc = (s)=>String(s||'').replace(/[&<>\"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
+
+const SUBCATEGORY_LABELS = {
+  '평장부부B': {
+    '1번': '1번(동그란 종교마크)',
+    '2번': '2번(큰오석 왼쪽에 작은오석)',
+    '3번': '3번(드라큘라 모양)',
+    '4번': '4번(3번이랑 비슷하나, 아래가 조금 더 넓음)'
+  }
+};
+function getSubcategoryLabel(cat, sub){
+  return (SUBCATEGORY_LABELS[cat] && SUBCATEGORY_LABELS[cat][sub]) || sub || '선택';
+}
 function fillSelect(el, list, selected=''){
   el.innerHTML = '';
   list.forEach(v=>{ const o=document.createElement('option'); o.value=v; o.textContent=v||'선택'; if(v===selected) o.selected=true; el.appendChild(o); });
@@ -264,11 +719,21 @@ function init(){
 }
 function fillSubcategory(selected=''){
   const cat = $('category').value;
-  fillSelect($('subcategory'), CATALOG[cat] || [], selected || (CATALOG[cat]||[''])[0]);
+  const list = CATALOG[cat] || [];
+  const el = $('subcategory');
+  el.innerHTML = '';
+  list.forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v;
+    o.textContent=getSubcategoryLabel(cat, v);
+    if(v===(selected || list[0])) o.selected=true;
+    el.appendChild(o);
+  });
 }
 function ruleKey(){return $('category').value + '||' + $('subcategory').value}
 function getRule(){return RULES[ruleKey()] || {slots:1,has_side:false,stone_photo:false,front_style:'standard'}}
 function isMaejangFront(){ return getRule().front_style === 'maejang'; }
+function isSingleMaejang(){ return $('category').value==='매장묘' && $('subcategory').value==='단장'; }
 function makeTemplateLabel(){
   const cat = $('category')?.value || '';
   const sub = $('subcategory')?.value || '';
@@ -286,26 +751,34 @@ function showPage(page){
   $(page).classList.add('active');
 }
 function renderSlots(count){
-  count = Math.max(1, Math.min(10, Number(count||1))); $('slotCount').value = count; let html='';
+  // 송수재 개인/부부는 기본 고인 1명만 표시하고, 필요 시 고인 추가 버튼으로 추가
+  const catForSlots = $('category') ? $('category').value : '';
+  const subForSlots = $('subcategory') ? $('subcategory').value : '';
+  const forceFourSlots = (catForSlots==='평장부부B' && ['1번','3번','4번'].includes(subForSlots)) ||
+                         (catForSlots==='4기' && ['A','B','P','4기A','4기B','4기P'].includes(subForSlots)) ||
+                         catForSlots==='평장4기P';
+  const minSlots = forceFourSlots ? 4 : (catForSlots==='송수재' ? 1 : (getRule().slots||1));
+  count=Math.max(minSlots,Math.min(10,Number(count||minSlots))); $('slotCount').value=count; let html='';
   for(let i=1;i<=count;i++){
-    html += `<div class="slot-box" data-slot="${i}">
-      <div class="slot-head"><span>고인 ${i}</span>${i>1?`<button class="btn small-btn" type="button" onclick="removeSlot(${i})">삭제</button>`:''}</div>
+    const canDel=count>minSlots&&i>1;
+    html+=`<div class="slot-box" data-slot="${i}">
+      <div class="slot-head"><span>고인 ${i}</span>${canDel?`<button class="btn small-btn" type="button" onclick="removeSlot(${i})">삭제</button>`:''}</div>
       <div class="grid2">
         <div class="is-big"><label class="lbl">이름</label><input name="f${i}_name" id="f${i}Name" /></div>
         <div class="is-big"><label class="lbl">세례명</label><input name="f${i}_baptism" id="f${i}Baptism" /></div>
       </div>
       <div class="birth-row hidden" id="birthRow${i}"><div class="grid2">
-        <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="f${i}_birth" id="f${i}Birth" /></div>
+        <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="f${i}_birth" id="f${i}Birth" /></div>
         <div class="is-small"><label class="lbl">생 표현</label><select name="f${i}_birth_type" id="f${i}BirthType" onchange="birthTypeChanged(${i})"><option>생</option><option>없음</option></select></div>
       </div></div>
       <div class="grid2 death-row">
-        <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력일 경우 "음" 글자 직접 기재)</span></label><input name="f${i}_death" id="f${i}Death" /></div>
-        <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
+        <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="f${i}_death" id="f${i}Death" /></div>
+        <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option value="">선택</option><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
       </div>
       <div class="birth-action"><button class="btn-add-birth" type="button" id="birthBtn${i}" onclick="showBirth(${i})">＋ 생년월일</button></div>
     </div>`;
   }
-  $('slots').innerHTML = html; bindInputs(); updatePreview(); calc();
+  $('slots').innerHTML=html; bindInputs(); updatePreview(); calc();
 }
 function showBirth(i){ $('birthRow'+i).classList.remove('hidden'); $('birthBtn'+i).classList.add('hidden'); const bt=$('f'+i+'BirthType'); if(bt) bt.value='생'; }
 function hideBirth(i){ const b=$('f'+i+'Birth'), bt=$('f'+i+'BirthType'); if(b) b.value=''; if(bt) bt.value='생'; $('birthRow'+i).classList.add('hidden'); $('birthBtn'+i).classList.remove('hidden'); updatePreview(); calc(); }
@@ -314,7 +787,14 @@ function showSideBirth(i){ $('sideBirthRow'+i).classList.remove('hidden'); $('si
 function hideSideBirth(i){ const b=$('s'+i+'Birth'), bt=$('s'+i+'BirthType'); if(b) b.value=''; if(bt) bt.value='생'; $('sideBirthRow'+i).classList.add('hidden'); $('sideBirthBtn'+i).classList.remove('hidden'); updatePreview(); calc(); }
 function sideBirthTypeChanged(i){ const bt=$('s'+i+'BirthType'); if(bt && bt.value==='없음') hideSideBirth(i); }
 function addSlot(){ renderSlots(Number($('slotCount').value)+1); }
-function removeSlot(i){ const data=collectForm(); const count=Number($('slotCount').value); for(let n=i;n<count;n++){['name','baptism','birth','birth_type','death','death_type'].forEach(k=>data[`f${n}_${k}`]=data[`f${n+1}_${k}`]||'');} renderSlots(count-1); fillForm(data); }
+function removeSlot(i){
+  const minSlots=getRule().slots||1, count=Number($('slotCount').value);
+  if(count<=minSlots) return;
+  const data=collectForm();
+  for(let n=i;n<count;n++){['name','baptism','birth','birth_type','death','death_type'].forEach(k=>data['f'+n+'_'+k]=data['f'+(n+1)+'_'+k]||'');}
+  data.slot_count=count-1;  // slot_count 먼저 갱신
+  renderSlots(count-1); fillForm(data);
+}
 function bindInputs(){
   document.querySelectorAll('input,select,textarea').forEach(el=>{
     el.oninput=()=>{updatePreview();};
@@ -329,63 +809,667 @@ function bindInputs(){
   $('category').onchange=()=>{ fillSubcategory(); updateUI(true); updatePreview(); calc(); };
   $('subcategory').onchange=()=>{ updateUI(true); updatePreview(); calc(); };
 }
+// 종교마크 위치 유형 (x/y: %, w: % 너비)
+const MARK_POS = {
+  top:    { x: 50, y: 10, w: 9 },
+  left:   { x: 22, y: 10, w: 10 },
+  circle: { x: 30, y: 20, w: 12 },
+};
+// 시안별 markType (기본값: 'top')
+const DESIGN_MARK_TYPE = {
+  '평장부부B||1번': 'circle',
+  '평장부부B||3번': 'left',
+  '평장부부B||4번': 'left',
+};
+const RELIGION_IMG = {'불교':'/static/images/religion/buddhist.png','기독교':'/static/images/religion/christian.png','천주교':'/static/images/religion/catholic.png'};
+
+function updateReligionOptions(){
+  const rm=$('religionMark'); if(!rm) return;
+  const keep=rm.value;
+  const cat=$('category')?.value || '';
+  const sub=$('subcategory')?.value || '';
+  const opts=['','불교','기독교','천주교'];
+  if(cat==='송수재' && (sub==='개인' || sub==='부부')) opts.push('故');
+  rm.innerHTML=opts.map(v=>`<option value="${esc(v)}">${v||'없음'}</option>`).join('');
+  if(opts.includes(keep)) rm.value=keep;
+}
+
 function updateUI(resetSlots=false){
   updateTemplateLabel();
+  updateReligionOptions();
   const r=getRule();
   const special = isMaejangFront();
   $('sideSection').classList.toggle('hidden', !r.has_side);
   $('maejangFront').classList.toggle('hidden', !special);
   $('standardFront').classList.toggle('hidden', special);
   $('jidmyoWrap').classList.toggle('hidden', !special);
+  // 한글/한자 탭: 매장묘·평장부부B 2번(maejang)에만 표시
+  ['frontTypeWrap','sideTypeWrap','backTypeWrap'].forEach(id=>{ const el=$(id); if(el) el.classList.toggle('hidden', !special); });
   const isMaejang=$('category').value==='매장묘'; $('sizeWrap').classList.toggle('hidden', !isMaejang);
-  const stoneOk=STONE_CATEGORIES.includes($('category').value); $('inputStoneBox').classList.toggle('hidden', !stoneOk); if(!stoneOk) $('stonePhoto').value='no';
-  if(resetSlots) renderSlots(1);
+  const STONE_COMBOS_UI=['단납/평장1기||기본','송수재||개인','송수재||부부','평장부부B||기본','평장부부P||기본','평장4기||기본'];
+  const stoneOk=STONE_COMBOS_UI.includes(ruleKey()); $('inputStoneBox').classList.toggle('hidden', !stoneOk); if(!stoneOk){ const sp=$('stonePhoto'); if(sp) sp.checked=false; }
+  const fpEl=$('familyPhraseWrap'); if(fpEl) fpEl.classList.toggle('hidden', !r.family_phrase);
+  const bubuBLayoutEl = $('bubuBFrontLayoutWrap');
+  if(bubuBLayoutEl) bubuBLayoutEl.classList.toggle('hidden', !(($('category').value==='평장부부B') && ($('subcategory').value==='기본')));
+  if(resetSlots){
+    const catReset=$('category') ? $('category').value : '';
+    const subReset=$('subcategory') ? $('subcategory').value : '';
+    const forceFourReset=(catReset==='평장부부B' && ['1번','3번','4번'].includes(subReset)) ||
+                         (catReset==='4기' && ['A','B','P','4기A','4기B','4기P'].includes(subReset)) ||
+                         catReset==='평장4기P';
+    renderSlots(forceFourReset ? 4 : (catReset==='송수재' ? 1 : (r.slots||1)));
+  }
 }
 function collectForm(){ const fd=new FormData($('mainForm')); const data={}; fd.forEach((v,k)=>data[k]=v); return data; }
 function fillForm(data){
   if(!data) return; $('dataId').value=data.id||''; $('createdAt').value=data.created_at||'';
   if(data.category){ $('category').value=data.category; fillSubcategory(data.subcategory); }
   renderSlots(data.slot_count || getRule().slots || 1);
-  Object.entries(data).forEach(([k,v])=>{ const el=document.querySelector(`[name="${CSS.escape(k)}"]`); if(el) el.value=v??''; });
+  Object.entries(data).forEach(([k,v])=>{ const el=document.querySelector(`[name="${CSS.escape(k)}"]`); if(!el) return; if(el.type==='checkbox'){el.checked=['yes','추가','있음'].includes(String(v));}else{el.value=v??'';} });
   for(let i=1;i<=Number($('slotCount').value||1);i++){ if(data[`f${i}_birth`]) showBirth(i); }
   for(let i=1;i<=2;i++){ if(data[`s${i}_birth`]) showSideBirth(i); }
   updateUI(); updateTemplateLabel(); updatePreview(); calc();
 }
-function updatePreview(){
-  const d=collectForm(); const markMap={'불교':'卍','기독교':'✝','천주교':'✞'}; $('pvMark').textContent=markMap[d.religion_mark]||''; $('pvExtra').textContent=isMaejangFront() && d.jidmyo==='있음' ? '지묘' : '';
-  let names='', dates=[];
-  if(isMaejangFront()){
-    const mt=d.male_title||'없음', ft=d.female_title||'없음';
-    if(mt !== '없음' || d.male_bongwan || d.male_name) names += `<div class="pv-name">${esc([mt !== '없음' ? mt : '', d.male_bongwan, d.male_name].filter(Boolean).join(' '))}</div>`;
-    if(ft !== '없음' || d.female_bongwan || d.female_name) names += `<div class="pv-name">${esc([ft !== '없음' ? ft : '', d.female_bongwan, d.female_name].filter(Boolean).join(' '))}</div>`;
-    for(let i=1;i<=2;i++){ const birth=d[`s${i}_birth`]||'', death=d[`s${i}_death`]||''; if(birth||death) dates.push(`${birth ? birth+' '+(d[`s${i}_birth_type`]||'생') : ''} ${death ? death+' '+(d[`s${i}_death_type`]||'졸') : ''}`.trim()); }
-  } else {
-    const count=Number(d.slot_count||1);
-    for(let i=1;i<=count;i++){ const nm=d[`f${i}_name`]||'', bp=d[`f${i}_baptism`]||''; if(nm||bp) names+=`<div class="pv-name">${esc(bp ? bp+' '+nm : nm)}</div>`; const birth=d[`f${i}_birth`]||'', death=d[`f${i}_death`]||''; if(birth||death) dates.push(`${birth ? birth+' '+(d[`f${i}_birth_type`]||'생') : ''} ${death ? death+' '+(d[`f${i}_death_type`]||'졸') : ''}`.trim()); }
+// ── 미리보기 헬퍼 ──────────────────────────────────────
+function _isHanjaChar(ch){ const cp=(ch||'').charCodeAt(0); return (cp>=0x4E00&&cp<=0x9FFF)||(cp>=0x3400&&cp<=0x4DBF)||(cp>=0xF900&&cp<=0xFAFF); }
+function _bongwanDisp(bongwan, hSuf, kSuf){
+  const t=(bongwan||'').trim(); if(!t) return '';
+  if(t.endsWith(hSuf)||t.endsWith(kSuf)) return esc(t);
+  return esc(t+(_isHanjaChar(t[t.length-1])?hSuf:kSuf));
+}
+function _getLayoutType(){
+  const cat=$('category').value, sub=$('subcategory').value;
+  // 평장부부B 1/3/4는 RULES가 maejang 계열이어도 전면/후면을 별도 처리한다. 매장묘는 건드리지 않음.
+  if(cat==='평장부부B' && ['1번','3번','4번'].includes(sub)) return 'couple_tb';
+  if(isMaejangFront()) return 'vertical_burial';           // 매장묘, 평장부부B 2번
+
+  // 가족형은 getRule().family_phrase보다 먼저 분기해야 실제 요청 레이아웃이 적용됨
+  if(cat==='8기') return 'family_8';
+  if(cat==='12기A' || cat==='20기' || cat==='30기' || (cat==='다기형' && ['12A','12기A','20기','30기'].includes(sub))) return 'family_front_back_vertical';
+  if(cat==='12기B') return 'family_vertical_back_horizontal';
+  if(cat==='24기') return 'family_24';
+
+  if(getRule().family_phrase) return 'family_phrase';
+  if(cat==='송수재' && sub==='개인') return 'songsujae_single';
+  if(cat==='송수재' && sub==='부부') return 'songsujae_couple';
+  if(cat==='평장1기P') return 'pyeongjang1p';
+  if(cat==='4기' && (['A','B','P'].includes(sub) || ['4기A','4기B','4기P'].includes(sub))) return 'four_abp';
+  if(cat==='4기' && (['C','R'].includes(sub) || ['4기C','4기R'].includes(sub))) return 'four_vertical';
+  if(['단납/평장1기'].includes(cat)) return 'single_hoz';  // 1인형
+  if(cat==='쌍납/평장부부A') return 'couple_lr';            // 좌우형
+  if(['부부A','납골정','평장부부B','평장부부P'].includes(cat)) return 'couple_tb';    // 상하형
+  if(cat==='평장4기P') return 'pyeong4p';
+  if(['4기','평장4기'].includes(cat)) return 'multi_person';
+  return 'single_hoz';
+}
+function _dateLine(birth, btype, death, dtype){
+  const p=[];
+  if(birth) p.push(esc(birth)+(btype&&btype!=='없음'?' '+esc(btype):''));
+  if(death) p.push(esc(death)+(dtype&&dtype!=='없음'?' '+esc(dtype):''));
+  return p.join('<br>');
+}
+function _renderBack(d){
+  function rField(lbl,val){
+    if(!val) return '';
+    const lines=(val||'').split('\n').filter(l=>/\S/.test(l));  // 공백 있는 줄도 유지, 완전 빈 줄만 제거
+    return lines.map(l=>`<span class="pv-back-item"><span class="pv-back-lbl">${esc(lbl)}</span>&nbsp;<span class="pv-back-val" style="white-space:pre">${esc(l)}</span></span>`).join('');
   }
-  $('pvNames').innerHTML=names||'<div class="pv-name" style="opacity:.35">성명</div>'; $('pvDates').innerHTML=dates.map(esc).join('<br>');
-  const back=[d.son_text&&`자 ${d.son_text}`,d.daughter_in_law_text&&`자부 ${d.daughter_in_law_text}`,d.grandson_text&&`손 ${d.grandson_text}`,d.daughter_text&&`녀 ${d.daughter_text}`,d.son_in_law_text&&`사위 ${d.son_in_law_text}`,d.maternal_grandchild_text&&`외손 ${d.maternal_grandchild_text}`,d.etc_text].filter(Boolean).join(' · '); $('pvBack').textContent=back||'후면 내용';
+  const r1=[rField('자',d.son_text),rField('자부',d.daughter_in_law_text),rField('손',d.grandson_text)].filter(Boolean);
+  const r2=[rField('녀',d.daughter_text),rField('사위',d.son_in_law_text),rField('외손',d.maternal_grandchild_text)].filter(Boolean);
+  if(!r1.length&&!r2.length&&!d.etc_text) return '';
+  let h='';
+  if(r1.length) h+=`<div class="pv-back-row">${r1.join('')}</div>`;
+  if(r2.length) h+=`<div class="pv-back-row">${r2.join('')}</div>`;
+  if(d.etc_text)(d.etc_text||'').split('\n').filter(l=>l.trim()).forEach(l=>{ h+=`<div class="pv-back-row"><span class="pv-back-val">${esc(l.trim())}</span></div>`; });
+  return `<div class="pv-back-section">${h}</div>`;
+}
+function _relHtml(rel, sz){
+  if(rel==='故') return `<div class="pv-rel-wrap"><span class="pv-rel-text">故</span></div>`;
+  const ru=RELIGION_IMG[rel]||''; if(!ru) return '';
+  return `<div class="pv-rel-wrap"><img src="${ru}" class="pv-rel-img" style="height:${sz||48}px" /></div>`;
+}
+function _dateCharsDisplay(birth, btype, death, dtype){
+  // 매장묘 날짜: 공백 제거 후 입력 순서 그대로 출력.
+  // 점(.)은 앞 숫자 바로 아래에 붙이고, 다음 숫자와는 약간 띄운다.
+  function renderChars(text){
+    return [...String(text||'').replace(/\s+/g,'')].map(c=>{
+      const cls = c==='.' ? 'pv-date-dot' : 'pv-date-char';
+      return `<div class="${cls}">${esc(c)}</div>`;
+    }).join('');
+  }
+  let html='';
+  if(birth){
+    html+=renderChars(birth);
+    if(btype&&btype!=='없음') html+='<div class="pv-date-type-gap"></div>'+renderChars(btype);
+  }
+  if(death){
+    html+=renderChars(death);
+    if(dtype&&dtype!=='없음') html+='<div class="pv-date-type-gap"></div>'+renderChars(dtype);
+  }
+  return html;
+}
+function _renderBackBurial(d){
+  // 매장묘/평장부부B 2번/부부A 후면: 사람 1명 = 고정폭 세로 1열.
+  // 글자 크기를 키워도 column 폭/줄간격은 px로 고정되어 간격이 뒤틀리지 않는다.
+  function field(lbl, val){
+    const raw=String(val||'').replace(/\r/g,'');
+    if(!/\S/.test(raw)) return '';
+    const names=raw.split('\n').filter(l=>/\S/.test(l));
+    const lblHtml=[...lbl].map(c=>`<div>${esc(c)}</div>`).join('');
+    const nameCols=names.map(name=>{
+      const chars=[...name].map(c=>`<span class="pv-bb-person-char">${c===' ' ? '&nbsp;' : esc(c)}</span>`).join('');
+      return `<div class="pv-bb-person-col">${chars}</div>`;
+    }).join('');
+    return `<div class="pv-bb-field"><div class="pv-bb-label-chars">${lblHtml}</div><div class="pv-bb-name-gap"></div><div class="pv-bb-name-row">${nameCols}</div></div>`;
+  }
+  // 4열 그리드, DOM 순서(좌→우): 사위 녀 자부 자 / empty 외손 empty 손
+  // justify-content:end → 오른쪽 정렬, 시각 우→좌: 자 자부 녀 사위 / 손 . 외손 .
+  const silF=field('사위',d.son_in_law_text);
+  const daughterF=field('녀',d.daughter_text);
+  const dilF=field('자부',d.daughter_in_law_text);
+  const sonF=field('자',d.son_text);
+  const mgcF=field('외손',d.maternal_grandchild_text);
+  const grandsonF=field('손',d.grandson_text);
+  const etc=String(d.etc_text||'').replace(/\r/g,'');
+  if(!silF&&!daughterF&&!dilF&&!sonF&&!mgcF&&!grandsonF&&!/\S/.test(etc)) return '';
+  let html=`<div class="pv-bb-desc-grid">`;
+  html+=`<div class="pv-bb-col-cell">${silF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${daughterF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${dilF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${sonF}</div>`;
+  html+=`<div class="pv-bb-col-cell"></div>`;
+  html+=`<div class="pv-bb-col-cell">${mgcF}</div>`;
+  html+=`<div class="pv-bb-col-cell"></div>`;
+  html+=`<div class="pv-bb-col-cell">${grandsonF}</div>`;
+  html+=`</div>`;
+  if(/\S/.test(etc)) html+=`<div class="pv-bb-row"><div class="pv-bb-etc">${esc(etc)}</div></div>`;
+  return `<div class="pv-burial-back">${html}</div>`;
+}
+function _renderBackBubuAOnly(d){
+  // 부부A 후면은 복사본을 따로 두지 않고, 복구된 매장묘 후면 함수와 완전히 동일하게 사용한다.
+  return _renderBackBurial(d);
+}
+
+function _renderBackSingle3col(d){
+  // 평장1기/단납 후면: 2행 × 3열 구조
+  // 1행: 자 / 자부 / 손  |  2행: 녀 / 사위 / 외손
+  function colItem(lbl,val){
+    if(!val) return '';
+    const lines=(val||'').split('\n').filter(l=>/\S/.test(l));
+    if(!lines.length) return '';
+    const allNames=lines.join('\n');
+    return `<div class="pv-back-col-item"><span class="pv-back-lbl-v">${esc(lbl)}</span><span class="pv-back-val-v">${esc(allNames)}</span></div>`;
+  }
+  const son=colItem('자',d.son_text);
+  const dil=colItem('자부',d.daughter_in_law_text);
+  const grandson=colItem('손',d.grandson_text);
+  const daughter=colItem('녀',d.daughter_text);
+  const sil=colItem('사위',d.son_in_law_text);
+  const mgc=colItem('외손',d.maternal_grandchild_text);
+  const etc=(d.etc_text||'').split('\n').filter(l=>/\S/.test(l));
+  if(!son&&!dil&&!grandson&&!daughter&&!sil&&!mgc&&!etc.length) return '';
+  let html='<div class="pv-sc-grid2r3c">';
+  html+=`<div class="pv-sc-cell">${son}</div>`;
+  html+=`<div class="pv-sc-cell">${dil}</div>`;
+  html+=`<div class="pv-sc-cell">${grandson}</div>`;
+  html+=`<div class="pv-sc-cell">${daughter}</div>`;
+  html+=`<div class="pv-sc-cell">${sil}</div>`;
+  html+=`<div class="pv-sc-cell">${mgc}</div>`;
+  html+='</div>';
+  if(etc.length) html+=`<div class="pv-sc-etc">${etc.map(l=>`<div>${esc(l)}</div>`).join('')}</div>`;
+  return `<div class="pv-back-section">${html}</div>`;
+}
+
+function _renderBackSongSujae(d){
+  // 송수재 개인/부부 후면: 평장1기/단납과 같은 글자 크기/항목 구조, 배치만 3행 × 2열
+  // 1행: 자 / 자부, 2행: 녀 / 사위, 3행: 손 / 외손
+  function colItem(lbl,val){
+    if(!val) return '';
+    const lines=(val||'').split('\n').filter(l=>/\S/.test(l));
+    if(!lines.length) return '';
+    const allNames=lines.join('\n');
+    return `<div class="pv-back-col-item"><span class="pv-back-lbl-v">${esc(lbl)}</span><span class="pv-back-val-v">${esc(allNames)}</span></div>`;
+  }
+  const items=[
+    colItem('자',d.son_text), colItem('자부',d.daughter_in_law_text),
+    colItem('녀',d.daughter_text), colItem('사위',d.son_in_law_text),
+    colItem('손',d.grandson_text), colItem('외손',d.maternal_grandchild_text)
+  ];
+  const etc=(d.etc_text||'').split('\n').filter(l=>/\S/.test(l));
+  if(!items.some(Boolean)&&!etc.length) return '';
+  let html='<div class="pv-song-back-grid">';
+  items.forEach(x=>{ html+=`<div class="pv-sc-cell">${x||''}</div>`; });
+  html+='</div>';
+  if(etc.length) html+=`<div class="pv-sc-etc">${etc.map(l=>`<div>${esc(l)}</div>`).join('')}</div>`;
+  return `<div class="pv-back-section">${html}</div>`;
+}
+// ───────────────────────────────────────────────────────
+function _personHoz(nm,bp,dt){
+  const bpHtml=bp?`<span class="pv-bp-pfx">${esc(bp)}</span>`:'';
+  return `<div class="pv-single-name">${bpHtml}${nm?esc(nm):''}</div><div class="pv-date-sm">${dt}</div>`;
+}
+
+
+function _bububNameWithBaptism(nm, bp, classPrefix){
+  const name = String(nm||'');
+  const baptism = String(bp||'');
+  const pureLen = name.replace(/\s+/g,'').length;
+  const p = classPrefix || 'pv-bubub';
+  if(!name && !baptism) return '<span style="opacity:.3">성명</span>';
+  if(baptism && pureLen > 5){
+    return `<span class="pv-namebox-topright"><span class="pv-bp-topright">${esc(baptism)}</span><span>${name?esc(name):''}</span></span>`;
+  }
+  return `${baptism?`<span class="pv-bp-front-inline">${esc(baptism)}</span>`:''}${name?esc(name):''}`;
+}
+
+function _renderBubuBDefaultFront(d){
+  const rel=d.religion_mark||'';
+  const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+  const selected = d.bubub_front_layout || 'nameOnly';
+  const layout = stoneOn ? 'stone' : selected;
+  function dt(i){return _dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);}
+  function personFull(i){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'', date=dt(i);
+    if(!nm&&!bp&&!date) return '';
+    const nameHtml=_bububNameWithBaptism(nm,bp,'pv-bubub');
+    return `<div class="pv-bubub-person"><div class="pv-bubub-name-full">${nameHtml}</div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div>`;
+  }
+  function personNameOnly(i){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'', date=dt(i);
+    if(!nm&&!bp&&!date) return '';
+    const nameHtml=_bububNameWithBaptism(nm,bp,'pv-bubub');
+    return `<div class="pv-bubub-person"><div class="pv-bubub-namebox"><span class="pv-bubub-name-only">${nameHtml}</span></div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div>`;
+  }
+  function personStone(i){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'', date=dt(i);
+    if(!nm&&!bp&&!date) return '';
+    const nameHtml=_bububNameWithBaptism(nm,bp,'pv-bubub');
+    return `<div class="pv-bubub-stone-row"><div class="pv-song-photo-box"></div><div><div class="pv-bubub-stone-namebox"><span class="pv-bubub-stone-name">${nameHtml}</span></div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div></div>`;
+  }
+  if(layout==='stone'){
+    const rows=[personStone(1),personStone(2)].filter(Boolean).join('');
+    return `${_relHtml(rel,44)}<div class="pv-bubub-stone-front">${rows || '<span style="opacity:.3">성명</span>'}</div>`;
+  }
+  if(layout==='full'){
+    const persons=[personFull(1),personFull(2)].filter(Boolean).join('');
+    return `${_relHtml(rel,44)}<div class="pv-bubub-front pv-bubub-full">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+  }
+  const persons=[personNameOnly(1),personNameOnly(2)].filter(Boolean).join('');
+  return `${_relHtml(rel,44)}<div class="pv-bubub-front pv-bubub-nameonly">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+}
+
+function _renderBubuB134Front(d){
+  // 평장부부B 1/3/4: 전면은 위에서 아래로 4명. 이름 5글자 이하는 세례명 앞, 6글자부터 세례명 오른쪽 상단.
+  const rel=d.religion_mark||'';
+  const cnt=Math.max(4, Number(d.slot_count||4));
+  function dt(i){return _dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);}
+  let persons='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'', date=dt(i);
+    if(!nm && !bp && !date) continue;
+    const nameHtml = _bububNameWithBaptism(nm,bp,'pv-bubub134');
+    persons+=`<div class="pv-tb-person"><div class="pv-name-lg">${nameHtml}</div>${date?`<div class="pv-date-sm">${date}</div>`:''}</div>`;
+  }
+  return `${_relHtml(rel,44)}<div class="pv-bubub134-stack">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+}
+
+function _renderPyeongjang1PFront(d){
+  const rel=d.religion_mark||'';
+  const cnt=Math.min(Number(d.slot_count||1),2); let persons='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+    const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+    const personClass = i === 1 ? 'couple-lr-male' : 'couple-lr-female';
+    const nameBox=(nm||bp)
+      ? `<div class="pv-p1p-namebox">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}</div>`
+      : '<span style="opacity:.3">성명</span>';
+    persons+=`<div class="pv-person ${personClass}">${nameBox}<div class="pv-date-sm">${dt}</div></div>`;
+  }
+  return `${_relHtml(rel,44)}<div class="pv-names-row couple-lr-row">${persons}</div>`;
+}
+
+function _relInlineHtml(rel){
+  if(!rel) return '';
+  if(rel==='故') return `<span class="pv-four-inline-rel"><span class="pv-rel-text">故</span></span>`;
+  const ru=RELIGION_IMG[rel]||'';
+  if(!ru) return '';
+  return `<span class="pv-four-inline-rel"><span class="pv-rel-wrap"><img src="${ru}" class="pv-rel-img" /></span></span>`;
+}
+
+function _renderFourABPFront(d){
+  // 4기 A/B/P: 위에서 아래로 4명. 각 이름 앞에 종교마크-세례명-고인이름 순서.
+  const rel=d.religion_mark||'';
+  const cnt=Math.max(4, Number(d.slot_count||4));
+  let persons='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+    const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+    if(!nm && !bp && !dt) continue;
+    const nameLine=`<span class="pv-four-inline-name">${_relInlineHtml(rel)}${bp?`<span class="pv-four-inline-bp">${esc(bp)}</span>`:''}${nm?`<span>${esc(nm)}</span>`:'<span style="opacity:.3">성명</span>'}</span>`;
+    persons+=`<div class="pv-tb-person pv-four-stack-person"><div class="pv-name-lg">${nameLine}</div>${dt?`<div class="pv-date-sm">${dt}</div>`:''}</div>`;
+  }
+  return `<div class="pv-tb-stack pv-four-stack">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+}
+
+function _charsVertical(text){
+  return [...String(text||'').replace(/\s+/g,'')].map(c=>`<div>${esc(c)}</div>`).join('');
+}
+function _renderFourVerticalFront(d){
+  const rel=d.religion_mark||'';
+  const cnt=Math.max(4, Number(d.slot_count||4)); let persons='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+    const birth=d['f'+i+'_birth']||'', btype=d['f'+i+'_birth_type']||'';
+    const death=d['f'+i+'_death']||'', dtype=d['f'+i+'_death_type']||'';
+    const dateTxt=[birth&&(birth+(btype&&btype!=='없음'?btype:'')), death&&(death+(dtype&&dtype!=='없음'?dtype:''))].filter(Boolean).join(' ');
+    if(!nm&&!bp&&!dateTxt) continue;
+    persons+=`<div class="pv-four-vertical-person"><div class="pv-four-date-v">${_charsVertical(dateTxt)}</div><div class="pv-four-name-wrap-v">${bp?`<div class="pv-four-bp-v">${_charsVertical(bp)}</div>`:''}${nm?`<div class="pv-four-name-v">${esc(nm)}</div>`:''}</div></div>`;
+  }
+  return `${_relHtml(rel,36)}<div class="pv-four-vertical-grid">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+}
+
+
+function _familyPhraseText(d){
+  const fb=d.family_bongwan||'';
+  let display=fb?fb:'○○○';
+  if(fb){const lc=fb[fb.length-1];if(!fb.endsWith('씨')&&!fb.endsWith('氏'))display+=(_isHanjaChar(lc)?'氏':'씨');}
+  return display + ' 가족지묘';
+}
+function _personVerticalCard(d,i,clsPrefix){
+  const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+  const birth=d['f'+i+'_birth']||'', btype=d['f'+i+'_birth_type']||'';
+  const death=d['f'+i+'_death']||'', dtype=d['f'+i+'_death_type']||'';
+  const dateTxt=[birth&&(birth+(btype&&btype!=='없음'?btype:'')), death&&(death+(dtype&&dtype!=='없음'?dtype:''))].filter(Boolean).join(' ');
+  if(!nm&&!bp&&!dateTxt) return '';
+  return `<div class="${clsPrefix}-person-v"><div class="${clsPrefix}-date-v">${_charsVertical(dateTxt)}</div><div class="${clsPrefix}-name-wrap-v">${bp?`<div class="${clsPrefix}-bp-v">${_charsVertical(bp)}</div>`:''}${nm?`<div class="${clsPrefix}-name-v">${esc(nm)}</div>`:''}</div></div>`;
+}
+function _renderFamilyPeopleVertical(d){
+  const cnt=Number(d.slot_count||1); let persons='';
+  for(let i=1;i<=cnt;i++) persons+=_personVerticalCard(d,i,'pv-family');
+  return `<div class="pv-family-person-v-grid">${persons || '<span style="opacity:.3">고인</span>'}</div>`;
+}
+function _renderEightFamilyFront(d){
+  const rel=d.religion_mark||'';
+  return `<div class="pv-family-front">${_relHtml(rel,64)}<div class="pv-family-phrase">${esc(_familyPhraseText(d))}</div>${_renderFamilyPeopleVertical(d)}</div>`;
+}
+function _renderFamilyFrontPhraseOnly(d){
+  const rel=d.religion_mark||'';
+  return `<div class="pv-family-front">${_relHtml(rel,64)}<div class="pv-family-phrase">${esc(_familyPhraseText(d))}</div></div>`;
+}
+function _renderFamilyFrontPhraseVertical(d, showRel=true){
+  const rel=d.religion_mark||'';
+  const relPart = showRel ? _relHtml(rel,64) : '';
+  return `<div class="pv-family-front-v"><div class="pv-family-phrase-v-wrap">${relPart}<div class="pv-family-phrase-v">${esc(_familyPhraseText(d))}</div></div></div>`;
+}
+function _renderFamilyPeopleHorizontal(d, withRel){
+  const rel=d.religion_mark||'';
+  const cnt=Number(d.slot_count||1); let rows='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+    const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+    if(!nm&&!bp&&!dt) continue;
+    const relHtml=withRel ? `<span class="pv-family-h-rel">${_relHtml(rel,34)}</span>` : '';
+    rows+=`<div class="pv-family-person-h-row"><div class="pv-family-person-h">${relHtml}${bp?`<span class="pv-family-h-bp">${esc(bp)}</span>`:''}${nm?`<span>${esc(nm)}</span>`:'<span style="opacity:.3">성명</span>'}</div>${dt?`<div class="pv-family-date-h">${dt}</div>`:''}</div>`;
+  }
+  return `<div class="pv-family-person-h-stack">${rows || '<span style="opacity:.3">고인</span>'}</div>`;
+}
+
+function _renderBackBurialR(d){
+  // 4기 R 전용: 매장묘 후면 렌더 방식을 복사해서 쓰되, 매장묘 함수는 절대 변경하지 않음.
+  // 요청 순서: < 외손 손 사위 녀 자부 자 > 한 줄
+  function field(lbl, val){
+    const raw=String(val||'').replace(/\r/g,'');
+    if(!/\S/.test(raw)) return '';
+    const names=raw.split('\n').filter(l=>/\S/.test(l));
+    const nameCols=names.map(name=>`<div class="pv-bb-person-col">${[...name.trim()].map(c=>`<span class="pv-bb-person-char">${esc(c)}</span>`).join('')}</div>`).join('');
+    const lblHtml=[...lbl].map(c=>`<div>${esc(c)}</div>`).join('');
+    return `<div class="pv-bb-field"><div class="pv-bb-label-chars">${lblHtml}</div><div class="pv-bb-name-gap"></div><div class="pv-bb-name-row">${nameCols}</div></div>`;
+  }
+  const mgcF=field('외손',d.maternal_grandchild_text);
+  const grandsonF=field('손',d.grandson_text);
+  const silF=field('사위',d.son_in_law_text);
+  const daughterF=field('녀',d.daughter_text);
+  const dilF=field('자부',d.daughter_in_law_text);
+  const sonF=field('자',d.son_text);
+  const etc=String(d.etc_text||'').replace(/\r/g,'');
+  if(!sonF&&!dilF&&!daughterF&&!silF&&!mgcF&&!grandsonF&&!/\S/.test(etc)) return '';
+  let html='<div class="pv-back-r-grid">';
+  html+=`<div class="pv-bb-col-cell">${mgcF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${grandsonF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${silF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${daughterF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${dilF}</div>`;
+  html+=`<div class="pv-bb-col-cell">${sonF}</div>`;
+  html+='</div>';
+  if(/\S/.test(etc)) html+=`<div class="pv-bb-row"><div class="pv-bb-etc">${esc(etc)}</div></div>`;
+  return `<div class="pv-burial-back">${html}</div>`;
+}
+
+function _renderPyeong4PFront(d){
+  // 평장4기P: 종교마크는 가장 상단 가운데, 이름은 위에서 아래로 4명, 세례명은 고인이름 뒤.
+  const rel=d.religion_mark||'';
+  const cnt=Math.max(4, Number(d.slot_count||4));
+  let persons='';
+  for(let i=1;i<=cnt;i++){
+    const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'';
+    const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+    if(!nm && !bp && !dt) continue;
+    persons+=`<div class="pv-pyeong4p-person"><div class="pv-name-lg"><span class="pv-pyeong4p-name">${nm?`<span>${esc(nm)}</span>`:'<span style="opacity:.3">성명</span>'}${bp?`<span class="pv-pyeong4p-bp-after">${esc(bp)}</span>`:''}</span></div>${dt?`<div class="pv-date-sm">${dt}</div>`:''}</div>`;
+  }
+  return `${_relHtml(rel,44)}<div class="pv-pyeong4p-stack">${persons || '<span style="opacity:.3">성명</span>'}</div>`;
+}
+
+function updatePreview(){
+  const d=collectForm();
+  const ri=$('pvReligionImg'); if(ri) ri.style.display='none';
+  const lt=_getLayoutType(), rel=d.religion_mark||'', back=_renderBack(d);
+  $('pvDates').innerHTML='';
+
+  if(lt==='vertical_burial'){
+    // 매장묘/평장부부B 2번: 글자별 세로 날짜 + 세로이름 + 지묘
+    const mt=d.male_title||'', ft=d.female_title||'';
+    const mb=_bongwanDisp(d.male_bongwan,'公','공');
+    const fb=_bongwanDisp(d.female_bongwan,'氏','씨');
+    const mParts=[(mt&&mt!=='없음'?esc(mt):''),mb,esc(d.male_name||'')].filter(Boolean);
+    const fParts=[(ft&&ft!=='없음'?esc(ft):''),fb,esc(d.female_name||'')].filter(Boolean);
+    const s1=_dateCharsDisplay(d.s1_birth,d.s1_birth_type,d.s1_death,d.s1_death_type);
+    const s2=_dateCharsDisplay(d.s2_birth,d.s2_birth_type,d.s2_death,d.s2_death_type);
+    const jv=d.jidmyo&&d.jidmyo!=='없음'?d.jidmyo:'';
+    const s1Col=s1?`<div class="pv-burial-side-chars">${s1}</div>`:'';
+    const s2Col=s2?`<div class="pv-burial-side-chars">${s2}</div>`:'';
+
+    if(isSingleMaejang()){
+      // 매장묘 단장: 종교마크/호칭/본관/이름/지묘를 중앙 한 축으로 정렬
+      const mainCol=mParts.length?`<div class="pv-burial-name-col"><div class="pv-name-vt">${mParts.join('')}</div></div>`:'';
+      $('pvNames').innerHTML=`
+        <div class="pv-burial-single-front">
+          ${s1?`<div class="pv-burial-side-chars pv-burial-single-date">${s1}</div>`:''}
+          <div class="pv-burial-single-main">${_relHtml(rel,72)}${mainCol}${jv?`<div class="pv-jidmyo-vt">${esc(jv)}</div>`:''}</div>
+        </div>`;
+    }else{
+      const mCol=mParts.length?`<div class="pv-burial-name-col"><div class="pv-name-vt">${mParts.join('')}</div></div>`:'';
+      const fCol=fParts.length?`<div class="pv-burial-name-col"><div class="pv-name-vt">${fParts.join('')}</div></div>`:'';
+      // 쌍분: 불교마크/지묘는 중앙 고정. 한쪽만 입력된 경우 해당 성별 자리로 더 벌려 배치한다.
+      const hasM = mParts.length > 0;
+      const hasF = fParts.length > 0;
+      const coupleClass = hasM && !hasF ? ' only-male' : (!hasM && hasF ? ' only-female' : '');
+      $('pvNames').innerHTML=`
+        ${_relHtml(rel,72)}
+        <div class="pv-burial-grid-couple${coupleClass}">
+          ${s1Col || '<div></div>'}
+          ${mCol || '<div></div>'}
+          ${fCol || '<div></div>'}
+          ${s2Col || '<div></div>'}
+        </div>
+        ${jv?`<div class="pv-jidmyo-vt">${esc(jv)}</div>`:''}`;
+    }
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderBackBurial(d);
+
+  } else if(lt==='family_phrase'){
+    const fb=d.family_bongwan||''; let display=fb?fb:'○○○';
+    if(fb){const lc=fb[fb.length-1];if(!fb.endsWith('씨')&&!fb.endsWith('氏'))display+=(_isHanjaChar(lc)?'氏':'씨');}
+    const cnt=Number(d.slot_count||1); let slots='';
+    for(let i=1;i<=cnt;i++){const nm=d['f'+i+'_name']||'',bp=d['f'+i+'_baptism']||'';const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);if(nm||bp||dt)slots+=`<div class="pv-multi-slot">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-md">${esc(nm)}</div>`:''}<div class="pv-date-xs">${dt}</div></div>`;}
+    $('pvNames').innerHTML=`${_relHtml(rel,48)}<div class="pv-family-phrase">${esc(display)} 가족지묘</div>`;
+    $('pvBack').innerHTML=`${slots?`<div class="pv-multi-grid" style="margin-bottom:8px">${slots}</div>`:''}${back}`;
+
+  } else if(lt==='family_8'){
+    $('pvNames').innerHTML=_renderEightFamilyFront(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderBackBurial(d);
+
+  } else if(lt==='family_front_back_vertical'){
+    $('pvNames').innerHTML=_renderFamilyFrontPhraseOnly(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderFamilyPeopleVertical(d);
+
+  } else if(lt==='family_vertical_back_horizontal'){
+    $('pvNames').innerHTML=_renderFamilyFrontPhraseVertical(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderFamilyPeopleHorizontal(d,false);
+
+  } else if(lt==='family_24'){
+    $('pvNames').innerHTML=_renderFamilyFrontPhraseVertical(d,false);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderFamilyPeopleHorizontal(d,true);
+
+  } else if(lt==='pyeongjang1p'){
+    $('pvNames').innerHTML=_renderPyeongjang1PFront(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderBackSongSujae(d);
+
+  } else if(lt==='pyeong4p'){
+    $('pvNames').innerHTML=_renderPyeong4PFront(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=_renderBackSongSujae(d);
+
+  } else if(lt==='four_abp'){
+    $('pvNames').innerHTML=_renderFourABPFront(d);
+    $('pvDates').innerHTML='';
+    if(d.category==='4기' && (['A','B','4기A','4기B'].includes(d.subcategory))) $('pvBack').innerHTML=_renderBackBurial(d);
+    else $('pvBack').innerHTML=_renderBackSongSujae(d);
+
+  } else if(lt==='four_vertical'){
+    $('pvNames').innerHTML=_renderFourVerticalFront(d);
+    $('pvDates').innerHTML='';
+    $('pvBack').innerHTML=(d.category==='4기' && ['R','4기R'].includes(d.subcategory)) ? _renderBackBurialR(d) : _renderBackSingle3col(d);
+
+  } else if(lt==='songsujae_single'){
+    // 송수재 개인: 종교마크는 이름 앞, 세례명은 이름 왼쪽 상단, 날짜는 평장1기/단납과 동일
+    const nm=d.f1_name||'', bp=d.f1_baptism||'';
+    const dt=_dateLine(d.f1_birth,d.f1_birth_type,d.f1_death,d.f1_death_type);
+    const nameBox=`<div class="pv-song-namebox">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}</div>`;
+    $('pvNames').innerHTML=`<div class="pv-song-front"><div class="pv-song-main song-single"><div class="pv-song-religion-left">${_relHtml(rel,48)}</div>${nameBox}</div></div>`;
+    $('pvDates').innerHTML=dt?`<div class="pv-song-dates">${dt}</div>`:'';
+    $('pvBack').innerHTML=_renderBackSongSujae(d);
+
+  } else if(lt==='songsujae_couple'){
+    // 송수재 부부: 종교마크는 상단 중앙. 스톤포토 추가 시 왼쪽 사진 박스 + 오른쪽 이름 영역
+    const nm=d.f1_name||'', bp=d.f1_baptism||'';
+    const dt=_dateLine(d.f1_birth,d.f1_birth_type,d.f1_death,d.f1_death_type);
+    const nameBox=`<div class="pv-song-namebox">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}</div>`;
+    const content=`<div class="pv-song-main song-couple"><div class="pv-song-religion-top">${_relHtml(rel,48)}</div>${nameBox}</div>`;
+    const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+    $('pvNames').innerHTML= stoneOn
+      ? `<div class="pv-song-stone-front"><div class="pv-song-photo-box"></div>${content}</div>`
+      : `<div class="pv-song-front">${content}</div>`;
+    $('pvDates').innerHTML=dt?`<div class="pv-song-dates">${dt}</div>`:'';
+    $('pvBack').innerHTML=_renderBackSongSujae(d);
+
+  } else if(lt==='single_hoz'){
+    // 1인형: 이름 가로 크게 (세로쓰기 금지)
+    const nm=d.f1_name||'',bp=d.f1_baptism||'';
+    const dt=_dateLine(d.f1_birth,d.f1_birth_type,d.f1_death,d.f1_death_type);
+    const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+    const mainName = `${_relHtml(rel,52)}${(nm||bp)?_personHoz(nm,bp,''):'<span style="opacity:.3">성명</span>'}`;
+    $('pvNames').innerHTML = stoneOn
+      ? `<div class="pv-single-stone-front"><div class="pv-song-photo-box"></div><div class="pv-single-stone-main">${mainName}</div></div>`
+      : mainName;
+    $('pvDates').innerHTML=dt?`<div class="pv-dates-hoz">${dt}</div>`:'';
+    $('pvBack').innerHTML=_renderBackSingle3col(d)||back;
+
+  } else if(lt==='couple_lr'){
+    // 좌우형 (쌍납/평장부부A): 2인 가로 나란히
+    const cnt=Math.min(Number(d.slot_count||1),2); let persons='';
+    for(let i=1;i<=cnt;i++){
+      const nm=d['f'+i+'_name']||'',bp=d['f'+i+'_baptism']||'';
+      const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+      const personClass = i === 1 ? 'couple-lr-male' : 'couple-lr-female';
+      const nameBox = (nm||bp)
+        ? `<div class="pv-couple-namebox">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}</div>`
+        : '<span style="opacity:.3">성명</span>';
+      persons+=`<div class="pv-person ${personClass}">${nameBox}<div class="pv-date-sm">${dt}</div></div>`;
+    }
+    $('pvNames').innerHTML=`${_relHtml(rel,44)}<div class="pv-names-row couple-lr-row">${persons}</div>`;
+    // 쌍납/평장부부A 후면 자손은 평장1기/단납과 동일 구조 사용
+    $('pvBack').innerHTML=_renderBackSingle3col(d)||back;
+
+  } else if(lt==='couple_tb'){
+    // 상하형 (부부A/납골정/평장부부B/P): 2인 위아래
+    if(d.category === '평장부부B' && d.subcategory === '기본'){
+      $('pvNames').innerHTML = _renderBubuBDefaultFront(d);
+      $('pvDates').innerHTML = '';
+      // 평장부부B 기본 후면은 평장1기/단납과 동일
+      $('pvBack').innerHTML = _renderBackSingle3col(d);
+      return;
+    }
+    if(d.category === '평장부부B' && ['1번','3번','4번'].includes(d.subcategory)){
+      $('pvNames').innerHTML = _renderBubuB134Front(d);
+      $('pvDates').innerHTML = '';
+      $('pvBack').innerHTML = _renderBackBurial(d);
+      return;
+    }
+    const cnt=Math.min(Number(d.slot_count||1),2); let persons='';
+    for(let i=1;i<=cnt;i++){
+      const nm=d['f'+i+'_name']||'',bp=d['f'+i+'_baptism']||'';
+      const bpHtml=bp?`<div class="pv-baptism">${esc(bp)}</div>`:'';
+      const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+      persons+=`<div class="pv-tb-person">${bpHtml}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}<div class="pv-date-sm">${dt}</div></div>`;
+    }
+    $('pvNames').innerHTML=`${_relHtml(rel,44)}<div class="pv-tb-stack">${persons}</div>`;
+    // 부부A 후면(자손)은 매장묘 후면과 동일한 방식으로 출력
+    // 납골정 후면(자손)은 송수재 개인 후면과 동일한 방식으로 출력
+    // 전면 구조 및 기존 계산/저장/불러오기/프린트는 변경하지 않음
+    $('pvBack').innerHTML = (d.category === '부부A')
+      ? _renderBackBubuAOnly(d)
+      : (d.category === '납골정' ? _renderBackSongSujae(d) : back);
+
+  } else {
+    // multi_person (4기, 평장4기 등)
+    const cnt=Number(d.slot_count||1); let slots='';
+    for(let i=1;i<=cnt;i++){
+      const nm=d['f'+i+'_name']||'',bp=d['f'+i+'_baptism']||'';
+      const bpHtml=bp?`<div style="font-size:.58rem;color:#bbb;margin-bottom:1px">${esc(bp)}</div>`:'';
+      const dt=_dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);
+      slots+=`<div class="pv-multi-slot">${bpHtml}${nm?`<div class="pv-name-md">${esc(nm)}</div>`:''}<div class="pv-date-xs">${dt}</div></div>`;
+    }
+    $('pvNames').innerHTML=`${_relHtml(rel,36)}<div class="pv-multi-grid">${slots}</div>`;
+    $('pvBack').innerHTML=back;
+  }
 }
 async function calc(){
   const res=await fetch('/api/calc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(collectForm())}); currentSummary=await res.json();
-  const smallTotalCnt = currentSummary.small_cnt + currentSummary.side_cnt + currentSummary.back_cnt;
-  const smallTotalAmt = currentSummary.small_amt + currentSummary.side_amt + currentSummary.back_amt;
-  const frontLabel = $('frontType').value === 'chinese' ? '한자' : '한글';
-  const sideBackLabel = ($('sideType')?.value === 'chinese' || $('backType')?.value === 'chinese') ? '한자' : '한글';
+  const s=currentSummary;
+  const smallTotalCnt=(s.small_korean_cnt||0)+(s.small_hanja_cnt||0);
+  const smallTotalAmt=(s.small_korean_amt||0)+(s.small_hanja_amt||0);
+  let rows='';
+  if(s.big_korean_cnt) rows+=`<div class="calc-row"><span class="calc-label">큰글자 한글</span><span class="calc-value">${s.big_korean_cnt}자 × ${s.big_korean_unit.toLocaleString('ko-KR')}원 = ${money(s.big_korean_amt)}</span></div>`;
+  if(s.big_hanja_cnt)  rows+=`<div class="calc-row"><span class="calc-label">큰글자 한자</span><span class="calc-value">${s.big_hanja_cnt}자 × ${s.big_hanja_unit.toLocaleString('ko-KR')}원 = ${money(s.big_hanja_amt)}</span></div>`;
+  if(!s.big_korean_cnt && !s.big_hanja_cnt) rows+=`<div class="calc-row"><span class="calc-label">큰글자</span><span class="calc-value">0자</span></div>`;
+  if(s.small_korean_cnt) rows+=`<div class="calc-row"><span class="calc-label">작은글자 한글</span><span class="calc-value">${s.small_korean_cnt}자 × ${s.small_korean_unit.toLocaleString('ko-KR')}원 = ${money(s.small_korean_amt)}</span></div>`;
+  if(s.small_hanja_cnt)  rows+=`<div class="calc-row"><span class="calc-label">작은글자 한자</span><span class="calc-value">${s.small_hanja_cnt}자 × ${s.small_hanja_unit.toLocaleString('ko-KR')}원 = ${money(s.small_hanja_amt)}</span></div>`;
+  if(s.stone_added) rows+=`<div class="calc-row"><span class="calc-label">스톤포토</span><span class="calc-value">${money(s.stone_amt)}</span></div>`;
   $('summaryBox').innerHTML=`
-    <div class=\"calc-lines\">
-      <div class=\"calc-row\"><span class=\"calc-label\">전면 큰글자 (${frontLabel})</span><span class=\"calc-value\">${currentSummary.big_cnt}자 × ${currentSummary.big_unit.toLocaleString('ko-KR')}원 = ${money(currentSummary.big_amt)}</span></div>
-      <div class=\"calc-row\"><span class=\"calc-label\">전면 작은글자 (${frontLabel})</span><span class=\"calc-value\">${currentSummary.small_cnt}자 × ${currentSummary.small_unit.toLocaleString('ko-KR')}원 = ${money(currentSummary.small_amt)}</span></div>
-      ${currentSummary.side_cnt ? `<div class=\"calc-row\"><span class=\"calc-label\">측면 (${sideBackLabel})</span><span class=\"calc-value\">${currentSummary.side_cnt}자 × ${currentSummary.side_unit.toLocaleString('ko-KR')}원 = ${money(currentSummary.side_amt)}</span></div>` : ''}
-      ${currentSummary.back_cnt ? `<div class=\"calc-row\"><span class=\"calc-label\">후면 (${sideBackLabel})</span><span class=\"calc-value\">${currentSummary.back_cnt}자 × ${currentSummary.back_unit.toLocaleString('ko-KR')}원 = ${money(currentSummary.back_amt)}</span></div>` : ''}
-      ${currentSummary.stone_added ? `<div class=\"calc-row\"><span class=\"calc-label\">스톤포토</span><span class=\"calc-value\">${money(currentSummary.stone_amt)}</span></div>` : ''}
-      <div class=\"calc-total-line\">총 금액 : ${money(currentSummary.total)}</div>
+    <div class="calc-lines">
+      ${rows}
+      <div class="calc-total-line">총 금액 : ${money(s.total)}</div>
     </div>
-    <div class=\"calc-chips\">
-      <div class=\"calc-chip calc-chip-big\"><span>大 큰글씨</span><strong>${currentSummary.big_cnt}자 / ${money(currentSummary.big_amt)}</strong></div>
-      <div class=\"calc-chip calc-chip-small\"><span>小 작은글씨</span><strong>${smallTotalCnt}자 / ${money(smallTotalAmt)}</strong></div>
-      ${currentSummary.stone_added ? `<div class=\"calc-chip calc-chip-stone\"><span>스톤포토</span><strong>${money(currentSummary.stone_amt)}</strong></div>` : ''}
-      <div class=\"calc-chip calc-chip-total\"><span>최종 합계</span><strong>${money(currentSummary.total)}</strong></div>
+    <div class="calc-chips">
+      <div class="calc-chip calc-chip-big"><span>大 큰글씨</span><strong>${s.big_cnt}자 / ${money(s.big_amt)}</strong></div>
+      <div class="calc-chip calc-chip-small"><span>小 작은글씨</span><strong>${smallTotalCnt}자 / ${money(smallTotalAmt)}</strong></div>
+      ${s.stone_added ? `<div class="calc-chip calc-chip-stone"><span>스톤포토</span><strong>${money(s.stone_amt)}</strong></div>` : ''}
+      <div class="calc-chip calc-chip-total"><span>최종 합계</span><strong>${money(s.total)}</strong></div>
     </div>`;
 }
 async function saveForm(){
@@ -394,20 +1478,72 @@ async function saveForm(){
 }
 async function refreshList(){ const r=await fetch('/api/list'); savedList=await r.json(); renderList(savedList); }
 function renderList(list){
-  const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status].join(' ').toLowerCase().includes(q));
-  $('listBody').innerHTML = filtered.map(item=>`<div class="saved-card">
+  const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status,item.writer,item.designer,item.checker].join(' ').toLowerCase().includes(q));
+  $('listBody').innerHTML = filtered.map(item=>{
+    const staffChips=[item.writer&&`<span class="chip-staff">작성: ${esc(item.writer)}</span>`,item.designer&&`<span class="chip-staff">작업: ${esc(item.designer)}</span>`,item.checker&&`<span class="chip-staff">검수: ${esc(item.checker)}</span>`].filter(Boolean).join('');
+    return `<div class="saved-card">
     <div class="saved-card-top"></div><div class="saved-card-body">
       <div class="saved-title"><span>${esc(item.contract_no ? '#'+item.contract_no : '계약번호 없음')}</span><span>${esc(item.contractor||'계약자 없음')}</span><span class="saved-time">${esc(item.created_at)}</span></div>
-      <div class="saved-sub"><span>${esc(item.type_label)}</span></div>
-      <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${item.stone_photo==='추가'?'<span class="chip-mini chip-stone-red">스톤포토</span>':'<span class="chip-mini">스톤포토 없음</span>'}<span class="chip-mini chip-status">${esc(item.status||'접수됨')}</span><span class="saved-amount">${money(item.total)}</span></div>
+      <div class="saved-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span>${esc(item.type_label)}</span>${staffChips}</div>
+      <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${item.stone_photo==='추가'?'<span class="chip-mini chip-stone-red">스톤포토</span>':''}<span class="saved-amount">${money(item.total)}</span> <button class="btn small-btn btn-send" onclick="markSent('${item.id}')">시안문자발송</button></div>
     </div><div class="saved-actions"><button class="btn small-btn load-btn" onclick="loadItem('${item.id}')">불러오기</button><button class="btn small-btn del-btn" onclick="deleteItem('${item.id}')">삭제</button></div>
-  </div>`).join('') || `<div class="saved-card"><div class="saved-card-body" style="text-align:center;color:#9a816d">저장된 신청서가 없습니다.</div></div>`;
+  </div>`;}).join('') || `<div class="saved-card"><div class="saved-card-body" style="text-align:center;color:#9a816d">저장된 신청서가 없습니다.</div></div>`;
+}
+async function markSent(id){
+  const r=await fetch('/api/load/'+id); const out=await r.json(); if(!out.ok) return;
+  out.data.status='시안문자발송';
+  await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(out.data)});
+  refreshList();
 }
 function openList(){ refreshList(); $('drawerBg').classList.add('open'); $('drawer').classList.add('open'); }
 function closeList(){ $('drawerBg').classList.remove('open'); $('drawer').classList.remove('open'); }
 async function loadItem(id){ const r=await fetch('/api/load/'+id); const out=await r.json(); if(out.ok){ fillForm(out.data); closeList(); showPage('page1'); } }
 async function deleteItem(id){ if(!confirm('삭제할까요?')) return; await fetch('/api/delete/'+id,{method:'POST'}); refreshList(); }
-function newForm(){ if(confirm('새로 작성할까요? 입력 중인 내용은 지워집니다.')) location.reload(); }
+function newForm(){ if(confirm('전체 새로 작성할까요? 모든 입력 내용이 지워집니다.')) location.reload(); }
+function resetCurrentPage(){
+  const pg=document.querySelector('.page.active')?.id;
+  if(!confirm('현재 페이지 입력을 초기화할까요?')) return;
+  if(pg==='page1'){
+    ['contractNo','contractor','phone','jigu','yeol','ho'].forEach(id=>{const el=$(id);if(el)el.value='';});
+    const cat=$('category');if(cat){cat.value='매장묘';fillSubcategory('단장');}
+    ['writer','designer','checker'].forEach(id=>{const el=$(id);if(el)el.selectedIndex=0;});
+    const st=$('status');if(st)st.value='접수됨';
+    const wm=$('workMemo');if(wm)wm.value='';
+    updateTemplateLabel();
+  } else if(pg==='page2'){
+    const rm=$('religionMark');if(rm)rm.value='';
+    const ft=$('frontType');if(ft)ft.value='korean';
+    const sdt=$('sideType');if(sdt)sdt.value='korean';
+    const bt=$('backType');if(bt)bt.value='korean';
+    ['maleTitle','maleBongwan','maleName','femaleTitle','femaleBongwan','femaleName','jidmyo','familyBongwan'].forEach(id=>{const el=$(id);if(el)el.value='';});
+    ['s1Birth','s1Death','s2Birth','s2Death'].forEach(id=>{const el=$(id);if(el)el.value='';});
+    ['son_text','daughter_in_law_text','grandson_text','daughter_text','son_in_law_text','maternal_grandchild_text','etc_text'].forEach(n=>{const el=document.querySelector('[name="'+n+'"]');if(el)el.value='';});
+    const sp=$('stonePhoto');if(sp)sp.checked=false;
+    renderSlots(getRule().slots||1);
+    updateUI(); updatePreview(); calc();
+  }
+}
+
+// 📞 연락처 자동 하이픈
+function formatPhoneNumber(value){
+  const num = String(value || '').replace(/\D/g, '').slice(0, 11);
+  if(num.length <= 3) return num;
+  if(num.length <= 7) return num.slice(0, 3) + '-' + num.slice(3);
+  return num.slice(0, 3) + '-' + num.slice(3, 7) + '-' + num.slice(7, 11);
+}
+function bindPhoneAutoHyphen(){
+  const phoneInput = document.getElementById('phone');
+  if(!phoneInput) return;
+  phoneInput.setAttribute('maxlength', '13');
+  phoneInput.addEventListener('input', function(e){
+    e.target.value = formatPhoneNumber(e.target.value);
+  });
+  phoneInput.addEventListener('blur', function(e){
+    e.target.value = formatPhoneNumber(e.target.value);
+  });
+}
+bindPhoneAutoHyphen();
+
 init();
 </script>
 </body>
