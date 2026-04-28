@@ -252,17 +252,22 @@ def calc_summary(form):
 
     stone_enabled = (category, subcategory) in STONE_PHOTO_COMBOS
 
-    # 스톤포토는 고인별로 선택한다.
-    # 예: f1_stone_photo=yes, f2_stone_photo=yes 이면 2개 × 120,000원
+    # 스톤포토는 고인별 선택 개수로 계산한다.
+    # 예: 고인 2명 선택 → 120,000원 × 2 = 240,000원
     stone_count = 0
     if stone_enabled:
-        for i in range(1, slot_count + 1):
-            if form.get(f"f{i}_stone_photo") in ["yes", "추가", "있음", "on", "true", "1"]:
-                stone_count += 1
-        # 예전 저장 데이터 호환: 기존 전체 체크값만 있는 경우 1개로 처리
-        if stone_count == 0 and form.get("stone_photo") in ["yes", "추가", "있음", "on", "true", "1"]:
+        try:
+            stone_count = int(form.get("stone_photo_count") or 0)
+        except Exception:
+            stone_count = 0
+        if stone_count <= 0:
+            # 프론트에서 f1_stone_photo, f2_stone_photo ... 로 넘어오는 값 집계
+            for i in range(1, slot_count + 1):
+                if str(form.get(f"f{i}_stone_photo") or "") in ["yes", "추가", "있음", "on", "true", "1"]:
+                    stone_count += 1
+        # 구형 저장 데이터/구형 체크박스 호환
+        if stone_count <= 0 and form.get("stone_photo") in ["yes", "추가", "있음"]:
             stone_count = 1
-
     stone_added = stone_enabled and stone_count > 0
 
     big_k_amt = big_o * bk_u;  big_h_amt = big_h * bh_u
@@ -296,6 +301,7 @@ def calc_summary(form):
         "stone_enabled": stone_enabled,
         "stone_added": stone_added,
         "stone_count": stone_count,
+        "stone_unit": pg["stone_photo_price"],
         "stone_amt": stone_amt,
         "total": total,
         "price_group": rule["price_group"],
@@ -323,7 +329,7 @@ def make_summary_item(data, item_id=None, created_at=None):
         "checker": data.get("checker", ""),
         "big_amt": summary["big_amt"],
         "small_amt": summary["small_amt"] + summary["side_amt"] + summary["back_amt"],
-        "stone_photo": f"{summary.get('stone_count', 0)}개" if summary["stone_added"] else "없음",
+        "stone_photo": f"추가 {summary.get('stone_count', 1)}개" if summary["stone_added"] else "없음",
         "total": summary["total"],
     }
 
