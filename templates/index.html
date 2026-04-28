@@ -153,6 +153,11 @@ button,input,select,textarea{font-family:inherit}
 .calc-out-title{margin-top:28px!important}
 .slot-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:14px 0}.slot-head{font-weight:900;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}.slot-box .grid2,.maejang-front-card .grid3{row-gap:18px}.birth-row,.side-birth-row{margin:14px 0}.death-row{margin-top:14px}.birth-action{display:flex;justify-content:flex-end;margin-top:10px}.btn-add-birth{border:1.5px dashed var(--olive2);background:#eef2d2;color:var(--olive);border-radius:9px;padding:7px 12px;font-weight:900;cursor:pointer}.date-note{font-size:.68rem;font-weight:700;color:#9a816d;margin-left:4px}.maejang-front-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:12px 0 4px}
 .bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.input-stone-box{background:var(--red-soft);border:1.5px solid var(--red-line);border-radius:14px;padding:12px 14px;margin:14px 0 0;max-width:360px}.stone-photo-label{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:800;color:var(--red)}.stone-photo-label input[type=checkbox]{width:20px;height:20px;min-height:auto;accent-color:var(--red);cursor:pointer;border:none}
+.slot-stone-wrap{display:none;margin-top:12px;padding:10px 12px;border:1px dashed var(--red-line);border-radius:10px;background:#fff7f7;}
+.slot-stone-wrap.show{display:block;}
+.slot-stone-label{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:900;color:var(--red);cursor:pointer;}
+.slot-stone-label input[type=checkbox]{width:18px;height:18px;min-height:auto;accent-color:var(--red);}
+
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
@@ -775,6 +780,12 @@ function renderSlots(count){
         <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="f${i}_death" id="f${i}Death" /></div>
         <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option value="">선택</option><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
       </div>
+      <div class="slot-stone-wrap" id="stoneWrap${i}">
+        <label class="slot-stone-label">
+          <input type="checkbox" name="f${i}_stone_photo" id="f${i}StonePhoto" value="yes" onchange="updatePreview();calc();" />
+          <span>스톤포토 추가</span>
+        </label>
+      </div>
       <div class="birth-action"><button class="btn-add-birth" type="button" id="birthBtn${i}" onclick="showBirth(${i})">＋ 생년월일</button></div>
     </div>`;
   }
@@ -791,7 +802,7 @@ function removeSlot(i){
   const minSlots=getRule().slots||1, count=Number($('slotCount').value);
   if(count<=minSlots) return;
   const data=collectForm();
-  for(let n=i;n<count;n++){['name','baptism','birth','birth_type','death','death_type'].forEach(k=>data['f'+n+'_'+k]=data['f'+(n+1)+'_'+k]||'');}
+  for(let n=i;n<count;n++){['name','baptism','birth','birth_type','death','death_type','stone_photo'].forEach(k=>data['f'+n+'_'+k]=data['f'+(n+1)+'_'+k]||'');}
   data.slot_count=count-1;  // slot_count 먼저 갱신
   renderSlots(count-1); fillForm(data);
 }
@@ -847,7 +858,15 @@ function updateUI(resetSlots=false){
   ['frontTypeWrap','sideTypeWrap','backTypeWrap'].forEach(id=>{ const el=$(id); if(el) el.classList.toggle('hidden', !special); });
   const isMaejang=$('category').value==='매장묘'; $('sizeWrap').classList.toggle('hidden', !isMaejang);
   const STONE_COMBOS_UI=['단납/평장1기||기본','송수재||개인','송수재||부부','평장부부B||기본','평장부부P||기본','평장4기||기본'];
-  const stoneOk=STONE_COMBOS_UI.includes(ruleKey()); $('inputStoneBox').classList.toggle('hidden', !stoneOk); if(!stoneOk){ const sp=$('stonePhoto'); if(sp) sp.checked=false; }
+  const stoneOk=STONE_COMBOS_UI.includes(ruleKey());
+  // 스톤포토는 이제 전체 1개 체크가 아니라 고인별 체크로 계산한다.
+  const globalStoneBox=$('inputStoneBox');
+  if(globalStoneBox) globalStoneBox.classList.add('hidden');
+  document.querySelectorAll('.slot-stone-wrap').forEach(w=>w.classList.toggle('show', stoneOk));
+  if(!stoneOk){
+    const sp=$('stonePhoto'); if(sp) sp.checked=false;
+    document.querySelectorAll('input[name$="_stone_photo"]').forEach(cb=>cb.checked=false);
+  }
   const fpEl=$('familyPhraseWrap'); if(fpEl) fpEl.classList.toggle('hidden', !r.family_phrase);
   const bubuBLayoutEl = $('bubuBFrontLayoutWrap');
   if(bubuBLayoutEl) bubuBLayoutEl.classList.toggle('hidden', !(($('category').value==='평장부부B') && ($('subcategory').value==='기본')));
@@ -1062,9 +1081,34 @@ function _bububNameWithBaptism(nm, bp, classPrefix){
   return `${baptism?`<span class="pv-bp-front-inline">${esc(baptism)}</span>`:''}${name?esc(name):''}`;
 }
 
+
+function _isCheckedValue(v){
+  return ['yes','추가','있음','on','true','1'].includes(String(v||''));
+}
+function _stoneOnPerson(d, i){
+  return _isCheckedValue(d[`f${i}_stone_photo`]);
+}
+function _stoneAny(d){
+  const cnt=Number(d.slot_count||1);
+  for(let i=1;i<=cnt;i++){
+    if(_stoneOnPerson(d,i)) return true;
+  }
+  // 예전 저장 데이터 호환용
+  return _isCheckedValue(d.stone_photo);
+}
+function _stoneCount(d){
+  const cnt=Number(d.slot_count||1);
+  let n=0;
+  for(let i=1;i<=cnt;i++){
+    if(_stoneOnPerson(d,i)) n++;
+  }
+  if(n===0 && _isCheckedValue(d.stone_photo)) n=1;
+  return n;
+}
+
 function _renderBubuBDefaultFront(d){
   const rel=d.religion_mark||'';
-  const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+  const stoneOn = _stoneAny(d);
   const selected = d.bubub_front_layout || 'nameOnly';
   const layout = stoneOn ? 'stone' : selected;
   function dt(i){return _dateLine(d['f'+i+'_birth'],d['f'+i+'_birth_type'],d['f'+i+'_death'],d['f'+i+'_death_type']);}
@@ -1084,7 +1128,10 @@ function _renderBubuBDefaultFront(d){
     const nm=d['f'+i+'_name']||'', bp=d['f'+i+'_baptism']||'', date=dt(i);
     if(!nm&&!bp&&!date) return '';
     const nameHtml=_bububNameWithBaptism(nm,bp,'pv-bubub');
-    return `<div class="pv-bubub-stone-row"><div class="pv-song-photo-box"></div><div><div class="pv-bubub-stone-namebox"><span class="pv-bubub-stone-name">${nameHtml}</span></div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div></div>`;
+    if(_stoneOnPerson(d,i)){
+      return `<div class="pv-bubub-stone-row"><div class="pv-song-photo-box"></div><div><div class="pv-bubub-stone-namebox"><span class="pv-bubub-stone-name">${nameHtml}</span></div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div></div>`;
+    }
+    return `<div class="pv-bubub-person"><div class="pv-bubub-namebox"><span class="pv-bubub-name-only">${nameHtml}</span></div>${date?`<div class="pv-bubub-date">${date}</div>`:''}</div>`;
   }
   if(layout==='stone'){
     const rows=[personStone(1),personStone(2)].filter(Boolean).join('');
@@ -1370,7 +1417,7 @@ function updatePreview(){
     const dt=_dateLine(d.f1_birth,d.f1_birth_type,d.f1_death,d.f1_death_type);
     const nameBox=`<div class="pv-song-namebox">${bp?`<div class="pv-baptism">${esc(bp)}</div>`:''}${nm?`<div class="pv-name-lg">${esc(nm)}</div>`:'<span style="opacity:.3">성명</span>'}</div>`;
     const content=`<div class="pv-song-main song-couple"><div class="pv-song-religion-top">${_relHtml(rel,48)}</div>${nameBox}</div>`;
-    const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+    const stoneOn = _stoneOnPerson(d,1) || _isCheckedValue(d.stone_photo);
     $('pvNames').innerHTML= stoneOn
       ? `<div class="pv-song-stone-front"><div class="pv-song-photo-box"></div>${content}</div>`
       : `<div class="pv-song-front">${content}</div>`;
@@ -1381,7 +1428,7 @@ function updatePreview(){
     // 1인형: 이름 가로 크게 (세로쓰기 금지)
     const nm=d.f1_name||'',bp=d.f1_baptism||'';
     const dt=_dateLine(d.f1_birth,d.f1_birth_type,d.f1_death,d.f1_death_type);
-    const stoneOn = ['yes','추가','있음'].includes(String(d.stone_photo||''));
+    const stoneOn = _stoneOnPerson(d,1) || _isCheckedValue(d.stone_photo);
     const mainName = `${_relHtml(rel,52)}${(nm||bp)?_personHoz(nm,bp,''):'<span style="opacity:.3">성명</span>'}`;
     $('pvNames').innerHTML = stoneOn
       ? `<div class="pv-single-stone-front"><div class="pv-song-photo-box"></div><div class="pv-single-stone-main">${mainName}</div></div>`
@@ -1459,7 +1506,7 @@ async function calc(){
   if(!s.big_korean_cnt && !s.big_hanja_cnt) rows+=`<div class="calc-row"><span class="calc-label">큰글자</span><span class="calc-value">0자</span></div>`;
   if(s.small_korean_cnt) rows+=`<div class="calc-row"><span class="calc-label">작은글자 한글</span><span class="calc-value">${s.small_korean_cnt}자 × ${s.small_korean_unit.toLocaleString('ko-KR')}원 = ${money(s.small_korean_amt)}</span></div>`;
   if(s.small_hanja_cnt)  rows+=`<div class="calc-row"><span class="calc-label">작은글자 한자</span><span class="calc-value">${s.small_hanja_cnt}자 × ${s.small_hanja_unit.toLocaleString('ko-KR')}원 = ${money(s.small_hanja_amt)}</span></div>`;
-  if(s.stone_added) rows+=`<div class="calc-row"><span class="calc-label">스톤포토</span><span class="calc-value">${money(s.stone_amt)}</span></div>`;
+  if(s.stone_added) rows+=`<div class="calc-row"><span class="calc-label">스톤포토</span><span class="calc-value">${s.stone_count||1}개 × 120,000원 = ${money(s.stone_amt)}</span></div>`;
   $('summaryBox').innerHTML=`
     <div class="calc-lines">
       ${rows}
@@ -1468,7 +1515,7 @@ async function calc(){
     <div class="calc-chips">
       <div class="calc-chip calc-chip-big"><span>大 큰글씨</span><strong>${s.big_cnt}자 / ${money(s.big_amt)}</strong></div>
       <div class="calc-chip calc-chip-small"><span>小 작은글씨</span><strong>${smallTotalCnt}자 / ${money(smallTotalAmt)}</strong></div>
-      ${s.stone_added ? `<div class="calc-chip calc-chip-stone"><span>스톤포토</span><strong>${money(s.stone_amt)}</strong></div>` : ''}
+      ${s.stone_added ? `<div class="calc-chip calc-chip-stone"><span>스톤포토 ${s.stone_count||1}개</span><strong>${money(s.stone_amt)}</strong></div>` : ''}
       <div class="calc-chip calc-chip-total"><span>최종 합계</span><strong>${money(s.total)}</strong></div>
     </div>`;
 }
@@ -1485,7 +1532,7 @@ function renderList(list){
     <div class="saved-card-top"></div><div class="saved-card-body">
       <div class="saved-title"><span>${esc(item.contract_no ? '#'+item.contract_no : '계약번호 없음')}</span><span>${esc(item.contractor||'계약자 없음')}</span><span class="saved-time">${esc(item.created_at)}</span></div>
       <div class="saved-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span>${esc(item.type_label)}</span>${staffChips}</div>
-      <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${item.stone_photo==='추가'?'<span class="chip-mini chip-stone-red">스톤포토</span>':''}<span class="saved-amount">${money(item.total)}</span> <button class="btn small-btn btn-send" onclick="markSent('${item.id}')">시안문자발송</button></div>
+      <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${item.stone_photo&&item.stone_photo!=='없음'?`<span class="chip-mini chip-stone-red">스톤포토 ${esc(item.stone_photo)}</span>`:''}<span class="saved-amount">${money(item.total)}</span> <button class="btn small-btn btn-send" onclick="markSent('${item.id}')">시안문자발송</button></div>
     </div><div class="saved-actions"><button class="btn small-btn load-btn" onclick="loadItem('${item.id}')">불러오기</button><button class="btn small-btn del-btn" onclick="deleteItem('${item.id}')">삭제</button></div>
   </div>`;}).join('') || `<div class="saved-card"><div class="saved-card-body" style="text-align:center;color:#9a816d">저장된 신청서가 없습니다.</div></div>`;
 }
