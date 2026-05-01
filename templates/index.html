@@ -713,7 +713,7 @@ button,input,select,textarea{font-family:inherit}
 <div class="drawer-bg" id="drawerBg" onclick="closeList()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-head"><h2>저장목록</h2><button class="btn" type="button" onclick="closeList()">닫기</button></div>
-  <div class="drawer-search"><input id="listSearch" placeholder="계약번호, 계약자, 유형으로 검색" oninput="renderList(savedList)" /></div>
+  <div class="drawer-search"><input id="listSearch" placeholder="계약번호 / 계약자 / 유형 / 위치(지구·열·호) 검색" oninput="renderList(savedList)" /></div>
   <div class="drawer-body"><div id="listBody"></div></div>
 </div>
 
@@ -1582,14 +1582,18 @@ async function saveForm(){
   if(out.ok){ $('dataId').value=out.id; if(!$('createdAt').value) $('createdAt').value=out.item.created_at; $('saveMsg').textContent='저장 완료'; setTimeout(()=>$('saveMsg').textContent='',1800); await refreshList(); } else alert('저장 실패');
 }
 async function refreshList(){ const r=await fetch('/api/list'); savedList=await r.json(); renderList(savedList); }
+function locationLabel(item){
+  const parts=[item.jigu&&(item.jigu+'지구'), item.yeol&&(item.yeol+'열'), item.ho&&(item.ho+'호')].filter(Boolean);
+  return parts.join(' ');
+}
 function renderList(list){
-  const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status,item.writer,item.designer,item.checker].join(' ').toLowerCase().includes(q));
+  const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status,item.writer,item.designer,item.checker,item.jigu,item.yeol,item.ho,locationLabel(item)].join(' ').toLowerCase().includes(q));
   $('listBody').innerHTML = filtered.map(item=>{
     const staffChips=[item.writer&&`<span class="chip-staff">작성: ${esc(item.writer)}</span>`,item.designer&&`<span class="chip-staff">작업: ${esc(item.designer)}</span>`,item.checker&&`<span class="chip-staff">검수: ${esc(item.checker)}</span>`].filter(Boolean).join('');
     return `<div class="saved-card">
     <div class="saved-card-top"></div><div class="saved-card-body">
       <div class="saved-title"><span>${esc(item.contract_no ? '#'+item.contract_no : '계약번호 없음')}</span><span>${esc(item.contractor||'계약자 없음')}</span><span class="saved-time">${esc(item.created_at)}</span></div>
-      <div class="saved-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span>${esc(item.type_label)}</span>${staffChips}</div>
+      <div class="saved-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span>${esc(item.type_label)}</span>${locationLabel(item)?`<span class="chip-mini" style="background:#eef2d2;border-color:#c8d094;color:#5d6b20">📍 ${esc(locationLabel(item))}</span>`:''}${staffChips}</div>
       <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${String(item.stone_photo||'').startsWith('추가')?`<span class="chip-mini chip-stone-red">${esc(item.stone_photo)}</span>`:''}<span class="saved-amount">${money(item.total)}</span> <button class="btn small-btn btn-send" onclick="markSent('${item.id}')">시안문자발송</button></div>
     </div><div class="saved-actions"><button class="btn small-btn load-btn" onclick="loadItem('${item.id}')">불러오기</button><button class="btn small-btn del-btn" onclick="deleteItem('${item.id}')">삭제</button></div>
   </div>`;}).join('') || `<div class="saved-card"><div class="saved-card-body" style="text-align:center;color:#9a816d">저장된 신청서가 없습니다.</div></div>`;

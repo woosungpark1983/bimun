@@ -334,6 +334,9 @@ def make_summary_item(data, item_id=None, created_at=None):
         "small_amt": summary["small_amt"] + summary["side_amt"] + summary["back_amt"],
         "stone_photo": f"추가 {summary.get('stone_count', 1)}개" if summary["stone_added"] else "없음",
         "total": summary["total"],
+        "jigu": data.get("jigu", ""),
+        "yeol": data.get("yeol", ""),
+        "ho": data.get("ho", ""),
     }
 
 

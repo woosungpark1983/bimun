@@ -21,7 +21,8 @@ _TABLE = "bimun_records"
 _SUMMARY_COLS = (
     "id,created_at,contract_no,contractor,phone,type_label,"
     "category,subcategory,status,writer,designer,checker,"
-    "big_amt,small_amt,stone_photo,total"
+    "big_amt,small_amt,stone_photo,total,"
+    "jigu,yeol,ho"
 )
 
 _client: Optional[Client] = None
@@ -72,6 +73,9 @@ def _to_summary(row: dict) -> dict:
         "small_amt":   row.get("small_amt", 0),
         "stone_photo": row.get("stone_photo", "없음"),
         "total":       row.get("total", 0),
+        "jigu":        row.get("jigu", ""),
+        "yeol":        row.get("yeol", ""),
+        "ho":          row.get("ho", ""),
     }
 
 
@@ -106,6 +110,9 @@ def save_record(item_id: str, summary_item: dict, full_data: dict) -> dict:
         "small_amt":   int(summary_item.get("small_amt", 0) or 0),
         "stone_photo": summary_item.get("stone_photo", "없음") or "없음",
         "total":       int(summary_item.get("total", 0) or 0),
+        "jigu":        summary_item.get("jigu", "") or "",
+        "yeol":        summary_item.get("yeol", "") or "",
+        "ho":          summary_item.get("ho", "") or "",
         "data":        full_data,
     }
     res = _get_client().table(_TABLE).upsert(row).execute()

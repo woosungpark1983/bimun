@@ -24,14 +24,20 @@ create table if not exists bimun_records (
   stone_photo text not null default '없음',
   total       integer not null default 0,
 
+  -- 묘 위치 (used both for search and to spot prior 신청서 in the same plot)
+  jigu        text not null default '',
+  yeol        text not null default '',
+  ho          text not null default '',
+
   -- Full form payload (everything else the form captures)
   data jsonb not null default '{}'::jsonb
 );
 
-create index if not exists idx_bimun_created_at  on bimun_records (created_at desc);
-create index if not exists idx_bimun_contract_no on bimun_records (contract_no);
-create index if not exists idx_bimun_contractor  on bimun_records (contractor);
-create index if not exists idx_bimun_status      on bimun_records (status);
+create index if not exists idx_bimun_created_at   on bimun_records (created_at desc);
+create index if not exists idx_bimun_contract_no  on bimun_records (contract_no);
+create index if not exists idx_bimun_contractor   on bimun_records (contractor);
+create index if not exists idx_bimun_status       on bimun_records (status);
+create index if not exists idx_bimun_jigu_yeol_ho on bimun_records (jigu, yeol, ho);
 
 -- Internal staff tool — RLS off. If multi-tenant later, enable RLS and add policies.
 alter table bimun_records disable row level security;
