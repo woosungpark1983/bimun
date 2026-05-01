@@ -17,12 +17,13 @@ from supabase import Client, create_client
 _KST = timezone(timedelta(hours=9))
 
 _TABLE = "bimun_records"
+_DRAFT_BUCKET = "bimun-drafts"
 
 _SUMMARY_COLS = (
     "id,created_at,contract_no,contractor,phone,type_label,"
     "category,subcategory,status,writer,designer,checker,"
     "big_amt,small_amt,stone_photo,total,"
-    "jigu,yeol,ho"
+    "jigu,yeol,ho,draft_url"
 )
 
 _client: Optional[Client] = None
@@ -76,6 +77,7 @@ def _to_summary(row: dict) -> dict:
         "jigu":        row.get("jigu", ""),
         "yeol":        row.get("yeol", ""),
         "ho":          row.get("ho", ""),
+        "draft_url":   row.get("draft_url", ""),
     }
 
 
@@ -139,4 +141,50 @@ def load_record(item_id: str) -> Optional[dict]:
 
 
 def delete_record(item_id: str) -> None:
+    # Best-effort: remove any uploaded 시안 from Storage first, then drop the row.
+    try:
+        delete_draft(item_id)
+    except Exception:
+        pass
     _get_client().table(_TABLE).delete().eq("id", item_id).execute()
+
+
+# ── Storage operations (시안 jpg) — service_role required to manage bucket objects ──
+
+def _get_admin_client() -> Client:
+    """Service-role client for privileged ops (Storage uploads, schema-bypass writes)."""
+    sk = os.environ.get("SUPABASE_SERVICE_KEY", "").strip()
+    url = os.environ.get("SUPABASE_URL", "").strip()
+    if not sk or not url:
+        raise RuntimeError(
+            "SUPABASE_SERVICE_KEY and SUPABASE_URL are required for admin operations. "
+            "Add SUPABASE_SERVICE_KEY to .env (local) and to Vercel project settings."
+        )
+    return create_client(url, sk)
+
+
+def upload_draft(item_id: str, file_bytes: bytes, content_type: str) -> str:
+    """Upload a 사인프로 시안 image, return its public URL, and persist to draft_url."""
+    admin = _get_admin_client()
+    storage_api = admin.storage.from_(_DRAFT_BUCKET)
+    # Always upsert under the record id so re-uploads replace the previous file.
+    storage_api.upload(
+        item_id,
+        file_bytes,
+        file_options={"content-type": content_type, "upsert": "true"},
+    )
+    public_url = storage_api.get_public_url(item_id).rstrip("?")
+    # Cache-bust so browsers don't show the previous draft after a replace.
+    public_url = f"{public_url}?v={item_id[:8]}-{len(file_bytes)}"
+    admin.table(_TABLE).update({"draft_url": public_url}).eq("id", item_id).execute()
+    return public_url
+
+
+def delete_draft(item_id: str) -> None:
+    """Remove the 시안 image from Storage and clear draft_url. Silent if not present."""
+    admin = _get_admin_client()
+    try:
+        admin.storage.from_(_DRAFT_BUCKET).remove([item_id])
+    except Exception:
+        pass
+    admin.table(_TABLE).update({"draft_url": ""}).eq("id", item_id).execute()

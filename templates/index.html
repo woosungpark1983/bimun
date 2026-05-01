@@ -157,6 +157,7 @@ button,input,select,textarea{font-family:inherit}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
 .saved-card{background:#fff;border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;box-shadow:var(--shadow)}.saved-card-top{height:4px;background:linear-gradient(90deg,var(--olive),var(--gold))}.saved-card-body{padding:12px 14px}.saved-title{display:flex;align-items:center;gap:8px;font-weight:900;font-size:.98rem;line-height:1.35}.saved-time{margin-left:auto;color:#b8a090;font-size:.72rem;font-weight:700;white-space:nowrap}.saved-sub{margin-top:4px;color:var(--brown2);font-size:.84rem;display:flex;gap:12px;flex-wrap:wrap}.saved-chips{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:9px}.chip-mini{border:1px solid var(--line);background:#faf8f0;border-radius:999px;padding:4px 9px;font-size:.75rem;font-weight:800;color:var(--brown2)}.chip-stone-red{border-color:#e0aaaa;background:#f8eeee;color:#a94b4b}.chip-status{border-color:#d5c798;background:#fff8d8;color:#6b5a14}.saved-amount{margin-left:auto;background:#f8f1dd;border:1px solid var(--line);border-radius:9px;padding:5px 11px;font-weight:900;white-space:nowrap}.saved-actions{display:flex;gap:8px;background:var(--ivory);border-top:1px solid var(--line);padding:9px 12px}.saved-actions .load-btn{flex:1;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}.saved-actions .del-btn{color:var(--red)}
+.saved-draft{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}.draft-thumb{width:64px;height:64px;object-fit:cover;border:1px solid var(--line);border-radius:8px;background:#000}.draft-upload{display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-size:.78rem;font-weight:800;color:var(--brown2);border:1.5px dashed var(--olive2);background:#eef2d2;border-radius:9px;padding:6px 12px}.draft-upload:hover{background:#dfe7c0}
 
 /* === 2026-04 계산/레이아웃 패치 === */
 .bimun-layout{grid-template-columns:6fr 4fr!important;}
@@ -1586,6 +1587,37 @@ function locationLabel(item){
   const parts=[item.jigu&&(item.jigu+'지구'), item.yeol&&(item.yeol+'열'), item.ho&&(item.ho+'호')].filter(Boolean);
   return parts.join(' ');
 }
+function draftSection(item){
+  if(item.draft_url){
+    return `<div class="saved-draft">
+      <a href="${esc(item.draft_url)}" target="_blank" rel="noopener"><img class="draft-thumb" src="${esc(item.draft_url)}" alt="시안" /></a>
+      <span class="chip-mini" style="background:#ebf2ea;border-color:#c8e0cc;color:#3a6b43">📎 시안 업로드됨</span>
+      <label class="draft-upload">교체<input type="file" accept="image/jpeg,image/png,image/webp" hidden onchange="uploadDraft('${item.id}', this)" /></label>
+      <button class="btn small-btn btn-danger" onclick="deleteDraft('${item.id}')">제거</button>
+    </div>`;
+  }
+  return `<div class="saved-draft">
+    <label class="draft-upload">📎 사인프로 시안 업로드<input type="file" accept="image/jpeg,image/png,image/webp" hidden onchange="uploadDraft('${item.id}', this)" /></label>
+  </div>`;
+}
+async function uploadDraft(id, input){
+  const file=input.files&&input.files[0]; if(!file) return;
+  const fd=new FormData(); fd.append('file', file);
+  input.disabled=true;
+  try{
+    const r=await fetch('/api/draft/'+id, {method:'POST', body:fd});
+    const out=await r.json();
+    if(out.ok){ await refreshList(); }
+    else alert('업로드 실패: '+(out.error||'unknown'));
+  }catch(e){ alert('업로드 실패: '+e.message); }
+  finally{ input.disabled=false; input.value=''; }
+}
+async function deleteDraft(id){
+  if(!confirm('업로드된 시안을 제거할까요?')) return;
+  const r=await fetch('/api/draft/'+id, {method:'DELETE'});
+  const out=await r.json();
+  if(out.ok) refreshList(); else alert('제거 실패: '+(out.error||''));
+}
 function renderList(list){
   const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status,item.writer,item.designer,item.checker,item.jigu,item.yeol,item.ho,locationLabel(item)].join(' ').toLowerCase().includes(q));
   $('listBody').innerHTML = filtered.map(item=>{
@@ -1595,6 +1627,7 @@ function renderList(list){
       <div class="saved-title"><span>${esc(item.contract_no ? '#'+item.contract_no : '계약번호 없음')}</span><span>${esc(item.contractor||'계약자 없음')}</span><span class="saved-time">${esc(item.created_at)}</span></div>
       <div class="saved-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:4px"><span>${esc(item.type_label)}</span>${locationLabel(item)?`<span class="chip-mini" style="background:#eef2d2;border-color:#c8d094;color:#5d6b20">📍 ${esc(locationLabel(item))}</span>`:''}${staffChips}</div>
       <div class="saved-chips"><span class="chip-mini">큰글자 ${money(item.big_amt)}</span><span class="chip-mini">작은글자 ${money(item.small_amt)}</span>${String(item.stone_photo||'').startsWith('추가')?`<span class="chip-mini chip-stone-red">${esc(item.stone_photo)}</span>`:''}<span class="saved-amount">${money(item.total)}</span> <button class="btn small-btn btn-send" onclick="markSent('${item.id}')">시안문자발송</button></div>
+      ${draftSection(item)}
     </div><div class="saved-actions"><button class="btn small-btn load-btn" onclick="loadItem('${item.id}')">불러오기</button><button class="btn small-btn del-btn" onclick="deleteItem('${item.id}')">삭제</button></div>
   </div>`;}).join('') || `<div class="saved-card"><div class="saved-card-body" style="text-align:center;color:#9a816d">저장된 신청서가 없습니다.</div></div>`;
 }

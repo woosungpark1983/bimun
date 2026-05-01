@@ -392,6 +392,40 @@ def api_delete(item_id):
     return jsonify({"ok": True})
 
 
+_ALLOWED_DRAFT_MIME = {"image/jpeg", "image/png", "image/webp"}
+_MAX_DRAFT_BYTES = 10 * 1024 * 1024  # 10 MB matches the bucket policy
+
+
+@app.route("/api/draft/<item_id>", methods=["POST"])
+def api_draft_upload(item_id):
+    """사인프로 시안 jpg 업로드. multipart/form-data with field 'file'."""
+    f = request.files.get("file")
+    if not f:
+        return jsonify({"ok": False, "error": "no file"}), 400
+    blob = f.read()
+    if len(blob) > _MAX_DRAFT_BYTES:
+        return jsonify({"ok": False, "error": "file too large (max 10MB)"}), 413
+    content_type = (f.mimetype or "").lower() or "image/jpeg"
+    if content_type not in _ALLOWED_DRAFT_MIME:
+        return jsonify({"ok": False, "error": f"unsupported type: {content_type}"}), 415
+    try:
+        url = storage.upload_draft(item_id, blob, content_type)
+    except Exception as e:
+        app.logger.exception("draft upload failed")
+        return jsonify({"ok": False, "error": str(e)}), 500
+    return jsonify({"ok": True, "draft_url": url})
+
+
+@app.route("/api/draft/<item_id>", methods=["DELETE"])
+def api_draft_delete(item_id):
+    try:
+        storage.delete_draft(item_id)
+    except Exception as e:
+        app.logger.exception("draft delete failed")
+        return jsonify({"ok": False, "error": str(e)}), 500
+    return jsonify({"ok": True})
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=True)
