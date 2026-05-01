@@ -6,8 +6,15 @@
 
 import os
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from flask import Flask, render_template, request, jsonify
+
+# Vercel runs in UTC; force timestamps to KST so the saved-list display matches what staff expect.
+_KST = timezone(timedelta(hours=9))
+
+
+def _now_kst() -> str:
+    return datetime.now(_KST).strftime("%Y-%m-%d %H:%M")
 
 # Local .env support — silent no-op if python-dotenv isn't installed (e.g. on Vercel where env vars come from the dashboard).
 try:
@@ -309,7 +316,7 @@ def make_summary_item(data, item_id=None, created_at=None):
     summary = calc_summary(data)
     category = data.get("category", "")
     subcategory = data.get("subcategory", "")
-    now = created_at or datetime.now().strftime("%Y-%m-%d %H:%M")
+    now = created_at or _now_kst()
     return {
         "id": item_id or str(uuid.uuid4()),
         "created_at": now,
@@ -353,10 +360,10 @@ def api_calc():
 def api_save():
     data = request.get_json(force=True) or {}
     item_id = data.get("id") or str(uuid.uuid4())
-    created_at = data.get("created_at") or datetime.now().strftime("%Y-%m-%d %H:%M")
+    created_at = data.get("created_at") or _now_kst()
     data["id"] = item_id
     data["created_at"] = created_at
-    data["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
+    data["updated_at"] = _now_kst()
 
     summary_item = make_summary_item(data, item_id=item_id, created_at=created_at)
     saved = storage.save_record(item_id, summary_item, data)
