@@ -1,22 +1,24 @@
 """
 비문 신청서 시스템 (Flask)
 - PC 상담/작업용 2페이지 구조
-- 저장 데이터 중심
-- 저장 파일: saved_data/*.json, saved_data/_index.json
+- 저장소: Supabase (storage.py 어댑터 경유)
 """
 
 import os
-import json
 import uuid
 from datetime import datetime
 from flask import Flask, render_template, request, jsonify
 
-app = Flask(__name__)
+# Local .env support — silent no-op if python-dotenv isn't installed (e.g. on Vercel where env vars come from the dashboard).
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-SAVE_DIR = os.path.join(BASE_DIR, "saved_data")
-os.makedirs(SAVE_DIR, exist_ok=True)
-INDEX_FILE = os.path.join(SAVE_DIR, "_index.json")
+import storage
+
+app = Flask(__name__)
 
 CATALOG = {
     "매장묘": ["단장", "쌍분"],
@@ -84,18 +86,12 @@ for c, subs in CATALOG.items():
 
 
 def _read_index():
-    if not os.path.exists(INDEX_FILE):
-        return []
+    """List view — delegates to Supabase. Errors return [] so the page still renders."""
     try:
-        with open(INDEX_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except Exception:
+        return storage.list_records()
+    except Exception as e:
+        app.logger.warning("storage.list_records failed: %s", e)
         return []
-
-
-def _write_index(items):
-    with open(INDEX_FILE, "w", encoding="utf-8") as f:
-        json.dump(items, f, ensure_ascii=False, indent=2)
 
 
 def count_chars(text):
@@ -362,15 +358,9 @@ def api_save():
     data["created_at"] = created_at
     data["updated_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")
 
-    with open(os.path.join(SAVE_DIR, f"{item_id}.json"), "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-    items = _read_index()
     summary_item = make_summary_item(data, item_id=item_id, created_at=created_at)
-    items = [x for x in items if x.get("id") != item_id]
-    items.insert(0, summary_item)
-    _write_index(items)
-    return jsonify({"ok": True, "id": item_id, "item": summary_item})
+    saved = storage.save_record(item_id, summary_item, data)
+    return jsonify({"ok": True, "id": item_id, "item": saved})
 
 
 @app.route("/api/list")
@@ -380,20 +370,15 @@ def api_list():
 
 @app.route("/api/load/<item_id>")
 def api_load(item_id):
-    path = os.path.join(SAVE_DIR, f"{item_id}.json")
-    if not os.path.exists(path):
+    payload = storage.load_record(item_id)
+    if payload is None:
         return jsonify({"ok": False, "error": "not found"}), 404
-    with open(path, "r", encoding="utf-8") as f:
-        return jsonify({"ok": True, "data": json.load(f)})
+    return jsonify({"ok": True, "data": payload})
 
 
 @app.route("/api/delete/<item_id>", methods=["POST"])
 def api_delete(item_id):
-    path = os.path.join(SAVE_DIR, f"{item_id}.json")
-    if os.path.exists(path):
-        os.remove(path)
-    items = [x for x in _read_index() if x.get("id") != item_id]
-    _write_index(items)
+    storage.delete_record(item_id)
     return jsonify({"ok": True})
 
 
