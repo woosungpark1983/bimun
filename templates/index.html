@@ -153,6 +153,20 @@ button,input,select,textarea{font-family:inherit}
 .calc-out-title{margin-top:28px!important}
 .slot-box{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:14px 0}.slot-head{font-weight:900;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center}.slot-box .grid2,.maejang-front-card .grid3{row-gap:18px}.birth-row,.side-birth-row{margin:14px 0}.death-row{margin-top:14px}.birth-action{display:flex;justify-content:flex-end;margin-top:10px}.btn-add-birth{border:1.5px dashed var(--olive2);background:#eef2d2;color:var(--olive);border-radius:9px;padding:7px 12px;font-weight:900;cursor:pointer}.date-note{font-size:.68rem;font-weight:700;color:#9a816d;margin-left:4px}.maejang-front-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fbf8ea;margin:12px 0 4px}
 .bimun-head-row{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:12px}.input-stone-box{background:var(--red-soft);border:1.5px solid var(--red-line);border-radius:14px;padding:12px 14px;margin:14px 0 0;max-width:360px}.stone-photo-label{display:flex;align-items:center;gap:10px;cursor:pointer;font-weight:800;color:var(--red)}.stone-photo-label input[type=checkbox]{width:20px;height:20px;min-height:auto;accent-color:var(--red);cursor:pointer;border:none}
+/* === 매장묘 couple-panel (남|여 2-컬럼, 종이 양식 구조 매칭) === */
+.maejang-couple-card{padding:0!important;background:transparent!important;border:none!important;box-shadow:none!important}
+.couple-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.couple-col{background:#fbf8ea;border:1px solid var(--line);border-radius:16px;padding:18px 18px;display:flex;flex-direction:column;gap:12px;box-shadow:0 2px 12px rgba(62,46,30,.04)}
+.couple-col-male{border-color:#c8d2e6;background:#f5f8fc}
+.couple-col-female{border-color:#e8c8d4;background:#fcf5f7}
+.couple-col-head{display:inline-block;align-self:flex-start;font-weight:900;font-size:.92rem;letter-spacing:.04em;padding:5px 14px;border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--brown)}
+.couple-col-male .couple-col-head{color:#3a5b8a;border-color:#c8d2e6;background:#fff}
+.couple-col-female .couple-col-head{color:#9a4a6a;border-color:#e8c8d4;background:#fff}
+.couple-divider{height:1px;background:var(--line);margin:4px -4px;opacity:.6}
+.couple-col .grid2{gap:10px}
+.couple-col .birth-action{display:flex;justify-content:center;margin-top:2px}
+.couple-col .btn-add-birth{width:100%}
+@media (max-width: 1100px){.couple-grid{grid-template-columns:1fr}}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
@@ -599,14 +613,41 @@ button,input,select,textarea{font-family:inherit}
               <div class="is-big"><label class="lbl">종교 마크</label><select name="religion_mark" id="religionMark"><option value="">없음</option><option>불교</option><option>기독교</option><option>천주교</option></select></div>
               <div class="is-big hidden" id="jidmyoWrap"><label class="lbl">지묘 문구</label><input name="jidmyo" id="jidmyo" placeholder="예: 지묘" /></div>
             </div>
-            <div id="maejangFront" class="maejang-front-card hidden">
-              <div class="grid3">
-                <div class="is-big"><label class="lbl">남자 호칭</label><input name="male_title" id="maleTitle" placeholder="예) 학생 / 성도 / 교우 / 學生" /></div>
-                <div class="is-big"><label class="lbl">남자 본관 <span class="note">&lt;공 자동&gt;</span></label><input name="male_bongwan" id="maleBongwan" /></div>
-                <div class="is-big"><label class="lbl">남자 이름</label><input name="male_name" id="maleName" /></div>
-                <div class="is-big"><label class="lbl">여자 호칭</label><input name="female_title" id="femaleTitle" placeholder="예) 유인 / 성도 / 교우 / 孺人" /></div>
-                <div class="is-big"><label class="lbl">여자 본관 <span class="note">&lt;씨 자동&gt;</span></label><input name="female_bongwan" id="femaleBongwan" /></div>
-                <div class="is-big"><label class="lbl">여자 이름</label><input name="female_name" id="femaleName" /></div>
+            <div id="maejangFront" class="maejang-couple-card hidden">
+              <div class="couple-grid">
+                <div class="couple-col couple-col-male">
+                  <div class="couple-col-head">남</div>
+                  <div class="is-big"><label class="lbl">호칭</label><input name="male_title" id="maleTitle" placeholder="예) 학생 / 성도 / 교우 / 學生" /></div>
+                  <div class="is-big"><label class="lbl">본관 <span class="note">&lt;공 자동&gt;</span></label><input name="male_bongwan" id="maleBongwan" /></div>
+                  <div class="is-big"><label class="lbl">이름</label><input name="male_name" id="maleName" /></div>
+                  <div class="couple-divider"></div>
+                  <div class="grid2">
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_death" id="s1Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type" id="s1DeathType"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
+                  </div>
+                  <div class="side-birth-row hidden" id="sideBirthRow1"><div class="grid2">
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_birth" id="s1Birth" /></div>
+                    <div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type" id="s1BirthType" onchange="sideBirthTypeChanged(1)"><option>생</option><option>없음</option></select></div>
+                  </div></div>
+                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn1" onclick="showSideBirth(1)">＋ 생년월일</button></div>
+                </div>
+
+                <div class="couple-col couple-col-female">
+                  <div class="couple-col-head">여</div>
+                  <div class="is-big"><label class="lbl">호칭</label><input name="female_title" id="femaleTitle" placeholder="예) 유인 / 성도 / 교우 / 孺人" /></div>
+                  <div class="is-big"><label class="lbl">본관 <span class="note">&lt;씨 자동&gt;</span></label><input name="female_bongwan" id="femaleBongwan" /></div>
+                  <div class="is-big"><label class="lbl">이름</label><input name="female_name" id="femaleName" /></div>
+                  <div class="couple-divider"></div>
+                  <div class="grid2">
+                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_death" id="s2Death" /></div>
+                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type" id="s2DeathType"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
+                  </div>
+                  <div class="side-birth-row hidden" id="sideBirthRow2"><div class="grid2">
+                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_birth" id="s2Birth" /></div>
+                    <div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type" id="s2BirthType" onchange="sideBirthTypeChanged(2)"><option>생</option><option>없음</option></select></div>
+                  </div></div>
+                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn2" onclick="showSideBirth(2)">＋ 생년월일</button></div>
+                </div>
               </div>
             </div>
             <div id="standardFront">
@@ -626,38 +667,10 @@ button,input,select,textarea{font-family:inherit}
             </div>
           </div>
 
-          <div id="sideSection">
-            <div class="sub-section-title">측면</div>
-            <div class="card">
-              <div class="hidden" id="sideTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">측면 문자</label><select name="side_type" id="sideType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
-              <div class="grid2">
-                <div class="slot-box">
-                  <div class="slot-head">남</div>
-                  <div class="side-birth-row hidden" id="sideBirthRow1"><div class="grid2">
-                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_birth" id="s1Birth" /></div>
-                    <div class="is-small"><label class="lbl">생 표현</label><select name="s1_birth_type" id="s1BirthType"><option>생</option><option>없음</option></select></div>
-                  </div></div>
-                  <div class="grid2 death-row">
-                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s1_death" id="s1Death" /></div>
-                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s1_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
-                  </div>
-                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn1" onclick="showSideBirth(1)">＋ 생년월일</button></div>
-                </div>
-                <div class="slot-box">
-                  <div class="slot-head">여</div>
-                  <div class="side-birth-row hidden" id="sideBirthRow2"><div class="grid2">
-                    <div class="is-small"><label class="lbl">생년월일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_birth" id="s2Birth" /></div>
-                    <div class="is-small"><label class="lbl">생 표현</label><select name="s2_birth_type" id="s2BirthType"><option>생</option><option>없음</option></select></div>
-                  </div></div>
-                  <div class="grid2 death-row">
-                    <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="s2_death" id="s2Death" /></div>
-                    <div class="is-small"><label class="lbl">사망 표현</label><select name="s2_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
-                  </div>
-                  <div class="birth-action"><button class="btn-add-birth" type="button" id="sideBirthBtn2" onclick="showSideBirth(2)">＋ 생년월일</button></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <!-- 측면 섹션은 매장묘/평장부부B 2번의 사망일 입력을 위해 사용했으나
+               전면 couple-panel(maejangFront)로 통합되어 제거됨. 측면 문자(한글/한자)
+               토글이 필요한 경우는 전면 문자 토글로 대체. -->
+          <div id="sideSection" class="hidden"></div>
 
           <div class="sub-section-title">후면</div>
           <div class="card">
@@ -899,7 +912,8 @@ function updateUI(resetSlots=false){
   updateReligionOptions();
   const r=getRule();
   const special = isMaejangFront();
-  $('sideSection').classList.toggle('hidden', !r.has_side);
+  // 측면 섹션은 비워서 항상 숨김 — 사망일은 maejangFront couple-panel 안으로 통합됨.
+  $('sideSection').classList.add('hidden');
   $('maejangFront').classList.toggle('hidden', !special);
   $('standardFront').classList.toggle('hidden', special);
   $('jidmyoWrap').classList.toggle('hidden', !special);
