@@ -167,6 +167,9 @@ button,input,select,textarea{font-family:inherit}
 .couple-col .birth-action{display:flex;justify-content:center;margin-top:2px}
 .couple-col .btn-add-birth{width:100%}
 @media (max-width: 1100px){.couple-grid{grid-template-columns:1fr}}
+/* 후면 자손 grid: 자|자부 / 녀|사위 / 손|외손 (종이 양식 매칭) */
+.back-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.back-grid .is-small textarea{min-height:78px}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
@@ -672,15 +675,15 @@ button,input,select,textarea{font-family:inherit}
                토글이 필요한 경우는 전면 문자 토글로 대체. -->
           <div id="sideSection" class="hidden"></div>
 
-          <div class="sub-section-title">후면</div>
+          <div class="sub-section-title">후면 (자손)</div>
           <div class="card">
             <div class="hidden" id="backTypeWrap" style="max-width:220px;margin-bottom:12px"><label class="lbl">후면 문자</label><select name="back_type" id="backType"><option value="korean">한글</option><option value="chinese">한자</option></select></div>
-            <div class="grid3">
+            <div class="back-grid">
               <div class="is-small"><label class="lbl">자</label><textarea name="son_text" id="sonText" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
               <div class="is-small"><label class="lbl">자부</label><textarea name="daughter_in_law_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
-              <div class="is-small"><label class="lbl">손</label><textarea name="grandson_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
               <div class="is-small"><label class="lbl">녀</label><textarea name="daughter_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
               <div class="is-small"><label class="lbl">사위</label><textarea name="son_in_law_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
+              <div class="is-small"><label class="lbl">손</label><textarea name="grandson_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
               <div class="is-small"><label class="lbl">외손</label><textarea name="maternal_grandchild_text" placeholder="줄바꿈으로 여러 명 입력"></textarea></div>
             </div>
             <div class="is-small" style="margin-top:12px"><label class="lbl">기타</label><textarea name="etc_text" id="etcText"></textarea></div>
@@ -822,7 +825,7 @@ function renderSlots(count){
       </div></div>
       <div class="grid2 death-row">
         <div class="is-small"><label class="lbl">사망일 <span class="date-note">(음력이면 "음"글자 직접 기재)</span></label><input name="f${i}_death" id="f${i}Death" /></div>
-        <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option value="">선택</option><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
+        <div class="is-small"><label class="lbl">사망 표현</label><select name="f${i}_death_type"><option>졸</option><option>선종</option><option>소천</option><option>없음</option></select></div>
       </div>
       <div class="birth-action"><button class="btn-add-birth" type="button" id="birthBtn${i}" onclick="showBirth(${i})">＋ 생년월일</button></div>
       <div class="slot-stone-photo hidden" data-stone-slot="${i}">
