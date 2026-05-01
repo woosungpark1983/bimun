@@ -170,6 +170,10 @@ button,input,select,textarea{font-family:inherit}
 /* 후면 자손 grid: 자|자부 / 녀|사위 / 손|외손 (종이 양식 매칭) */
 .back-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .back-grid .is-small textarea{min-height:78px}
+/* 토스트 */
+.toast{position:fixed;top:88px;left:50%;transform:translateX(-50%) translateY(-20px);background:var(--brown);color:#f5e9c0;padding:12px 24px;border-radius:14px;font-weight:800;font-size:.95rem;opacity:0;pointer-events:none;transition:opacity .2s, transform .2s;z-index:200;box-shadow:0 8px 24px rgba(62,46,30,.22);min-width:180px;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.error{background:var(--red);color:#fff}
 .summary{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sum-item{background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;display:flex;justify-content:space-between;gap:8px}.sum-item span,.sum-item strong{white-space:nowrap}.sum-item strong{font-weight:900}.sum-total{grid-column:1/-1;background:var(--brown);color:#f5e9c0;font-size:1.08rem}.stone-box{background:var(--red-soft);border-color:var(--red-line)}.stone-box select{border-color:#c98f8f;background:#fffafa}.calc-panel-title{font-weight:900;margin:0 0 10px;color:var(--brown)}.calc-btn{width:100%;margin-bottom:10px;background:var(--brown);color:#f5e9c0;border-color:var(--brown)}
 .actionbar{position:fixed;bottom:0;left:0;right:0;background:rgba(244,241,228,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 28px;display:flex;gap:10px;align-items:center;z-index:60}.save-msg{font-weight:900;color:var(--olive);margin-left:8px}
 .drawer-bg{position:fixed;inset:0;background:rgba(62,46,30,.32);opacity:0;pointer-events:none;transition:.18s;z-index:80}.drawer-bg.open{opacity:1;pointer-events:auto}.drawer{position:fixed;right:0;top:0;width:min(760px,94vw);height:100vh;background:var(--paper);z-index:81;transform:translateX(100%);transition:.22s;display:flex;flex-direction:column;box-shadow:-8px 0 30px rgba(0,0,0,.14)}.drawer.open{transform:translateX(0)}.drawer-head{height:68px;background:var(--brown);color:#f5e9c0;display:flex;align-items:center;padding:0 18px;gap:12px}.drawer-head h2{font-size:1.05rem;margin:0;flex:1}.drawer-body{overflow:auto;padding:14px}.drawer-search{padding:12px 14px;border-bottom:1px solid var(--line);background:var(--ivory)}.drawer-search input{min-height:42px;background:#fff}
@@ -727,6 +731,7 @@ button,input,select,textarea{font-family:inherit}
   <span class="save-msg" id="saveMsg"></span><span class="grow"></span>
 </div>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="drawer-bg" id="drawerBg" onclick="closeList()"></div>
 <div class="drawer" id="drawer">
   <div class="drawer-head"><h2>저장목록</h2><button class="btn" type="button" onclick="closeList()">닫기</button></div>
@@ -850,19 +855,33 @@ function removeSlot(i){
   data.slot_count=count-1;  // slot_count 먼저 갱신
   renderSlots(count-1); fillForm(data);
 }
+let _calcDebounceTimer=null;
+function debouncedCalc(){
+  if(_calcDebounceTimer) clearTimeout(_calcDebounceTimer);
+  _calcDebounceTimer=setTimeout(()=>{ calc(); _calcDebounceTimer=null; }, 350);
+}
 function bindInputs(){
   document.querySelectorAll('input,select,textarea').forEach(el=>{
-    el.oninput=()=>{updatePreview();};
+    el.oninput=()=>{updatePreview(); debouncedCalc();};
     el.onchange=()=>{
       const m = el.id && el.id.match(/^f(\d+)BirthType$/);
       const sm = el.id && el.id.match(/^s(\d+)BirthType$/);
       if(m && el.value==='없음') birthTypeChanged(Number(m[1]));
       if(sm && el.value==='없음') sideBirthTypeChanged(Number(sm[1]));
-      updateUI(); updatePreview();
+      updateUI(); updatePreview(); debouncedCalc();
     };
   });
   $('category').onchange=()=>{ fillSubcategory(); updateUI(true); updatePreview(); calc(); };
   $('subcategory').onchange=()=>{ updateUI(true); updatePreview(); calc(); };
+}
+// 토스트: 짧은 알림 (저장 성공/오류 등). 페이지 상단에 슬라이드 인.
+function showToast(msg, type){
+  const t = $('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.className = 'toast show' + (type === 'error' ? ' error' : '');
+  clearTimeout(showToast._h);
+  showToast._h = setTimeout(()=> t.classList.remove('show'), 2400);
 }
 // 종교마크 위치 유형 (x/y: %, w: % 너비)
 const MARK_POS = {
@@ -1597,7 +1616,7 @@ async function calc(){
 }
 async function saveForm(){
   await calc(); const data=collectForm(); const res=await fetch('/api/save',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}); const out=await res.json();
-  if(out.ok){ $('dataId').value=out.id; if(!$('createdAt').value) $('createdAt').value=out.item.created_at; $('saveMsg').textContent='저장 완료'; setTimeout(()=>$('saveMsg').textContent='',1800); await refreshList(); } else alert('저장 실패');
+  if(out.ok){ $('dataId').value=out.id; if(!$('createdAt').value) $('createdAt').value=out.item.created_at; showToast('저장 완료'); await refreshList(); } else showToast('저장 실패', 'error');
 }
 async function refreshList(){ const r=await fetch('/api/list'); savedList=await r.json(); renderList(savedList); }
 function locationLabel(item){
@@ -1625,15 +1644,15 @@ async function uploadDraft(id, input){
     const r=await fetch('/api/draft/'+id, {method:'POST', body:fd});
     const out=await r.json();
     if(out.ok){ await refreshList(); }
-    else alert('업로드 실패: '+(out.error||'unknown'));
-  }catch(e){ alert('업로드 실패: '+e.message); }
+    else { showToast('업로드 실패: '+(out.error||'unknown'), 'error'); }
+  }catch(e){ showToast('업로드 실패: '+e.message, 'error'); }
   finally{ input.disabled=false; input.value=''; }
 }
 async function deleteDraft(id){
   if(!confirm('업로드된 시안을 제거할까요?')) return;
   const r=await fetch('/api/draft/'+id, {method:'DELETE'});
   const out=await r.json();
-  if(out.ok) refreshList(); else alert('제거 실패: '+(out.error||''));
+  if(out.ok) { refreshList(); showToast('시안 제거 완료'); } else showToast('제거 실패: '+(out.error||''), 'error');
 }
 function renderList(list){
   const q=($('listSearch')?.value||'').trim().toLowerCase(); const filtered=(list||[]).filter(item=>!q || [item.contract_no,item.contractor,item.type_label,item.status,item.writer,item.designer,item.checker,item.jigu,item.yeol,item.ho,locationLabel(item)].join(' ').toLowerCase().includes(q));
